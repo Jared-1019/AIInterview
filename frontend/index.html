@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Interview</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <div class="brand-title">AI-Interview</div>
+          <div class="brand-subtitle">Powered by your API</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-panel">
+      <div class="conversation">
+        <div v-for="(message, index) in conversation" :key="index" :class="['message', message.role]">
+          <span class="role">{{ message.role === 'user' ? 'You' : 'AI-Interview' }}</span>
+          <div class="message-body">{{ message.text }}</div>
+        </div>
+        <div class="typing" v-if="isTyping">AI-Interview is thinking...</div>
+      </div>
+
+      <form class="composer" @submit.prevent="sendMessage">
+        <textarea
+          v-model="input"
+          placeholder="Ask anything…"
+          rows="1"
+          autocomplete="off"
+          @input="resizeTextarea"
+        ></textarea>
+        <button type="submit" :disabled="!input.trim()">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
