@@ -4,21 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-Interview</title>
+  <link rel="icon" href="/images/logo.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
       <div class="brand">
-        <div class="brand-mark">AI</div>
-        <div>
-          <div class="brand-title">AI-Interview</div>
-          <div class="brand-subtitle">Powered by your API</div>
+        <div class="brand-mark">
+          <img src="/images/logo.png" alt="AI Interview Logo" class="brand-logo" />
+        </div>
+        <div class="brand-copy">
+          <div class="brand-title">AI Interview</div>
         </div>
       </div>
     </header>
 
     <main class="chat-panel">
+      <div class="action-launcher">
+        <button class="plus-btn" @click="toggleActionMenu">+</button>
+        <div class="action-menu" v-if="showActionMenu">
+          <button class="action-item" type="button" @click="openVoiceCall">语音通话</button>
+          <button class="action-item" type="button" @click="openVoiceCall">视频聊天</button>
+        </div>
+      </div>
+
+      <div class="voice-modal-backdrop" v-if="showVoiceModal" @click.self="closeVoiceModal">
+        <div class="voice-modal">
+          <div class="voice-modal-header">
+            <div>语音通话</div>
+            <button class="close-btn" @click="closeVoiceModal">×</button>
+          </div>
+          <div class="voice-modal-body">
+            <p class="voice-modal-hint">{{ voiceModalStatus }}</p>
+            <div class="voice-state">
+              <span class="state-chip listening" v-if="isListening">AI 正在听</span>
+              <span class="state-chip speaking" v-if="isSpeaking">AI 正在说</span>
+            </div>
+            <button class="voice-action-btn" v-if="audioPlayBlocked" @click="resumePlayback" type="button">
+              点击播放 AI 回复
+            </button>
+            <button class="voice-close-btn" @click="closeVoiceModal" type="button">结束通话</button>
+          </div>
+        </div>
+      </div>
+
       <div class="conversation">
         <div v-for="(message, index) in conversation" :key="index" :class="['message', message.role]">
           <span class="role">{{ message.role === 'user' ? 'You' : 'AI-Interview' }}</span>
@@ -28,15 +58,23 @@
       </div>
 
       <form class="composer" @submit.prevent="sendMessage">
-        <textarea
+        <button type="button" class="icon-btn mic-btn" :class="{ recording: isRecording }" @click="toggleRecording" aria-label="Voice input">
+          <img src="/images/microphone.png" alt="Voice" class="mic-icon" />
+        </button>
+
+        <input
           v-model="input"
-          placeholder="Ask anything…"
-          rows="1"
+          type="text"
+          placeholder="有问题，尽管问"
           autocomplete="off"
-          @input="resizeTextarea"
-        ></textarea>
-        <button type="submit" :disabled="!input.trim()">Send</button>
+          class="text-input"
+        />
+
+        <button type="submit" class="icon-btn send-btn" :disabled="!input.trim()">
+          <span class="send-icon"></span>
+        </button>
       </form>
+
     </main>
   </div>
 

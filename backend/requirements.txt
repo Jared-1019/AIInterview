@@ -1,0 +1,6 @@
+Flask>=2.0
+vosk==0.3.44
+torch>=2.0
+numpy
+requests
+gTTS
