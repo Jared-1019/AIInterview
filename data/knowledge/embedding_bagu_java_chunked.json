@@ -1,0 +1,3434 @@
+[
+  {
+    "id": "java_001_short_c1",
+    "question": "什么是抽象类与接口？",
+    "answer": "抽象类和接口的概念抽象类： 是一种不能被实例化的类， 它可能包含抽象方法（没有方法体）和具体方法（有方法体）。 抽象类通常是作为对应子类的基类， 提供共同的属性和部分行为的实现， 并强制子类实现某些特定行为。 接口： 是一种完全抽象的类型， 接口技术用于描述类应该具有什么功能， 但并不给出具体实现， 等到当某个类要使用接口时， 再去实现接口中的这些方法。 类需要遵从接口中描述的统一规则进行定义， 所以， 接口是对外提供的一组规则， 标准。 抽象类和接口的区别如下表所示： 维度抽象类接口成员变量可有各种访问修饰符的实例变量、静态变量和常量。 默认且必须是 public static final（常量）， 且必须在定义时就初始化。 成员方法可有抽象方法（无实现）和具体方法（有实现）。 抽象方法不能是 private, static, final。 Java 8之前： 只能有 public abstract方法。 Java 8及之后： 可有默认方法、静态方法。 Java 9及之后： 可有私有方法。 构造方法可以有构造方法， 用于子类初始化父类成员， 但不能直接实例化。 不能有构造方法。 及之后： 可有私有方法。 构造方法可以有构造方法， 用于子类初始化父类成员， 但不能直接实例化。 不能有构造方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_short_c2",
+    "question": "什么是抽象类与接口？",
+    "answer": "创建对象不能直接实例化。 只能通过子类（非抽象）实例化。 不能直接实例化。 只能通过实现类（非抽象）实例化， 并通常通过多态引用。 继承关系使用 extends关键字继承， 只支持单继承。 使用 implements关键字实现， 支持多实现（一个类可实现多个接口）。 接口之间可多继承。 适用场景表示“is-a”关系， 作为类族共同的基类， 提供模板方法模式。 表示“can-do”或“has-a”关系， 定义行为规则 标准， 实现多态， 弥补单继承机制的不足。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_detail_c1",
+    "question": "什么是抽象类与接口？",
+    "answer": "抽象类和接口的概念抽象类： 抽象类是Java中用于实现抽象概念的一种特殊类， 它使用 abstract关键字修饰， 不能被直接实例化（即不能使用 new关键字创建对象）。 抽象类通常是作为对应子类的基类， 提供一个通用的模板或骨架， 定义一组共同的属性和部分行为， 并强制子类实现某些特定的、对于每个子类来说比较特别的行为。 接口： 是一种完全抽象的类型， 它使用 interface关键字定义， 与抽象类类似， 也不能被直接实例化。 接口技术用于描述类应该具有什么功能， 但并不给出具体实现， 等到当某个类要使用接口时， 再去实现接口中的这些方法。 类需要遵从接口中描述的统一规则进行定义， 所以， 接口是对外提供的一组规则， 标准。 接口的主要目的是实现多重继承的效果， 定义不同的类可以拥有的共同的能力或行为， 强调“做什么”而非“怎么做”。 抽象类和接口的区别成员变量： 抽象类： 在抽象类中， 可以定义各种类型的成员变量， 包括实例变量（非静态）、静态变量， 以及静态和非静态的常量。 非静态的常量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_detail_c2",
+    "question": "什么是抽象类与接口？",
+    "answer": "这些变量可以使用任何访问修饰符（public, protected, default, private）， 并且可以不需要被 final修饰， 也可以不进行初始化（因为对于实例变量， 可以在构造方法中初始化）。 接口： 在接口中， 所有成员变量都必须是 public static final类型， 即接口中没有成员变量， 只有公有静态常量。 由于它们是常量， 因此必须在定义时进行初始化。 而因为接口不包含构造方法或静态代码块来初始化这些常量， 所以定义时就进行赋值是唯一的初始化途径。 成员方法： 抽象类： 抽象类可以包含抽象方法（抽象方法没有方法体， 用 abstract关键字修饰）和具体方法（具体方法有方法体）。 抽象方法不能是 private修饰的， 因为私有方法无法被子类继承和实现， 也不能是 static修饰的， 因为静态方法属于类， 与实例无关， 无法强制子类实现， 还不能是 final修饰的， 因为 final方法不能被重写， 而抽象方法必须被重写， 这就有矛盾。 具体方法（非抽象方法）则可以有任何访问修饰符， 并且也可以是 static或 final修饰的。 有矛盾。 具体方法（非抽象方法）则可以有任何访问修饰符， 并且也可以是 static或 final修饰的。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_detail_c3",
+    "question": "什么是抽象类与接口？",
+    "answer": "接口： 在 Java 8之前， 接口中所有方法必须是 public abstract， 即公有的抽象方法， 不允许有方法体。 事实上， 接口中的方法默认就是公有抽象方法， 因此在接口中定义抽象方法时， 可以省略掉abstract关键字。 从 Java 8开始， 接口引入了默认方法（default methods）和静态方法（static methods）。 默认方法使用 default关键字修饰， 允许接口提供方法的默认实现， 实现了接口的向后兼容性， 因为默认方法是可以被实现类重写的。 静态方法使用 static关键字修饰， 可以通过接口名直接调用， 与类中的静态方法类似。 从 Java 9开始， 接口进一步支持私有方法（private methods）。 私有方法可以是实例方法或静态方法， 它们主要用于在接口内部封装默认方法和静态方法的公共逻辑， 提高代码复用性， 但不能被外部或实现类直接访问。 构造方法： 抽象类： 抽象类可以拥有构造方法， 并且支持构造方法的重载。 尽管抽象类不能被直接实例化， 但其构造方法会在子类实例化时被调用， 用于初始化抽象类中定义的成员变量。 载。 尽管抽象类不能被直接实例化， 但其构造方法会在子类实例化时被调用， 用于初始化抽象类中定义的成员变量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_detail_c4",
+    "question": "什么是抽象类与接口？",
+    "answer": "这是因为子类的构造方法在执行时， 会隐式或显式地调用其父类的构造方法。 接口： 接口不能有构造方法。 接口只定义行为规范和常量， 不涉及实例的状态初始化， 因此不需要构造方法。 创建对象： 抽象类： 抽象类不能直接使用 new关键字创建对象（即不能被实例化）。 要使用抽象类， 必须通过其非抽象子类来实例化。 通常， 我们会通过多态的方式， 将子类对象赋值给抽象类类型的引用， 从而调用抽象类中定义的方法（包括抽象方法和具体方法）。 接口： 接口也不能直接使用 new关键字创建对象（即不能被实例化）。 要使用接口， 必须通过其非抽象的实现类来实例化。 同样， 通常会通过多态的方式， 将实现类对象赋值给接口类型的引用， 以实现接口定义的功能。 接口的实现类可以是抽象类（抽象类允许部分实现接口方法）或普通类（普通类要求必须实现接口中所有抽象方法）。 继承关系： 抽象类： 类与抽象类之间是继承关系， 使用 extends关键字。 Java只支持单继承， 即一个类只能继承一个抽象类（或普通类）。 这使得抽象类更适合表示“is-a”的强关联关系。 类（或普通类）。 这使得抽象类更适合表示“is-a”的强关联关系。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_detail_c5",
+    "question": "什么是抽象类与接口？",
+    "answer": "接口： 类与接口之间是实现关系， 使用 implements关键字。 Java支持多实现， 即一个类可以实现多个接口。 这使得接口能够弥补Java单继承的不足， 允许一个类拥有多种不相关的“能力”或“行为”。 接口与接口之间是继承关系， 使用 extends关键字。 接口支持多继承， 即一个接口可以同时继承多个接口。 适用场景： 抽象类： 适用于表示“is-a”关系， 当一组类之间存在共同的属性和行为， 并且其中一些行为是共同实现， 部分需要子类自定义实现时使用， 常用于模板方法模式。 接口： 适用于表示“can-do”、“has-a”行为规范， 定义统一标准， 不关注具体实现， 多用于多能力扩展、多态统一调用， 新版接口兼容升级场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_extra",
+    "question": "Java 8以后接口可以有默认方法和静态方法，这使得接口和抽象类看起来更相似了。那么，在什么情况下我仍然应该选择抽象类而不是接口？",
+    "answer": "尽管Java 8引入的默认方法和静态方法增强了接口的功能， 使其能够包含方法实现， 从而在表面上与抽象类更加相似， 但它们的核心设计理念和适用场景依然有本质区别。 当已经明确子类是父类的从属类型、存在is-a继承关系时优先抽象类； 当需要定义实例成员变量、使用protected、private权限成员维护对象状态时只能用抽象类； 当需要构造方法完成对象初始化逻辑时必须使用抽象类。 抽象类适合做算法骨架、模板方法模式， 接口默认方法仅用于版本兼容扩展， 不适合作为主体模板继承。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_extra2",
+    "question": "什么时候优先使用接口，什么时候优先使用抽象类？",
+    "answer": "优先使用接口（定义行为规范）： 当需要定义一组通用规则标准， 与实现类本身类型无关时优先接口； 需要实现多继承能力扩展时优先接口； 项目追求低耦合、面向抽象编程设计时优先接口。 优先使用抽象类（定义共同基类）： 存在明确is-a从属继承关系、需要维护实例成员属性、需要自定义构造初始化、需要复用通用方法实现、使用模板方法设计模式时优先选用抽象类。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_001_extra3",
+    "question": "抽象类和接口该如何选择？",
+    "answer": "侧重行为能力、统一规范、多实现扩展选接口； 侧重所属类型、共享属性状态、完整骨架复用选抽象类。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_002_short",
+    "question": "什么是 ArrayList 的扩容机制？",
+    "answer": "ArrayList 内部基于动态数组实现， 元素存满时触发扩容， 默认扩容为原容量的 1. 5 倍。 无参构造初始化为空数组， 第一次添加元素初始容量为 10， 扩容通过数组复制实现， 元素添加均摊时间复杂度为 O(1)。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_002_detail",
+    "question": "什么是 ArrayList 的扩容机制？",
+    "answer": "基于 JDK17 源码， ArrayList 底层维护 Object[] 数组存储元素， 当元素数量达到数组长度时新增元素会触发扩容。 无参构造下首次 add 时初始化容量为 10； 后续扩容规则为新容量 = 原容量 + (原容量 >> 1)， 约为 1. 5 倍。 扩容通过 Arrays. copyOf 完成数组拷贝， 单次拷贝时间复杂度为 O(n)， 但摊销后添加操作均摊复杂度为 O(1)。 JDK17 在容量计算上做了复用与优化， 便于 JIT 编译。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_003_short",
+    "question": "ArrayList 与原生数组的区别是什么？",
+    "answer": "原生数组长度固定、内存连续， 可存基本类型和引用类型， 仅支持下标访问； ArrayList 是基于动态数组的集合实现， 支持自动扩容、泛型和丰富的集合 API， 但只能存储引用类型（基本类型需装箱）。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_003_detail",
+    "question": "ArrayList 与原生数组的区别是什么？",
+    "answer": "原生数组是基础数据结构， 内存连续、长度固定， 可直接存储基本类型与引用类型， 适合元素数量固定且追求性能的场景； ArrayList 是集合框架的实现， 基于动态数组， 支持自动扩容与丰富的操作 API， 但仅存引用类型（基本类型需装箱）， 在中间插入或删除时存在数组拷贝开销， 适合元素数量不确定或需要频繁集合操作的场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_003_extra",
+    "question": "ArrayList 与原生数组分别适用于哪些场景？",
+    "answer": "元素数量固定且追求极致性能或需存储大量基本类型时适合使用原生数组； 元素数量不确定、需要频繁增删或利用集合 API 时适合使用 ArrayList。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_003_extra2",
+    "question": "如何解决集合装箱拆箱性能问题？",
+    "answer": "可使用第三方高性能基础类型集合库， FastUtil、Trove可直接生成基本类型数组集合， 无装箱开销； Apache Commons Lang、Guava提供数组工具类简化原生数组操作， 兼顾性能与开发便捷性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_004_short",
+    "question": "ArrayList 与 LinkedList 的区别是什么？",
+    "answer": "ArrayList 底层为动态数组， 随机访问快但中间插入删除需移动元素； LinkedList 底层为双向链表， 首尾插入删除快但随机访问需遍历， 两者均非线程安全。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_004_detail",
+    "question": "ArrayList 与 LinkedList 的区别是什么？",
+    "answer": "ArrayList 基于连续内存的动态数组， 支持 O(1) 随机访问， 但在中间插入或删除时需移动元素， 复杂度为 O(n)； LinkedList 是双向链表， 插入删除仅需调整指针， 效率高但随机访问需遍历， 复杂度为 O(n)。 两者均非线程安全， 需在并发场景下额外处理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_004_extra1",
+    "question": "ArrayList、LinkedList 与 Vector 有何区别？",
+    "answer": "ArrayList 非线程安全、扩容为 1. 5 倍； Vector 方法使用 synchronized， 线程安全但性能较差、扩容通常为 2 倍， 已不常用； LinkedList 基于双向链表， 适合频繁插入删除。 日常开发若无并发需求优先使用 ArrayList。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_004_extra2",
+    "question": "开发如何选择ArrayList和LinkedList？",
+    "answer": "读多查多、频繁索引访问选用ArrayList； 写多增删多、头尾操作多、需要充当队列栈结构选用LinkedList。 常规无明确场景默认优先ArrayList。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_005_short",
+    "question": "Spring Bean 的生命周期是什么？",
+    "answer": "Bean 由 IOC 容器管理， 生命周期通常包括： 实例化、依赖注入、初始化、就绪使用以及容器关闭时的销毁。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_005_detail",
+    "question": "Spring Bean 的生命周期的详细流程是什么？",
+    "answer": "容器扫描并注册 BeanDefinition， 反射实例化对象并进行属性填充完成依赖注入， 执行 Aware 回调， 执行 BeanPostProcessor 的前置处理， 调用初始化方法， 执行 BeanPostProcessor 的后置处理， Bean 完成初始化并可供使用； 容器关闭时执行销毁方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_005_detail2",
+    "question": "@PostConstruct、InitializingBean 与 init-method 的执行顺序是什么？",
+    "answer": "执行顺序为： @PostConstruct（注解方法）> InitializingBean. afterPropertiesSet() > 自定义的 init-method。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_005_detail3",
+    "question": "Spring为什么无法解决原型Bean循环依赖？",
+    "answer": "Spring依靠三级缓存解决单例Bean循环依赖， 单例Bean全局仅创建一次， 可缓存早期引用。 原型Bean每次获取都会新建实例， 循环依赖会造成无限递归创建对象， 容器直接抛出创建异常， 无法缓存复用引用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_006_short",
+    "question": "Spring Bean作用域有哪些？",
+    "answer": "常用单例Singleton、多例Prototype； Web专属Request、Session、Application、WebSocket， 作用域控制Bean实例数量与生命周期。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_006_detail",
+    "question": "各Bean作用域详细说明？",
+    "answer": "Singleton默认作用域， 容器内全局唯一实例； Prototype每次获取创建全新实例； Request单次HTTP请求有效， 请求结束销毁； Session单次会话周期有效， 会话结束销毁； Application全局Web应用唯一实例； WebSocket绑定长连接会话生命周期， 可自定义扩展作用域实现业务生命周期管控。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_006_detail2",
+    "question": "单例Bean线程安全问题？",
+    "answer": "默认单例Bean全局共享， 类中存在可变成员变量时多线程修改会数据错乱。 解决方案： 尽量无状态设计、局部变量替代成员变量、ThreadLocal隔离线程数据、必要时加锁处理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_006_detail3",
+    "question": "单例注入原型Bean失效原因及解决？",
+    "answer": "单例Bean仅初始化时注入一次原型对象， 后续复用同一个实例出现伪多例。 解决方式： @Lookup注解动态获取、容器上下文手动getBean、作用域代理对象注入。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_006_detail4",
+    "question": "如何自定义Spring Bean作用域？",
+    "answer": "实现Scope接口重写获取、销毁回调方法； 通过配置类注册自定义作用域； 在Bean上使用@Scope注解指定自定义作用域名称即可使用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_007_short",
+    "question": "BIO、NIO、AIO区别？",
+    "answer": "BIO同步阻塞， 连接少场景； NIO同步非阻塞， 多路复用大量短连接； AIO异步非阻塞， 大量长连接高并发场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_007_detail",
+    "question": "BIO、NIO、AIO详细原理与场景？",
+    "answer": "BIO同步阻塞IO， IO操作未完成线程一直阻塞， 一连接一线程， 并发差资源消耗大， 适合少量固定连接。 NIO同步非阻塞， 基于Selector、Channel、Buffer模型， 单线程管理多通道， 轮询就绪事件处理， 适合大量短连接高并发网络编程。 AIO异步非阻塞IO， 基于操作系统异步回调， IO完成后主动通知线程， 无需轮询， 适合大量长连接场景， 实际项目应用较少。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_007_detail2",
+    "question": "NIO底层机制与Selector工作流程？",
+    "answer": "Linux底层依赖epoll多路复用， Windows依赖IOCP完成端口。 流程： Channel注册到Selector、内核监听IO事件、事件就绪唤醒Selector、线程遍历就绪事件处理读写、循环持续监听。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_008_short",
+    "question": "HashMap底层结构？",
+    "answer": "JDK1. 8HashMap底层数组+链表+红黑树， 数组为主桶， 链表解决哈希冲突， 链表长度超阈值转为红黑树优化查询。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_008_detail",
+    "question": "HashMap底层详细原理？",
+    "answer": "底层采用哈希表结构， JDK1. 8为数组+单向链表+红黑树。 通过key哈希值计算下标定位数组桶位， 相同下标产生哈希冲突则尾插法形成链表； 链表节点数大于8且数组长度大于64链表转红黑树； 红黑树节点少于6退化为链表。 默认初始容量16， 负载因子0. 75， 扩容翻倍， 扩容时重新哈希分散节点。 非线程安全， 多线程扩容会出现链表环问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_008_detail2",
+    "question": "JDK1.7与JDK1.8HashMap区别？",
+    "answer": "1. 7底层数组+链表， 头插法扩容逆序， 易产生循环链表； 1. 8数组+链表+红黑树， 尾插法， 链表过长树化优化查询， 扩容保持原有顺序， 无逆序问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_008_extra",
+    "question": "HashMap扩容机制？",
+    "answer": "默认阈值=容量*负载因子， 达到阈值触发扩容， 新容量为原2倍， 所有元素重新计算哈希下标迁移节点， 1. 8扩容采用高低位拆分优化迁移效率。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_009_short",
+    "question": "HashMap、Hashtable、ConcurrentHashMap区别？",
+    "answer": "HashMap非线程安全效率高； Hashtable全方法加锁线程安全性能差； ConcurrentHashMap分段锁细粒度并发控制， 高并发安全高效。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_009_detail",
+    "question": "三者详细区别与底层？",
+    "answer": "HashMap非线程安全， 键值允许null， 底层数组链表红黑树， 日常单线程开发使用。 Hashtable古老集合， 方法全部synchronized加锁线程安全， 键值不可为null， 扩容2倍， 性能低下基本废弃。 ConcurrentHashMap高并发安全Map， JDK1. 8取消分段锁采用CAS+synchronized细粒度加锁， 仅锁住节点， 并发性能极强， 不允许null键null值。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_010_short",
+    "question": "Java异常体系结构？",
+    "answer": "顶层父类Throwable， 分支Error系统错误无需处理， Exception程序异常， 分为编译时检查异常、运行时非检查异常RuntimeException。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_010_detail",
+    "question": "Java异常详细分类与处理？",
+    "answer": "Throwable为所有异常错误顶层父类； Error为虚拟机层面系统错误， 内存溢出、栈溢出， 程序无法处理无需捕获。 Exception为业务程序异常， 分为必须捕获声明的检查异常， 以及继承RuntimeException的运行时异常， 无需强制捕获。 处理方式try-catch-finally捕获、throws向上抛出异常。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_010_detail2",
+    "question": "try-catch-finally执行顺序？",
+    "answer": "先执行try代码块， 出现异常进入对应catch块捕获处理， 无论是否发生异常最终都会执行finally代码块， 常用于资源关闭释放。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_011_short",
+    "question": "Java多线程实现方式？",
+    "answer": "继承Thread类、实现Runnable接口、实现Callable接口带返回值、线程池创建线程。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_011_detail",
+    "question": "多线程四种实现方式优缺点？",
+    "answer": "继承Thread扩展性差， 单继承限制； Runnable无返回值无异常抛出， 解耦适合任务复用； Callable支持返回结果、抛出异常； 线程池统一管理线程， 复用线程降低开销， 可控并发数量， 开发推荐优先使用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_012_short",
+    "question": "线程状态有哪些？",
+    "answer": "新建、就绪、运行、阻塞、等待、超时等待、终止一共七大状态。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_012_detail",
+    "question": "线程状态流转详细？",
+    "answer": "新建New创建线程未启动； 调用start进入就绪； CPU调度转为运行； 遇到锁阻塞、sleep、wait进入等待阻塞； 等待结束重回就绪； 任务执行完毕线程终止。 wait释放锁， sleep不释放锁。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_013_short",
+    "question": "sleep和wait区别？",
+    "answer": "sleep属于Thread方法不释放锁， 时间到自动苏醒； wait属于Object方法释放对象锁， 需唤醒才继续执行。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_013_detail",
+    "question": "sleep、wait、yield详细区别？",
+    "answer": "sleep线程休眠， 持有锁不释放， 时间结束自动回到就绪态； wait属于对象方法， 必须在同步代码块使用， 释放对象锁， 依靠notify唤醒； yield主动让出CPU时间片， 不释放锁， 直接回到就绪态重新竞争CPU。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_014_short",
+    "question": "Java线程安全问题成因？",
+    "answer": "多线程并发共享资源、CPU抢占式调度、操作非原子性， 导致数据读写错乱。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_014_detail",
+    "question": "解决线程安全方案有哪些？",
+    "answer": "使用volatile保证可见性禁止指令重排； synchronized内置锁保证原子同步； Lock显式锁精细控制； 使用线程安全集合； ThreadLocal线程私有变量； 尽量避免共享可变成员变量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_015_short",
+    "question": "synchronized和Lock区别？",
+    "answer": "synchronized关键字内置锁， 自动加解锁使用简单； Lock手动显式锁， 功能丰富可中断、公平锁， 需要手动释放。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_015_detail",
+    "question": "synchronized与Lock详细对比？",
+    "answer": "synchronizedJava关键字， JVM层面锁， 自动加锁释放锁， 锁类型不可控， 适合简单同步场景。 Lock是JDK层面接口锁， 需要手动加锁解锁， 支持公平锁、非公平锁、可中断锁、超时锁， 等待可唤醒， 功能灵活， 适合复杂高并发锁控制场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_016_short",
+    "question": "volatile作用？",
+    "answer": "保证多线程变量可见性， 禁止指令重排序， 不保证复合操作原子性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_016_detail",
+    "question": "volatile底层原理？",
+    "answer": "基于CPU内存屏障实现， 强制刷新主内存缓存， 线程每次从主内存读取最新值， 禁止编译器和CPU指令重排优化。 无法保证i++这类复合读写操作原子安全， 仅适用单一读写场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_017_short",
+    "question": "线程池核心参数？",
+    "answer": "核心线程数、最大线程数、空闲存活时间、时间单位、任务队列、拒绝策略。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_017_detail",
+    "question": "线程池工作流程？",
+    "answer": "任务提交优先使用核心线程， 核心满了进入阻塞队列， 队列满了创建非核心线程至最大线程数， 超出最大线程则执行拒绝策略处理多余任务， 空闲超时非核心线程回收。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_018_short",
+    "question": "为什么不建议使用Executors创建线程池？",
+    "answer": "内置线程池存在资源耗尽风险， 无界队列内存溢出、线程无限制创建耗尽CPU内存， 开发手动自定义参数创建。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_018_detail",
+    "question": "Executors各类线程池弊端？",
+    "answer": "newFixedThreadPool无界队列堆积任务OOM； newCachedThreadPool无限创建线程耗尽CPU； newSingleThreadExecutor单线程无界队列内存风险； 开发统一使用ThreadPoolExecutor手动构造参数创建。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_019_short",
+    "question": "Java内存模型JMM？",
+    "answer": "JMM抽象模型规范线程主内存、工作内存交互， 约束可见性、原子性、有序性三大特性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_019_detail",
+    "question": "JMM三大特性详解？",
+    "answer": "可见性： 一个线程修改共享变量其他线程立即感知； 原子性： 操作不可分割不可中途打断； 有序性： 程序执行顺序与代码编写顺序一致， 禁止不合理指令重排。 通过volatile、锁、内存屏障保障特性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_020_short",
+    "question": "Java锁升级过程？",
+    "answer": "偏向锁→轻量级锁→重量级锁， JDK1. 6优化偏向锁减少无竞争开销。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_020_detail",
+    "question": "锁升级详细原理？",
+    "answer": "无竞争默认偏向锁， 持有线程无需加锁开销； 多线程轻微竞争升级轻量级锁CAS自旋； 竞争加剧阻塞升级操作系统重量级互斥锁， 依赖内核线程调度开销变大。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_021_short",
+    "question": "公平锁与非公平锁区别？",
+    "answer": "公平锁严格排队按顺序获取锁； 非公平锁可直接抢占， 整体吞吐效率更高， synchronized默认非公平。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_021_detail",
+    "question": "公平锁非公平锁优缺点？",
+    "answer": "公平锁严格FIFO排队， 无线程饥饿， 但是频繁线程切换开销大； 非公平锁允许新来线程直接抢占， 整体执行效率高， 极端情况存在线程长期获取不到锁饥饿问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_022_short",
+    "question": "重入锁是什么？",
+    "answer": "同一线程外层获取锁后， 内层代码可直接再次获取同一锁无需重复阻塞。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_022_detail",
+    "question": "ReentrantLock重入原理？",
+    "answer": "内部维护锁状态计数器， 获取锁计数+1， 释放锁计数-1， 计数归零完全释放锁， 支持同一线程多次嵌套加锁， synchronized也具备隐式重入特性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_023_short",
+    "question": "Spring IOC是什么？",
+    "answer": "控制反转， 对象创建、依赖管理、生命周期全部交给Spring容器统一管理， 不再手动new对象。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_023_detail",
+    "question": "IOC底层原理与好处？",
+    "answer": "基于工厂模式+反射实现， 容器扫描配置解析Bean定义， 反射创建实例完成依赖注入。 解耦对象创建依赖， 统一管理对象， 便于扩展维护， 降低代码耦合度。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_024_short",
+    "question": "Spring DI依赖注入方式？",
+    "answer": "构造器注入、set方法注入、字段属性注入， 官方推荐构造器注入。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_024_detail",
+    "question": "三种注入方式优缺点？",
+    "answer": "构造器注入保证对象初始化完整， 不可变依赖安全， 官方首选； set注入适合可选依赖、后期动态修改； 字段注入简洁但是耦合高， 不利于单元测试， 不推荐复杂场景使用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_025_short",
+    "question": "Spring AIO面向切面？",
+    "answer": "AOP面向切面编程， 不修改原有代码， 动态增强方法功能， 底层动态代理实现。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_025_detail",
+    "question": "AOP底层动态代理？",
+    "answer": "实现接口使用JDK动态代理， 无接口类使用CGLIB字节码增强代理。 用于统一日志、事务、权限、监控等通用功能横向抽取， 无侵入增强业务方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_025_detail2",
+    "question": "JDK代理与CGLIB代理区别？",
+    "answer": "JDK代理基于接口实现， 只能代理实现接口的类； CGLIB基于继承字节码修改， 可代理普通类， 无法代理final修饰类与方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_026_short",
+    "question": "Spring事务传播属性？",
+    "answer": "多个事务方法嵌套调用时， 事务传递规则， 控制事务合并、独立、新开等行为。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_026_detail",
+    "question": "常用事务传播级别？",
+    "answer": "REQUIRED默认， 存在事务加入、无则新建； REQUIRES_NEW每次独立新事务； NESTED嵌套事务； SUPPORTS兼容外部事务； NOT_SUPPORTED强制非事务运行等。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_027_short",
+    "question": "Spring事务失效场景？",
+    "answer": "方法非public、内部this调用、异常被捕获、多线程调用、传播属性不生效、数据库本身不支持事务。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_027_detail",
+    "question": "事务失效详细原因及解决？",
+    "answer": "AOP基于动态代理增强， private方法无法拦截； 自身内部调用不走代理； try-catch吞掉异常Spring无法感知回滚； 多线程各自独立事务； 错误传播配置； MySQL引擎非InnoDB不支持事务。 解决使用代理对象调用、正确抛出运行时异常、选用正确数据库引擎。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_028_short",
+    "question": "MyBatis #{} 和 ${} 区别？",
+    "answer": "#{}预编译占位符防SQL注入； ${}直接字符串替换， 存在注入风险。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_028_detail",
+    "question": "两者底层原理与使用场景？",
+    "answer": "#{}生成PreparedStatement预编译参数， 自动加引号， 参数安全防注入， 普通参数全部优先使用。 ${}直接拼接原生SQL， 无转义处理， 仅用于动态表名、排序字段等无法预编译场景， 严格控制入参避免注入。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_029_short",
+    "question": "MyBatis一级缓存二级缓存区别？",
+    "answer": "一级缓存SqlSession级别默认开启， 会话关闭失效； 二级缓存Mapper全局级别， 跨SqlSession共享， 默认关闭需手动开启。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_029_detail",
+    "question": "缓存机制详细原理？",
+    "answer": "一级缓存基于SqlSession域Map存储， 同一会话多次相同查询直接返回缓存， 增删改清空缓存。 二级缓存映射器全局缓存， 多个会话共用， 开启后所有该Mapper查询共享缓存， 更新操作全局清空。 实际开发多使用Redis独立缓存， 较少开启MyBatis二级缓存。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_030_short",
+    "question": "SpringBoot自动装配原理？",
+    "answer": "启动注解扫描自动配置组件， 根据依赖条件、配置信息自动创建Bean注入容器， 无需手动XML配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_030_detail",
+    "question": "自动装配完整流程？",
+    "answer": "@SpringBootApplication整合组件扫描、自动配置、配置属性加载； SPI机制加载META-INF配置下自动配置类； 条件注解判断类、Bean、配置是否存在按需装配； 最终将组件Bean注册到IOC容器完成自动化配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_030_detail2",
+    "question": "SpringBoot starter启动器原理？",
+    "answer": "starter整合依赖坐标与自动配置类， 简单依赖引入即可完成整套组件配置， 分为官方starter与第三方自定义starter， 简化版本管理与配置流程。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_031_short",
+    "question": "微服务常见组件？",
+    "answer": "微服务常见组件包含：服务注册发现、配置中心、网关、熔断限流、服务调用、消息队列、分布式事务、链路追踪、容器化、监控告警等，用于解耦、高可用、可扩展架构。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_031_detail",
+    "question": "微服务架构各组件作用？",
+    "answer": "统一网关路由转发、鉴权限流； 配置中心统一管理动态配置； 远程组件实现服务间调用； 熔断降级保护服务避免雪崩； 分布式组件解决分布式数据一致性问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_031_detail2",
+    "question": "常用微服务技术栈？",
+    "answer": "SpringCloud全家桶为主， Nacos注册配置中心、Gateway网关、OpenFeign服务调用、Sentinel熔断降级、Seata分布式事务。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_031_detail3",
+    "question": "微服务和单体项目区别？",
+    "answer": "单体所有功能耦合在一起部署维护； 微服务按业务拆分独立服务， 各自开发部署扩容， 松耦合高可扩展， 适合大型复杂项目。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_031_detail4",
+    "question": "服务雪崩成因与解决方案？",
+    "answer": "成因服务调用链路长， 下游故障导致上游堆积请求耗尽资源； 解决方案服务熔断、降级、限流， 配合服务隔离、超时重试、负载均衡保护整个微服务集群。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_short",
+    "question": "JVM组成部分？",
+    "answer": "JVM可以分为类加载器、运行时数据区、执行引擎、本地方法接口和本地方法库五个部分组成。 JVM通过类加载器将字节码（. class文件）加载到内存并生成class对象， 运行时数据区作为JVM内存管理的区域中， 使用特定的执行引擎将字节码翻译成底层系统指令， 再交给CPU执行， 这个过程需要调用其他语言的本地接口实现整个程序的功能。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_detail_c1",
+    "question": "JVM组成部分？",
+    "answer": "类加载器ClassLoader： 启动类加载器(Bootstrap ClassLoader)： 是最顶层的加载类， JVM启动时加载核心类库（rt. jar, resources. jar, charset. jar等jar包和类， 被参数-Xbootclasspath指定路径下的类）。 扩展类加载器(Extension ClassLoader)： 是启动类加载器的子类， 加载扩展目录(lib/ext)中的类库。 应用程序类加载器(Application ClassLoader)： 是扩展类加载器的子类， 加载当前应用类路径下的所有jar包和类。 运行时数据区Runtime Data Area： 是Java虚拟机在执行Java程序过程中管理内存的一种方式， 将内存划分为不同的区域， 分为程序计数器， Java虚拟机栈， 本地方法栈， Java堆和方法区。 每个区域都有特定的用途和生命周期。 程序计数器： 记录当前线程所执行的字节码指令的地址。 生命周期与线程相同。 Java虚拟机栈： 方法执行时会创建一个栈帧， 存储局部变量、操作数栈、动态链接等。 ava虚拟机栈： 方法执行时会创建一个栈帧， 存储局部变量、操作数栈、动态链接等。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_detail_c2",
+    "question": "JVM组成部分？",
+    "answer": "每个线程有独立的Java虚拟机栈， 生命周期与线程相同。 本地方法栈： 用于存储java中使用native标记的本地方法。 是线程私有的， 可以固定或动态扩展。 堆： 所有线程共享的内存区域， 存放对象实例和数组。 也是垃圾回收器执行垃圾回收的主要区域。 方法区（元空间）： 所有线程共享的内存区域， 存储已被虚拟机加载的类信息、常量、静态变量即时编译后的代码等数据。 在启动JVM时创建， 关闭JVM后释放。 执行引擎Execution Engine： 解释器： 将字节码指令翻译为对应平台的本地机器指令， 由CPU执行， 当一条指令执行完后， 根据PC寄存器中记录的下一条指令执行解释操作。 JIT编译器： 将热点代码直接编译成与本地平台有关的机器码， 并且进行各种层次的优化。 垃圾回收器： 主要用于Java堆的管理， 回收程序运行期间不再使用的无用对象。 本地方法接口Native Method Interface： 根据本地方法栈中有标记native的方法， 生成一个对应的本地接口， 启动执行引擎时， 会根据本地方法接口去本地方法库中加载对应实现方法。 应的本地接口， 启动执行引擎时， 会根据本地方法接口去本地方法库中加载对应实现方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_detail_c3",
+    "question": "JVM组成部分？",
+    "answer": "本地方法库Native Method Library： 存储本地方法的底层实现代码。 类加载全过程分为加载、链接、初始化三个阶段。 加载阶段： 根据类的全限定名， 获取字节码文件的二进制流， 将字节流解析为方法区中的运行时数据结构， 在堆内存生成Class对象， 作为方法区数据的访问入口。 链接阶段： 验证： 确保字节码符合JVM规范， 保证程序运行安全。 准备： 为类的静态变量分配内存并设置默认初始值。 解析： 将常量池中的符号引用转换为直接引用。 初始化阶段： 执行类的静态构造器方法， 完成静态变量赋值与静态代码块执行， 存在父类则优先初始化父类。 Java实现一次编译到处运行， 本质是字节码不绑定硬件平台， 由各平台JVM翻译为本地机器指令执行。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_detail2",
+    "question": "解释器和JIT编译器的区别？",
+    "answer": "解释器会逐条执行字节码， 没有编译开销， 内存占用小， 但是执行效率低。 JIT编译器会将热点代码编译成本地机器码缓存， 执行效率高， 但是需要一定编译时间， 同时占用CodeCache内存空间。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_032_detail3",
+    "question": "Java为什么同时采用解释执行和编译执行？",
+    "answer": "Java同时采用解释和编译执行， 以此平衡程序启动速度与运行执行效率。 解释性： 依靠JVM解释器逐行翻译字节码， 无需提前编译， 程序启动速度快， 同时保证语言跨平台特性。 编译性： 依靠JIT即时编译器， 把频繁执行的热点代码编译为本地机器码并缓存， 后续直接执行机器码提升运行性能。 JVM内部通过方法调用计数器统计代码执行次数， 达到阈值后触发JIT编译优化。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_short",
+    "question": "JVM内存结构？",
+    "answer": "运行时数据区分为Java虚拟机栈、堆、方法区、本地方法栈、程序计数器五个部分。 JDK8之前方法区基于永久代实现， JDK8及以后永久代替换为元空间。 Java虚拟机栈： 线程私有， 存储方法栈帧。 堆： 线程共享， 存储所有对象实例与数组， 是GC主要回收区域。 方法区： 线程共享， 存储类信息、常量、静态变量， JDK8后由元空间实现。 本地方法栈： 线程私有， 服务于Native本地方法。 程序计数器： 线程私有， 记录当前线程执行的字节码指令地址。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_detail_c1",
+    "question": "JVM内存结构详细讲解？",
+    "answer": "Java虚拟机栈： 每个线程私有且随线程创建销毁， 方法执行创建栈帧， 存储局部变量、操作数栈、动态链接、方法返回地址， 方法结束栈帧出栈。 栈容量固定或动态扩展， 超出栈容量抛出StackOverflowError， 动态扩展内存不足会抛出OOM异常。 Java堆： JVM最大内存区域， 所有线程共享， 虚拟机启动创建， 存放所有对象实例与数组， 是垃圾回收主要区域。 默认初始堆内存为系统内存1/64， 最大堆内存为系统内存1/4。 堆内部分为新生代、老年代， 新生代包含Eden区与两个Survivor区， 默认比例8: 1: 1。 Eden区满触发Minor GC， 存活对象在S0、S1区交替存放。 TLAB是Eden内线程私有内存分配区域， 避免多线程竞争， 提升内存分配效率。 存活多次垃圾回收的对象会晋升至老年代， 老年代内存不足触发Major GC， 回收频率低耗时更长。 方法区： 所有线程共享， 存储加载的类信息、常量、静态变量、编译后代码。 JDK7前方法区实现为永久代， 依附堆内存易内存溢出； 法区实现为永久代， 依附堆内存易内存溢出；",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_detail_c2",
+    "question": "JVM内存结构详细讲解？",
+    "answer": "JDK8后改为元空间， 使用系统本地内存， 支持动态扩容， 解决永久代内存溢出问题。 运行时常量池属于方法区一部分， 存放字面量、符号引用， 支持运行时动态新增常量。 本地方法栈： 线程私有， 管理Native本地方法调用， 通过JNI接口对接底层操作系统方法， 内存分配机制与虚拟机栈一致。 程序计数器： 线程私有， 字节码行号指示器， 记录线程当前执行指令地址， 是唯一不会出现内存溢出的内存区域。 栈帧内部结构： 局部变量表存储方法参数与局部变量； 操作数栈存放运算中间结果； 动态链接完成符号引用转直接引用； 方法返回地址记录调用栈恢复信息。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_detail2",
+    "question": "Java中本地方法的作用是什么？",
+    "answer": "Java无法直接操作系统底层硬件资源， 本地方法可以直接调用操作系统底层API实现交互。 例如文件IO、底层线程调度都依靠本地方法实现， 同时可以复用其他语言成熟底层代码库， 扩展Java语言能力。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_detail3",
+    "question": "永久代和元空间的区别？",
+    "answer": "永久代内存受Java堆大小限制， 内存大小难以合理设置， 调优困难， 极易出现内存溢出。 元空间直接使用操作系统本地内存， 具备动态扩容机制， 从根源解决永久代内存溢出问题， 内存调优更加便捷。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_033_detail4",
+    "question": "JVM对象内存分配流程？",
+    "answer": "新对象创建时先判定是否为大对象， 大对象直接分配至老年代。 普通对象优先在线程私有TLAB区域分配内存， TLAB空间不足则分配至Eden区。 Eden空间不足触发Minor GC， 存活对象转移至Survivor交替区。 对象经过默认15次垃圾回收后仍然存活， 便晋升至老年代。 老年代内存不足触发Major GC， 回收后依旧内存不足则抛出内存溢出OOM异常。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_034_short",
+    "question": "JVM常见参数？",
+    "answer": "JVM参数用于配置运行参数， 管控内存分配、垃圾回收、日志打印、异常快照等。 堆内存： -Xms设置初始堆内存， -Xmx设置最大堆内存， 通常两者设置一致避免内存扩容开销； -Xmn设置新生代大小， -XX: NewRatio设置新老年代比例。 垃圾回收： 通过参数指定不同垃圾收集器， 如ParallelGC、CMS、G1、ZGC收集器， 同时可配置GC线程数量。 GC日志： -XX: +PrintGCDetails打印详细回收日志， -XX: +PrintGCDateStamps打印时间戳， -Xloggc指定日志保存路径。 OOM异常处理： -XX: +HeapDumpOnOutOfMemoryError内存溢出时自动生成堆转储快照， -XX: HeapDumpPath指定快照文件保存路径。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_034_detail_c1",
+    "question": "JVM常见参数详细大全？",
+    "answer": "内存配置参数： -Xms： JVM初始堆内存大小。 -Xmx： JVM最大堆内存大小， 生产环境一般与-Xms等值。 -Xmn： 固定新生代整体内存大小。 -XX: NewRatio： 设置老年代与新生代内存比例， 默认2: 1。 -XX: MetaspaceSize： 元空间初始触发GC阈值。 -XX: MaxMetaspaceSize： 元空间最大可用内存上限。 垃圾回收器参数： -XX: +UseSerialGC： 启用串行垃圾收集器， 单核客户端场景适用。 -XX: +UseParallelGC： 新生代并行回收器， 注重吞吐量。 -XX: +UseConcMarkSweepGC： 启用CMS并发垃圾收集器， 低停顿优先。 -XX: +UseG1GC： 启用G1分区垃圾收集器， 兼顾吞吐量与停顿时间。 -XX: +UseZGC： 启用ZGC超低延迟垃圾收集器， 适合超大堆内存场景。 -XX: ParallelGCThreads： 设置垃圾回收工作线程数， 默认匹配CPU核心数。 日志相关参数： -verbose: class： 打印类加载详细日志。 匹配CPU核心数。 日志相关参数： -verbose: class： 打印类加载详细日志。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_034_detail_c2",
+    "question": "JVM常见参数详细大全？",
+    "answer": "-XX: +PrintGCDetails： 打印GC详细执行信息。 -XX: +PrintGCDateStamps： 打印GC发生时间戳。 -Xloggc: 路径： 指定GC日志文件存储位置。 内存异常处理： -XX: +HeapDumpOnOutOfMemoryError： 发生堆内存溢出时自动生成堆快照文件。 -XX: HeapDumpPath： 指定堆快照文件保存路径。 GC调优核心原则： 尽量让对象在新生代完成分配与回收， 减少老年代Full GC频率。 内存泄漏是无用对象仍被引用无法回收， 持续占用内存； 内存溢出是JVM申请内存无足够空间分配， 抛出OutOfMemoryError异常。 常见溢出场景： 堆内存溢出、栈深度溢出、元空间加载类过多溢出。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_035_short",
+    "question": "Map接口常用实现类有哪些？",
+    "answer": "HashMap： 数组+链表+红黑树底层， 存取无序， 允许一个null键、多个null值， 非线程安全， 存取平均O(1)。 LinkedHashMap： 继承HashMap， 额外双向链表， 可保持插入或访问顺序， 非线程安全。 TreeMap： 底层红黑树， 按键自然排序， 不允许null键， 非线程安全， 存取O(logN)。 ConcurrentHashMap： 高并发线程安全Map， JDK1. 8基于CAS+synchronized细粒度加锁， 不允许null键。 Hashtable： 全方法加synchronized粗粒度锁， 线程安全， 性能差， 不允许null键null值， 基本淘汰。 Properties： Hashtable子类， 键值均为String， 专门用于读取properties配置文件。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_035_detail",
+    "question": "Map接口各实现类底层原理与区别详解？",
+    "answer": "HashMap： JDK1. 8底层数组+链表+红黑树， 链表长度≥8且数组长度≥64树化， 节点少于6退化为链表。 元素无序， 支持单个null键、多个null值， 非线程安全， 常规键值存储首选， 增删查改平均时间复杂度O(1)。 LinkedHashMap： 继承HashMap全部底层结构， 额外维护双向链表， 默认保持插入顺序， 可配置访问顺序实现LRU缓存， 非线程安全。 TreeMap： 底层红黑树自平衡二叉树， 按键排序存储， 不允许null键， 支持范围查找， 时间复杂度O(logN)。 ConcurrentHashMap： JDK1. 7采用分段锁， JDK1. 8取消分段锁， 仅对桶头节点加synchronized锁， 并发性能大幅提升， 高并发场景首选， 不允许null键。 Hashtable： 底层数组+链表， 所有公共方法全表加锁， 线程安全但并发性能极差， 遗留类基本废弃， 不允许null键与null值。 Properties： 继承Hashtable， 强制键值全部为字符串类型， 内置流操作方法， 专门用于加载解析项目配置文件。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_035_extra",
+    "question": "其他特殊Map实现类？",
+    "answer": "Collections. synchronizedMap： 工具方法包装任意Map实现线程安全， 底层全对象粗粒度锁， 并发性能弱于ConcurrentHashMap， 低并发场景可用。 WeakHashMap： 键采用弱引用， 无外部强引用时键值对自动被GC回收， 适合简易临时缓存， 可避免内存泄漏问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_036_short",
+    "question": "观察者模式？",
+    "answer": "属于行为型设计模式， 核心是一对多对象依赖关系， 多个观察者监听同一个主题对象， 主题状态变更时主动通知全部观察者执行对应逻辑， 支持动态订阅与取消订阅。 优点： 实现主题与观察者解耦， 符合开闭原则， 扩展灵活。 缺点： 通知顺序无序， 未取消订阅易产生内存泄漏， 循环通知可能导致程序死循环。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_036_detail",
+    "question": "观察者模式详细原理、角色与应用？",
+    "answer": "四大核心角色： 抽象主题、具体主题、抽象观察者、具体观察者。 抽象主题： 定义注册、移除、通知观察者的统一接口。 具体主题： 被观察对象， 维护自身状态与观察者集合， 状态变化时触发通知。 抽象观察者： 定义统一更新接口， 接收主题变更消息。 具体观察者： 实现更新方法， 收到通知后执行自身业务处理。 执行流程： 创建主题与各个观察者， 观察者注册绑定主题； 主题内部状态发生变化， 遍历所有观察者统一发送通知； 各个观察者独立执行自身业务逻辑。 JDK内置原生API： Observable被观察者、Observer观察者， 被观察者需标记状态变更再执行通知。 应用场景： 事件监听、消息发布订阅、框架事件机制， 例如Spring容器事件监听、Redis发布订阅模型。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_036_detail2",
+    "question": "观察者模式遵循哪些设计原则？",
+    "answer": "依赖倒置原则： 主题与观察者均依赖抽象接口， 不依赖具体实现类。 开闭原则： 新增观察者无需修改原有主题代码， 对扩展开放、对修改关闭。 单一职责原则： 主题仅负责状态维护与消息通知， 观察者仅负责接收消息处理业务， 职责划分清晰。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_037_short",
+    "question": "面向对象三大特性？",
+    "answer": "封装： 将属性与方法捆绑封装为类， 隐藏内部实现， 仅对外暴露公共访问接口， 保证数据安全、降低耦合。 继承： 类之间形成父子层级关系， 子类复用父类非私有成员， 建立is-a从属关系。 多态： 父类引用指向子类对象， 运行时根据真实对象类型调用重写方法， 实现一个接口多种实现， 提升代码扩展性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_037_detail",
+    "question": "面向对象三大特性详细详解？",
+    "answer": "1. 封装： 将对象属性与操作方法捆绑整合为类， 通过访问权限修饰符隐藏内部实现细节， 仅对外提供可控公共接口。 使用private私有化成员， get/set方法对外访问， 典型应用JavaBean。 优势： 数据安全、降低耦合、组件易复用。 2. 继承： 子类通过extends继承父类， 复用父类非私有属性与方法， 支持多层继承， Java仅支持单继承。 子类可重写父类方法， 构造器不被继承但会隐式调用父类构造。 缺点： 父子强耦合白盒复用， 父类改动影响全部子类。 3. 多态： 实现条件为继承关系、方法重写、父类引用指向子类对象。 编译阶段检查引用类型， 运行阶段根据真实对象调用方法。 优势： 代码通用、解耦、易扩展； 限制： 父类引用无法直接调用子类独有方法， 需向下强制转型。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_037_extra",
+    "question": "面向对象三大特性核心总结？",
+    "answer": "封装是基础， 继承是前提， 多态是最终设计目的。 封装保障数据安全隐藏细节， 继承实现代码复用建立层级， 多态实现动态绑定提升程序灵活扩展能力。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_037_extra2",
+    "question": "封装、继承、多态三者内在关系？",
+    "answer": "封装是基础， 保护对象内部状态， 隐藏实现细节， 为继承提供安全基础。 继承建立类间从属关系， 实现代码复用， 同时为多态提供重写基础与父类引用条件。 多态是设计最终目的， 基于继承实现运行时动态绑定， 让代码具备高扩展性与灵活性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_037_extra3",
+    "question": "继承耦合问题与组合优势？",
+    "answer": "继承属于白盒复用， 父子强耦合， 父类内部细节对外暴露， 修改易连锁影响子类， 且Java单继承限制扩展性。 组合属于黑盒复用， 仅通过接口调用功能， 耦合度低， 支持多对象组合， 运行时可动态调整结构， 代码易维护、易单元测试， 开发优先多用组合少用继承。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_038_short",
+    "question": "面向对象与面向过程的区别？",
+    "answer": "面向过程以功能步骤为核心， 关注怎么做， 数据与方法分离， 流程线性， 复用性差， 适合简单固定小型程序。 面向对象以对象实体为核心， 关注谁来做， 数据与方法封装一体， 依靠三大特性实现高复用高扩展， 模块化易维护， 适合复杂大型迭代项目。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_038_detail",
+    "question": "面向对象与面向过程详细对比？",
+    "answer": "面向过程： 以过程函数为中心， 拆解问题为执行步骤， 封装为函数实现， 数据与方法相互分离。 程序线性执行， 代码复用性弱， 扩展修改困难， 数据暴露安全性低， 适合底层嵌入式、简单固定流程小型程序。 面向对象： 以现实实体抽象为对象， 属性与方法封装在对象内部， 对象间协作完成业务。 依靠封装继承多态实现高复用、低耦合、易扩展， 需求迭代修改便捷， 适合企业级复杂项目、Web系统、大型应用开发。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_038_extra",
+    "question": "面向对象和面向过程核心差异总结？",
+    "answer": "核心差异为设计思想、程序结构、代码复用、耦合维护性、适用场景全部不同。 面向过程侧重流程步骤， 面向对象侧重对象职责与模块化。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_038_extra2",
+    "question": "Java是不是纯粹的面向对象语言？",
+    "answer": "Java不属于纯粹面向对象语言。 原因是Java包含int、boolean等基本数据类型， 不属于对象， 无属性方法、不支持继承多态。 设计初衷为基础类型提升运行性能。 Java整体依旧高度面向对象， 核心类、封装继承多态全部严格遵循面向对象设计范式。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_038_extra3",
+    "question": "面向对象三大特性如何区分两种编程范式？",
+    "answer": "封装实现数据隐藏与模块化， 对应面向对象数据方法一体， 区别于面向过程数据公开分离。 继承实现层级代码复用， 面向过程无此类层级复用机制。 多态实现统一接口多实现， 提升扩展灵活性， 是面向过程不具备的核心特性， 三者共同构成面向对象核心标志。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_039_short",
+    "question": "方法重载与方法重写区别？",
+    "answer": "重载Overload： 同一个类中， 方法名相同， 参数列表不同， 编译时静态绑定。 重写Override： 父子类继承关系， 方法签名完全一致， 子类重写父类方法， 运行时动态绑定。 重载对返回值、权限、异常无严格限制； 重写子类权限不能更严格， 异常范围不能更广， 返回值支持协变。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_039_detail",
+    "question": "方法重载与方法重写详细详解？",
+    "answer": "方法重载： 同一类内同名方法， 参数个数、类型、顺序不同即可， 返回值、访问权限、抛出异常无强制约束， 编译阶段确定调用方法， 属于静态绑定。 方法重写： 发生在父子继承之间， 方法名、参数列表完全一致， 返回值支持协变兼容。 子类访问权限不能比父类更严格， 抛出的检查异常范围不能更广。 运行阶段根据对象真实类型决定调用方法， 属于动态绑定。 静态方法仅能重载不能重写， 子类同名静态方法属于方法隐藏， 并非重写。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_039_extra",
+    "question": "重载重写英文总结与静态方法区别？",
+    "answer": "Overloading重载： 同类同名， 参数列表不同。 Overriding重写： 父子类继承， 方法签名完全一致。 静态方法无法重写， 仅可实现方法隐藏， 调用由引用类型决定， 不遵循动态绑定。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_040_short",
+    "question": "双亲委派机制？",
+    "answer": "Java类加载器的默认加载策略， 类加载请求优先向上委托父加载器加载， 父加载器无法加载完成， 子加载器才自行加载。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_040_detail",
+    "question": "双亲委派机制详细原理、优缺点与打破场景？",
+    "answer": "JVM三层内置类加载器： 启动类加载器加载核心JDK基础类库； 扩展类加载器加载lib/ext扩展包； 应用类加载器加载项目业务类。 加载流程： 收到类加载请求先检查是否已加载， 未加载则优先委托父加载器加载， 逐层向上至顶层启动类加载器； 上层无法加载则逐层回退， 当前加载器自行加载， 依旧失败则抛出类找不到异常。 优点： 避免类重复加载保证全局唯一， 防止恶意类替换篡改核心API， 各层加载器职责清晰分层管理。 缺点： 加载灵活性较低， 深层类加载耗时略长。 打破双亲委派场景： 重写loadClass方法自定义加载逻辑， 典型如Tomcat服务器类加载器， 优先加载自身应用类实现包隔离， 避免多应用同名类冲突。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_041_short",
+    "question": "多态？",
+    "answer": "一个接口多种实现， 父类引用指向子类对象， 运行时根据对象真实类型执行对应重写方法。 必备条件： 继承关系、方法重写、父类引用指向子类对象。 优势代码通用解耦， 缺点父类引用无法直接调用子类独有方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_041_detail",
+    "question": "多态详细原理、规则、转型与应用？",
+    "answer": "多态核心规则： 成员方法编译看左边、运行看右边； 成员变量编译运行都只看左边引用类型， 变量不存在重写。 向上转型： 子类对象自动转为父类引用， 只能调用父类定义成员。 向下转型： 父类引用强制转回子类类型， 可调用子类独有方法， 转型前建议用instanceof判断避免类型转换异常。 应用场景： 多态数组统一存放各类子类对象、多态参数统一接收各类子类， 消除大量ifelse判断， 简化代码提高扩展性， 底层依靠虚方法表实现动态绑定。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_041_extra",
+    "question": "多态实现必备条件总结？",
+    "answer": "三者缺一不可： 存在继承或实现关系、子类重写父类方法、父类引用指向子类实例对象。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_041_extra2",
+    "question": "多态编译看左运行看右底层原理？",
+    "answer": "编译看左是静态绑定， 编译期依据引用声明类型校验方法是否存在。 运行看右是动态绑定， 运行时依据对象真实类型， 查询类虚方法表找到对应方法地址执行， 实现运行时方法差异化调用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_041_extra3",
+    "question": "为什么多态不作用于成员变量？",
+    "answer": "多态核心解决行为方法的差异化调用， 成员变量代表对象状态不具备重写特性。 变量访问编译期直接绑定声明类型， 不受运行时对象影响， 若变量支持多态会造成代码语义混乱， 提升维护难度。 子类同名变量仅为变量隐藏， 不属于多态覆盖。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_042_short",
+    "question": "代理模式？",
+    "answer": "结构型设计模式， 新增代理对象管控目标对象访问， 不修改原始业务代码， 在方法前后做增强处理。 静态代理一对一硬编码， 类膨胀严重； 动态代理运行时反射生成代理， 通用性强。 优点符合开闭原则， 职责分离， 缺点静态代理类数量冗余。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_042_detail",
+    "question": "代理模式详细原理、分类、角色？",
+    "answer": "三大角色： 抽象主题统一接口、真实主题执行业务核心逻辑、代理主题持有真实对象引用， 完成前置增强、调用真实方法、后置处理全流程。 分类： 静态代理编译期写死代理类， 一一对应真实类， 扩展差。 动态代理运行期反射动态生成字节码， 通用任意对象， JDK代理基于接口、CGLIB基于类继承。 常见用途： 权限控制、日志记录、懒加载、缓存、远程调用。 Spring AOP底层全部基于动态代理实现。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_042_detail2",
+    "question": "代理模式和装饰者模式区别？",
+    "answer": "代理模式核心是**控制访问**， 管控真实对象调用权限， 附加辅助逻辑， 不扩展对象本身核心功能。 装饰者模式核心是**功能增强**， 动态扩展原始对象本身业务能力。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_042_detail3",
+    "question": "静态代理与动态代理核心区别？",
+    "answer": "静态代理编译阶段提前编写好代理类， 一对一绑定真实类， 新增类需要新增代理类， 维护成本高。 动态代理程序运行期间通过反射动态生成代理字节码， 一个代理通用所有适配类， 扩展性极强， 业务迭代无需改动原有代码， 企业开发全部优先使用动态代理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_042_detail4",
+    "question": "Spring声明式事务底层原理？",
+    "answer": "Spring声明式事务完全基于动态代理实现。 业务方法添加@Transactional注解后， Spring自动生成类代理对象， 方法执行前代理拦截开启事务， 正常执行完毕提交事务， 出现异常自动回滚事务， 无侵入实现事务统一管理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_short",
+    "question": "单例模式是什么？",
+    "answer": "单例设计模式是一种确保一个类在运行期间只有一个实例， 提供一个全局访问点来访问该实例的创建型模式。 核心特点如下： 私有化构造方法， 防止外部通过new关键字直接实例化对象。 类内部自行创建一个私有的静态变量， 保存该类的唯一实例。 提供公共静态方法， 给使用者提供调用方法， 返回唯一实例。 单例模式适用于资源独占、全局统一管理的场景， 可以避免一个全局使用的类被频繁创建与销毁， 耗费系统资源。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c1",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "实现单例模式有6种常用的方法： 懒汉式（线程不安全）： 等待该类第一次被调用时再创建实例。 优点是能够延迟实例化， 只在需要时创建实例， 避免资源浪费。 缺点是线程不安全， 在多线程环境下， 如果多个线程同时进入了懒汉式单例的创建方法， 就可能会有多个线程执行uniqueInstance new Singleton(); 导致实例化多个实例。 public class Singleton private static Singleton instance; private Singleton () public static Singleton getInstance () if (instance null) instance new Singleton (); return instance; 1 2 3 4 5 6 7 8 9 10 11 12饿汉式（线程安全）： 在类加载时就创建实例， 需要使用时可以直接调用方法使用。 优点是可以提前实例化好一个实例， 避免了线程不安全的问题。 缺点是直接实例化， 没有延迟加载的效果， 可能系统没有使用该实例而使得操作系统的资源浪费。 线程不安全的问题。 缺点是直接实例化， 没有延迟加载的效果， 可能系统没有使用该实例而使得操作系统的资源浪费。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c2",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "public class Singleton private static Singleton instance; private Singleton () public static synchronized Singleton getInstance () if (instance null) instance new Singleton (); return instance; 1 2 3 4 5 6 7 8 9 10 11 3. 懒汉类（线程安全）： 在懒汉类的基础上实现线程安全， 本质上是给getInstance()方法加锁， 只有拿到锁的线程能够进入该方法。 优点是能够延迟实例化、节约资源并且实现线程安全。 缺点是性能降低， 因为实例在实例化后依然存在加锁操作， 只有拿到锁的线程才能进入会导致线程阻塞。 public class Singleton private static Singleton uniqueInstance;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c3",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "private static singleton () private static synchronized Sing leton getUinqueInstance () if (uniqueInstance null) uniqueInstance new Singleton (); return uniqueInstance; 1 2 3 4 5 6 7 8 9 10双重检查锁（线程安全）： 使用双重检查锁实现单例模式能够在多线程环境下保证线程安全并具有高性能， 通过 synchronized保证多线程下的原子性， volatile解决指令重排问题。 优点是双重检查锁可以在延迟实例化的基础上实现线程安全， 并且性能高于线程安全的懒汉模式。 缺点是创建实例的开销可能会高一些， 因为使用了volatile关键字， 并且需要进行两次检查。 public class DCLSingleton volatile禁止指令重排， 避免多线程下获取到\"半初始化\"实例 private static volatile DCLSingleton instance; ate static volatile DCLSingleton instance;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c4",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "private DCLSingleton () public static DCLSingleton getInstance () 第一次检查： 避免每次调用都加锁 if (instance null) synchronized (DCLSingleton. class) 第二次检查： 防止多线程同时进入第一个if， 重复创建实例 if (instance null) instance new DCLSingleton (); return instance; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19静态内部类（线程安全）： 当外部类被加载时， 静态内部类不会被加载， 调用getInstance()方法时， 静态内部类才会被加载， 并创建单例实例。 此时静态内部类才会被加载进内存， 并且初始化INSTANCE实例， 通过JVM保证只被实例化一次。 优点是能够延迟实例化的同时实现线程安全， 并且节约资源， 性能较高。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c5",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "public class Singleton private Singleton () 静态内部类持有实例 private static class SingletonHolder private static final Singleton INSTANCE new Singleton (); 公共静态方法， 返回实例 public static Singleton getInstance () return SingletonHolder. INSTANCE; 1 2 3 4 5 6 7 8 9 10 11 12 13 14枚举类实现（线程安全）： 枚举方式实现单例由JVM保证唯一， 且枚举类的构造器默认是私有， 能够防止反射创建实例， 支持序列化机制， 防止反序列化重新创建新对象。 public enum Singleton INSTANCE;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail_c6",
+    "question": "实现单例模式有哪些常用方法？",
+    "answer": "可以添加其他方法和属性 public void doSomething () 实现 1 2 3 4 5 6 7 8知识图解单例模式结构图双重检查锁使用场景单例模式适用于类只能有一个实例且客户可以从一个众所周知的访问点访问它的场景， 频繁创建与销毁的对象可以通过单例模式提高性能， 经常使用且实例化复杂的对象可以通过单例模式避免重复创建， 需要控制共享资源时可以使用单例模式方便通信。 常见的应用场景如下： 资源密集型对象的创建： 创建数据库连接池、线程池时可以使用单例模式， 避免重复创建浪费系统资源， 单例模式可以保证全局仅有一个池实例， 进行统一管理连接、线程。 系统的全局配置： 数据库地址、APIkey等配置资源可以通过单例模式封装， 能够保证所有模块获取的配置资源一致， 避免重复读取。 工具类： 例如日志管理工具类和缓存工具类， 需要全局统一的入口操作资源， 使用单例模式可以避免多实例导致的日志混乱、缓存不一致等问题。 硬件操作： 硬件资源唯一， 单例模式可以保证同一时间只有一个实例操作硬件， 避免冲突。 知识扩展面试官可能 一时间只有一个实例操作硬件， 避免冲突。 知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail2",
+    "question": "什么是instance new DCLSingleton()并非原子操作，会被拆分为3步？",
+    "answer": "instance new DCLSingleton()并非原子操作， 会被拆分为3步： 分配内存； 初始化实例； 给 instance赋值。 JVM中可能发生指令重排（如先执行 再执行）， 导致多线程下某个线程获取到“半初始化”的实例（instance不为 null， 但对象未初始化完成）。 volatile关键字可禁止指令重排， 保证实例创建的原子性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_043_detail3",
+    "question": "什么是如何解决？反射破坏？",
+    "answer": "如何解决？ 反射破坏： 通过Constructor. setAccessible(true)可强制调用私有构造方法， 创建多个实例； 使用饿汉式 静态内部类可在构造方法中加判断（若 instance不为 null则抛异常）； 枚举天然防反射， 如果反射创建枚举会抛 IllegalArgumentException异常。 序列化破坏： 序列化单例对象后反序列化， 会生成新实例； 可以通过重写readResolve()方法解决， 返回已有的单例实例； 枚举天然防序列化破坏。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_044_short",
+    "question": "Spring常见注解？",
+    "answer": "Spring核心注解可以进行 Bean管理、依赖注入、AOP、事务和Web等场景。 Bean注册时可以使用 Component或者使用 Service、 Repository、 Controller标记组件。 依赖注入时可以使用 Autowired按类型注入或者使用 Resource按名称注入， 还可以使用 Qualifier指定名字。 Aspect可以标记切面， Transactional可以声明事务。 与Web相关注解有 RequestMapping用于请求映射， RequestBody接收请求体， ResponseBody返回响应体。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_044_detail_c1",
+    "question": "Spring常见注解？",
+    "answer": "Spring框架提供了很多注解， 可以用于简化配置， 管理Bean、处理事务和处理AOP等。 Component： Spring的组件注解， 将一个类标识为Spring的组件， 通过组件扫描可以向Spring注册Bean。 Bean： 也是向Spring声明Bean， 在配置类中使用， Spring容器会根据配置类中 Bean方法返回的实例来管理Bean。 Autowired： 用于自动注入依赖项， 可以在构造器、Setter方法和字段上， Spring会自动查找匹配类型的Bean进行注入。 Qualifier： 与 Autowired一起使用， 指定注入时使用的Bean名称。 Primary： 在没有使用Qualifier注解， 优先注入Primary的实例。 Value： 用于从属性文件或配置中读取值， 将值注入到成员变量中。 Service、 Repository和 Controller服务层、持久层和控制层的Bean， 也是比较明确的Component。 Controller： 将类标记为控制器， 用于处理HTTP请求。 ntroller： 将类标记为控制器， 用于处理HTTP请求。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_044_detail_c2",
+    "question": "Spring常见注解？",
+    "answer": "RestController： 用于构建RESTful Web服务， 类的所有处理器方法返回值会被自动序列化， 写入HTTP响应体。 Configuration： 用于定义配置类， 替代XML配置文件， 其中定义的Bean会被Spring容器管理。 RequestMapping： 将HTTP请求路径映射到Controller的处理方法上， 定义请求的URL路径、请求方法和参数。 RequestBody： 可以读取Request请求的Body部分， 接受客户端传递的JSON、XML格式的数据并自动绑定到Java对象上， 应用于RESTful接口的开发。 GetMapping、 PutMapping、 DeleteMapping用于处理对应的HTTP请求， 简化了RequestMapping。 PostMapping： 处理post请求， PostMapping通常与 RequestBody配合， 用于接收 JSON数据并映射为 Java对象。 PathVariable： 可以从URL路径中提取参数。 知识图解知识扩展面试官可能 可以从URL路径中提取参数。 知识图解知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_044_detail2_c1",
+    "question": "什么是Component是类注解扫描，Spring会通过类路径扫描自动实例化，依赖无参构造； Bean可以进行手动定义，开发者可以自定义实例化的逻辑，根据 Bean方法返回的实例来管理Bean。如果同一类型的Bean被两种方式注册，Bean会覆盖Component的，因为 Bean是显式配置，优先级更高。如果一个类既引用了 Service又在 Configuration中使用 Bean定义了该类的实例，容器中会有几个Bean?分别？",
+    "answer": "Component是类注解扫描， Spring会通过类路径扫描自动实例化， 依赖无参构造； Bean可以进行手动定义， 开发者可以自定义实例化的逻辑， 根据 Bean方法返回的实例来管理Bean。 如果同一类型的Bean被两种方式注册， Bean会覆盖Component的， 因为 Bean是显式配置， 优先级更高。 如果一个类既引用了 Service又在 Configuration中使用 Bean定义了该类的实例， 容器中会有几个Bean? 分别是什么名称？ 使用Service没有指定名称时默认类名是首字母小写， 而Bean的默认名称是方法名， 如果产生了名称冲突， Bean注解定义的Bean会覆盖Service注解， 容器中只有一个Bean， 如果Bean注解指定了不同的名称那么容器中会有两个Bean。 Autowired和 Resource有什么区别？ Autowired什么时候会报错？ Autowired是Spring的原生注解， 默认会按类型匹配， Resource是JDK注解， 是优先按照名称匹配的。 rce是JDK注解， 是优先按照名称匹配的。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_044_detail2_c2",
+    "question": "什么是Component是类注解扫描，Spring会通过类路径扫描自动实例化，依赖无参构造； Bean可以进行手动定义，开发者可以自定义实例化的逻辑，根据 Bean方法返回的实例来管理Bean。如果同一类型的Bean被两种方式注册，Bean会覆盖Component的，因为 Bean是显式配置，优先级更高。如果一个类既引用了 Service又在 Configuration中使用 Bean定义了该类的实例，容器中会有几个Bean?分别？",
+    "answer": "当Autowired没有找到匹配类型的Bean时会报错NoSuchDefinitionException， 需要设置required false， 将变量赋值为null， 但是后续代码需要判断该Bean是否为空。 RestController和 Controller有什么区别？ 如果 Controller想返回JSON可以怎么做？ RestController注解是Controller注解和ResponseBody注解的结合， 类中的所有方法默认返回JSON； 所以在有Controller注解的方法上添加 ResponseBody注解可以返回JSON。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_045_short",
+    "question": "Spring AOP是什么？",
+    "answer": "AOP是面向切面的编程， 允许开发者在不改动业务代码的情况下横向切入添加新的功能， 比如日志。 切面包含很多类型和对象， AOP以切面为单位对它们进行模块化管理， 可以减少系统重复代码， 降低模块间的耦合度。 AOP使用Java的动态代理机制， 能够在运行时动态的创建代理对象， 开发者在不修改源码的情况下增强方法功能， 动态代理包含基于 JDK的动态代理和基于CGLIB的动态代理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_short",
+    "question": "SpringBoot常用注解？",
+    "answer": "SpringBoot的注解以Spring的注解为基础， 做了轻量化、自动化和场景化的改进， 在Spring注解的基础上做了封装与扩展， 实现约定大于配置， 减少开发者的配置工作。 自动配置核心注解 SpringBootApplication， 整合了 SpringBootConfiguration、 EnableAutoConfiguration和 ComponentScan。 配置读取可使用 ConfigurationProperties绑定配置文件属性， Value读取单个配置值。 Web开发在Spring注解基础上扩展了 GetMapping PostMapping等， 新增 RestControllerAdvice处理全局异常。 条件装配可通过 ConditionalOnClass、 ConditionalOnMissingBean等控制Bean的创建时机。 启动相关有 SpringBootApplication标记启动类， MapperScan扫描MyBatis映射接口。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail_c1",
+    "question": "SpringBoot常用注解？",
+    "answer": "SpringBootApplication： SpringBoot是应用的核心启动注解， 是 SpringBootConfiguration、 EnableAutoConfiguration、 ComponentScan三个注解的组合： SpringBootConfiguration： 本质是 Configuration， 标记当前类为配置类； EnableAutoConfiguration： 开启自动配置， SpringBoot会根据类路径下的依赖自动配置 Bean（如引入 spring-boot-starter-web则自动配置 Tomcat、DispatcherServlet）； ComponentScan： 默认扫描当前类所在包及子包下的 Component、 Service等注解组件。 ConfigurationProperties： 能够批量绑定配置文件中的属性到Bean中， 支持前缀指定， 例如 ConfigurationProperties(prefix \"app. datasource\")可绑定app. datasource. url等配置到类的成员变量。 x \"app. datasource\")可绑定app. datasource. url等配置到类的成员变量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail_c2",
+    "question": "SpringBoot常用注解？",
+    "answer": "Value： 可以从属性文件或配置中读取单个配置值并注入到成员变量， 例如 Value(\"$ server. port: 8080 \")读取端口配置， 默认值 8080。 RestControllerAdvice： 负责全局异常处理、数据绑定、响应增强的注解， 结合 ExceptionHandler可统一处理 Controller层异常， 替代传统的 ControllerAdvice ResponseBody组合。 ExceptionHandler： 在 RestControllerAdvice标注的类中使用， 指定处理特定类型的异常， 例如使用 ExceptionHandler(NullPointerException. class)处理空指针异常。 ConditionalOnClass： 条件装配注解， 当类路径下存在指定类时， 才加载当前配置类Bean； 反之 ConditionalOnMissingClass则是不存在指定类时生效。 ConditionalOnBean： 当Spring容器中存在指定Bean时， 才创建当前Bean； Bean： 当Spring容器中存在指定Bean时， 才创建当前Bean；",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail_c3",
+    "question": "SpringBoot常用注解？",
+    "answer": "ConditionalOnMissingBean则是容器中不存在指定Bean时生效， 常用于自定义Bean覆盖默认配置。 MapperScan： 指定MyBatis映射接口的扫描包路径， 替代在每个Mapper接口上标注 Mapper， 例如 MapperScan(\"com. example. mapper\")， 让容器识别接口并创建代理实现类。 EnableTransactionManagement： 开启Spring的事务管理功能， 结合 Transactional注解实现声明式事务（SpringBoot中引入 spring-boot-starter-jdbc orm后会自动开启， 无需手动标注）。 Async： 能够标记方法为异步执行， 需配合 EnableAsync注解开启异步功能， Spring会为异步方法创建独立线程执行。 EnableCaching： 开启缓存功能， 结合 Cacheable、 CachePut、 CacheEvict等注解实现数据缓存。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail_c4",
+    "question": "SpringBoot常用注解？",
+    "answer": "PathVariable： 从URL路径中提取参数， 例如 GetMapping(\" user id \")中通过 PathVariable(\"id\") Long id获取路径中的 id值。 RequestParam： 获取请求参数（URL拼接或表单提交的参数）， 支持指定参数名、是否必传、默认值， 例如 RequestParam(value \"name\", required false, defaultValue \"guest\") String name。 知识图解 Spring框架与Spring Boot的关系 SpringBoot常见注解知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail2_c1",
+    "question": "SpringBoot常用注解可以修改吗？回答:SpringBootApplication注解默认扫描当前包及其所有子包下的组件。可以通过 ComponentScan注解或者使用 SpringBootApplication的scanBasePackages属性指定扫描包。 ComponentScan的excludeFilters属性可以排除特定组件。 SpringBoot的 Transactional注解什么时候会失效？如果事务方法被private static final修饰，无法被AOP代理时，事务方法将不会被事务管理。同类中非事务方法调用事务方法，注解无效。如果异常被catch捕获但没有抛出或者异常类型不是运行时异常时，事务方法将失效。 Async注解的方法？",
+    "answer": "可以修改吗？ SpringBootApplication注解默认扫描当前包及其所有子包下的组件。 可以通过 ComponentScan注解或者使用 SpringBootApplication的scanBasePackages属性指定扫描包。 ComponentScan的excludeFilters属性可以排除特定组件。 SpringBoot的 Transactional注解什么时候会失效？ 如果事务方法被private static final修饰， 无法被AOP代理时， 事务方法将不会被事务管理。 同类中非事务方法调用事务方法， 注解无效。 如果异常被catch捕获但没有抛出或者异常类型不是运行时异常时， 事务方法将失效。 Async注解的方法为什么不能是private或者static？ Async注解基于Spring AOP实现， 而AOP无法代理private static方法。 RestControllerAdvice和 ControllerAdvice的区别是什么？ 是什么？",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_046_detail2_c2",
+    "question": "SpringBoot常用注解可以修改吗？回答:SpringBootApplication注解默认扫描当前包及其所有子包下的组件。可以通过 ComponentScan注解或者使用 SpringBootApplication的scanBasePackages属性指定扫描包。 ComponentScan的excludeFilters属性可以排除特定组件。 SpringBoot的 Transactional注解什么时候会失效？如果事务方法被private static final修饰，无法被AOP代理时，事务方法将不会被事务管理。同类中非事务方法调用事务方法，注解无效。如果异常被catch捕获但没有抛出或者异常类型不是运行时异常时，事务方法将失效。 Async注解的方法？",
+    "answer": "RestControllerAdvice是 ControllerAdvice和 ResponseBody的组合， 内部的 ExceptionHandler方法返回的数据会以json格式返回给前端。 而 ControllerAdvice返回的是视图页面， 手动添加 ResponseBody注解后才能返回json数据。 怎么通过 RestControllerAdvice实现全局异常处理？ 先定义异常枚举的错误码和错误信息， 然后编写统一返回结果类(code msg data)， 在 RestControllerAdvice类中使用 ExceptionHandler标注方法， 捕获不同类型异常， 封装为统一的返回结果返回。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_047_short",
+    "question": "SpringBoot概述？",
+    "answer": "SpringBoot是Spring框架的简化版， 通过自动配置减少XML配置内容， 起步依赖整合常用的技术栈如SpringMVC、MyBatis等， 内置Tomcat实现jar包的独立运行， 解决Spring配置繁琐， 依赖管理复杂的问题， 使开发者专注业务而非框架配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_047_detail_c1",
+    "question": "SpringBoot概述？",
+    "answer": "SpringBoot是基于Spring的快速开发脚手架。 它提供一种快速启动的方式， 自动配置和约定优于配置的原则极大地简化了Spring应用的搭建、开发和部署过程。 SpringBoot使用内嵌服务器的方式， 将Tomcat、Jetty等服务器嵌入到应用中， 可以将应用程序打包成一个可执行的JAR文件， 无需部署到外部容器， 简化项目的部署和运行。 SpringBoot采用自动配置的机制， 根据应用程序中引入的依赖和配置， SpringBoot自动配置整个应用程序的环境。 SpringBoot的自动配置是基于条件的按需配置， 本质是通过注解驱动 SPI机制， 根据项目依赖、环境配置、自定义规则， 自动向IoC容器注入对应Bean， 替代传统Spring的XML手动配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_047_detail_c2",
+    "question": "SpringBoot概述？",
+    "answer": "EnableAutoConfiguration是实现自动装配的核心注解， 该注解中 AutoConfigurationPackage注解会将主应用程序类所在包及其子包下的所有类注册到IoC容器中， Import注解会导入 AutoConfigurationImportSelector类， 该类实现了ImportSelector接口， 可以动态选择需要导入的自动配置类： 在应用程序启动时， AutoConfigurationImportSelector类会扫描类路径， 加载META-INF spring. factories中的自动配置类， 然后对每一个发现的自动配置类使用条件判断， 通过条件注解（如 ConditionalOnClass）筛选出符合当前环境的配置类， 如果满足导入条件， 则将自动配置类注册到IoC容器中。 遵循“自定义优先”原则， 开发者可通过手动配置 Bean或禁用自动配置类， 覆盖默认行为， 最终实现“按需配置、简化开发”的目标。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_047_detail_c3",
+    "question": "SpringBoot概述？",
+    "answer": "SpringBoot提供了快速的项目启动器， 不同的Starter将常用的技术栈的依赖整合， 比如spring-boot-starter-web包含了SpringMVC、Jackson等Web开发常用的依赖， 开发者只需引入一个依赖， 无需手动管理版本， 避免冲突。 SpringBoot遵循约定优于配置的原则， 预设默认的配置和约定， 开发者按照这些约定进行开发， 可以大大减少配置文件的编写。 SpringBoot提供特定的项目结构， 将主应用程序类置于根包， 将控制器类、服务类、数据访问类等分别放在相应子包中， 使开发者更易理解项目结构与组织， 新成员加入项目也能快速定位各功能代码的位置， 提升协作效率。 SpringBoot提供了大量默认配置， 比如连接数据库、设置Web服务器、处理日志等， 开发者无需配置日志级别、输出格式与位置。 SpringBoot的自动化配置也是约定大于配置的体现， 通过分析项目的依赖和环境， 自动配置应用程序的行为。 知识图解 Spring框架与Spring Boot的关系架构图知识扩展扩展 SpringBoot的生态支持： 提供spring-boot-actuator实现应用监控， 进行健康检查与指标统计等； spring-boot-devtools实现热部署， 开发时无需重启应用； spring-boot-test简化单元测试与集成测试， 覆盖开发全生命周期。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_047_detail2",
+    "question": "什么是SpringBoot？",
+    "answer": "SpringBoot是微服务架构的基础， 单个微服务节点通常是一个SpringBoot应用； 微服务治理框架(Spring Cloud)是基于SpringBoot实现的， Spring Cloud可以管理多个SpringBoot应用， 通过Starter整合Eureka、Nacos等组件实现服务注册与发现、配置中心、熔断降级等能力。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_048_short",
+    "question": "什么是 Spring Boot Starter？",
+    "answer": "Spring Boot Starter 是一组依赖整合包， 将某类功能相关的常用依赖打包在一起。 通过引入合适的 Starter， 应用可以实现模块化开发， 简化依赖管理与配置， 快速启用对应功能（例如 Web、数据库、缓存等）。 开发者也可以创建自定义 Starter 来复用特定功能的配置与依赖。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_048_detail_c1",
+    "question": "什么是 Spring Boot Starter？",
+    "answer": "Spring Boot Starter 是一类预配置模块， 封装了实现某个功能所需的依赖与默认配置。 引入相应的 Starter 后， Spring Boot 会根据类路径和配置自动完成所需组件的装配， 开发者可专注业务实现而无需手动引入和配置大量依赖。 Starter 通常由自动配置类（AutoConfiguration）、依赖 JAR 包和可选的配置属性类（ConfigurationProperties）组成； 版本和依赖协调由 spring-boot-dependencies 管理， 以降低版本冲突风险。 常见 Starter 示例： `spring-boot-starter-web`（Web + 嵌入式服务器）、`spring-boot-starter-data-jpa`（JPA 支持）、`spring-boot-starter-data-redis`（Redis 支持）、`spring-boot-starter-test`（测试依赖）等。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_048_detail_c2",
+    "question": "什么是 Spring Boot Starter？",
+    "answer": "自定义 Starter： 可以创建包含 AutoConfiguration 的 Maven 项目， 并在 `META-INF/spring. factories`（或 Spring Boot 2. 7+ 使用 `spring/org. springframework. boot. autoconfigure. AutoConfiguration. imports`）中注册自动配置类， 结合条件注解（如 `@ConditionalOnClass`、`@ConditionalOnMissingBean`）实现按需生效， 同时使用 `@ConfigurationProperties` 绑定默认配置， 发布到私服后便可在项目中复用。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_048_detail2",
+    "question": "什么是可以通过mvn dependency？",
+    "answer": "可以通过mvn dependency: tree分析依赖树， 找到冲突的依赖版本； 再通过 exclusions 排除Starter中冲突的依赖， 手动引入兼容版本； 或优先使用Spring Boot官方维护的Starter， 其依赖版本已做兼容性适配。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_048_detail3",
+    "question": "什么是spring-boot-starter？",
+    "answer": "spring-boot-starter是基础 Starter， 包含核心依赖； spring-boot-starter-parent是Maven父工程， 用于统一管理依赖版本、编译插件等配置； 项目通常继承spring-boot-starter-parent， 再引入具体功能的 Starter。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_short",
+    "question": "SpringBoot启动流程？",
+    "answer": "SpringBoot主要通过SpringApplication. run()方法启动， 可以分成创建SpringApplication实例和调用run()方法两个阶段。 初始化SpringApplication实例需要启动SpringBoot需要先创建一个SpringApplication构造器， 在这个阶段主要做的是获取应用类型， 加载所有初始化器与监听器， 并通过调用栈寻找执行main方法的主类。 执行run()方法需要执行run()方法会启动计时器并设置系统属性， 初始化监听器并启动监听器， 设置命令行参数， 准备环境对象和应用上下文， 刷新应用上下文并发布启动事件结束计时器， 完成SpringBoot的启动。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_detail_c1",
+    "question": "SpringBoot启动流程？",
+    "answer": "初始化SpringApplication实例： 启动SpringBoot需要先创建一个SpringApplication构造器， 在这个阶段获取应用类型， 加载所有初始化器与监听器， 并通过调用栈寻找执行main方法的主类。 获取应用类型： 通过deduceFromClasspath()方法， 当返回值为NONE是应用为非web应用， 不会启动服务器； 如果返回SERVLET则是基于Servlet的web应用， 会启动Tomcat服务器； 如果返回REACTIVE则当前应用是响应式应用。 加载初始化器： 使用getSpringFactoriesInstances()方法可以获取所有初始化器的名称集合， 然后根据名称实例化这些初始化器， 进行排序后返回设置到initializers属性中。 加载监听器： 与初始化器类似， 使用getSpringFactoriesInstances()读取spring. factories中的ApplicationListener， 实例化并启动事件监听器。 化并启动事件监听器。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_detail_c2",
+    "question": "SpringBoot启动流程？",
+    "answer": "执行run()方法： 执行run()方法会启动计时器并设置系统属性， 初始化监听器并启动监听器， 设置命令行参数， 准备环境对象和应用上下文， 刷新应用上下文并发布启动事件结束计时器， 完成SpringBoot的启动。 启动计时器： 调用run方法时， 首先会创建并启动计时， 同时配置java. awt. headless属性为true， 保证无GUI界面。 初始化监听器： 通过getRunListeners()方法加载全周期事件监听器(SpringApplicationRunListener)， 并发布启动准备的监听事件。 设置命令行参数： 将启动时的args参数设置到Environment对象中， 并设置到SpringApplication对象中。 准备环境对象： 创建Environment对象， 然后加载系统属性、环境变量和配置文件， 然后把配置环境(Environment)加入监听对象。 打印banner图： 根据应用类型和配置打印banner图， 默认是ASCII字符画。 准备异常报告器： 初始化启动失败时的异常分析器。 CII字符画。 准备异常报告器： 初始化启动失败时的异常分析器。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_detail_c3",
+    "question": "SpringBoot启动流程？",
+    "answer": "创建应用上下文： 根据应用类型创建对应的应用上下文实例， 如果是Web应用， 创建AnnotationConfigServletWebServerApplicationContext。 准备上下文环境： 需要给上下文绑定环境对象， 执行ApplicationContextInitializer的初始化操作， 然后加载配置类、扫描组件等资源。 刷新上下文： 是SpringBoot启动的关键步骤， 调用refreshContext(context)方法， Spring在此完成自动装配， 包括扫描主类及其子包的注解， 对Bean进行注册和初始化， 筛选生效的配置， 加载自动配置类， 如果是Web应用还会创建并启动Tomcat服务器。 finishRefresh： 上下文刷新完成后， 用户可以在afterRefresh()方法中进行后置处理， 自定义扩展功能。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_detail_c4",
+    "question": "SpringBoot启动流程？",
+    "answer": "结束阶段： 计时器结束， 打印出启动耗时， 触发上下文启动完成事件并通知监听器， 同时调用用户自定义的启动后逻辑， 即ApplicationRunner CommandLineRunner， 随后发布就绪事件， SpringBoot应用启动完成， 内嵌容器开始监听端口， 对外服务。 知识图解 SpringBoot启动流程知识扩展扩展 SpringBootApplication是SpringBoot启动的关键注解， 这个组合注解包含了 SpringBootConfiguration、 EnableAutoConfiguration和 ComponentScan三个注解。 SpringBootConfiguration注解表示这是一个配置类， EnableAutoConfiguration注解开启自动配置， 能够通过内部方法扫描classpath的META-INF spring. factories配置文件， 并且将其中EnableAutoConfiguration对应的配置项实例化并注册到spring容器中； ComponentScan注解扫描主类所在包及其子包下的组件。 面试官可能 配置项实例化并注册到spring容器中； ComponentScan注解扫描主类所在包及其子包下的组件。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_049_detail2",
+    "question": "什么是自定义Bean被自动配置的Bean覆盖可能？",
+    "answer": "自定义Bean被自动配置的Bean覆盖可能是因为自动配置类使用了 Primary注解导致用户Bean被覆盖， 或者用户Bean所在的包被扫描， 可以使用 Primary注解标注用户Bean或排除对应的自动配置类解决。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_short",
+    "question": "Spring循环依赖？",
+    "answer": "Spring通过三级缓存和提前暴露未完全初始化的对象引用机制来解决单例作用域Bean的循环依赖问题。 假设A和B存在循环依赖问题， A创建实例后未注入属性时会存放ObjectFactory对象到三级缓存中， 开始给A注入属性时发现A依赖B， 此时容器开始创建B， B实例化后也会被存放ObjectFactory对象到三级缓存中， Spring给B注入属性时发现B依赖A， 容器在三级缓存中找到A的ObjectFactory对象， 获取A的早期引用并放入二级缓存， 并清理三级缓存。 将A的早期引用注入到B中， 完成B的初始化后进入一级缓存。 回到A的属性注入环节， 将就绪的B注入A， 完成A的初始化后进入一级缓存， 解决循环依赖问题。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_detail_c1",
+    "question": "Spring循环依赖？",
+    "answer": "循环依赖循环依赖就是循环引用， 有两个或多个Bean之间相互引用， 形成闭环， 导致容器无法完成Bean的实例化和依赖注入， 会抛出循环依赖异常。 Spring中存在两种循环依赖， 分别是构造器依赖和 field属性的循环依赖。 构造器的循环依赖问题无法解决， 只能抛出BeanCurrentlyInCreationException异常， 使用提前暴露对象的方法可以解决属性循环依赖。 检测循环依赖问题在Bean创建的时候给该Bean打标， 当递归回来发现正在创建中的话说明产生了循环依赖。 三级缓存解决循环依赖三级缓存是Spring在DefaultSingletonBeanRegistry中维护的三个重要的缓存(Map)一级缓存(singletonObjects)存放完全创建好的Bean实例， 可以直接使用， Bean已经实例化， 依赖注入、初始化， 有AOP代理也已经生成。 二级缓存(earlySingletonObjects)存放提前暴露的Bean的原始对象引用或者早期代理对象引用， 专门用来处理循环依赖。 此时Bean已经实例化但是还没有完成依赖注入与初始化。 早期代理对象引用， 专门用来处理循环依赖。 此时Bean已经实例化但是还没有完成依赖注入与初始化。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_detail_c2",
+    "question": "Spring循环依赖？",
+    "answer": "三级缓存(singletonFactories)存放Bean的ObjectFactory工厂对象， 当Bean被实例化后Spring会创建一个工厂对象放入三级缓存。 当其他Bean需要获取三级缓存中的Bean时， 三级缓存可以动态返回半成品Bean， 原始对象或代理对象。 当两个Bean存在相互依赖时， Spring的处理过程如下： 调用A的构造函数进行实例化， 在属性注入之前在第三级缓存(singletonFactories)中创建一个工厂对象， 并放入三级缓存中。 Spring给A注入属性时发现A依赖B， 缓存中没有B于是对B进行实例化， 实例化过程中同样创建一个工厂对象， 并放入三级缓存中。 Spring给B注入属性时发现B依赖A， 同时在三级缓存中找到A的工厂对象， 调用该工厂的getObject()方法。 该方法在A需要AOP代理时动态生成代理对象， 否则返回原始对象， 得到的A早期引用或代理对象后存入第二级缓存， 同时清除三级缓存中的A工厂对象， 使用A的早期引用完成B的依赖注入。 早期引用完成B的依赖注入。 随后B正常完成初始化方法并转化为完整可用的Bean， 存入一级缓存， 同时清除二级缓存或三级缓存中B相关的内容。 回到A的依赖注入阶段， 此时会直接从二级缓存中获取A的早期引用 代理， 在一级缓存中获取B实例完成依赖注入， 执行剩余方法A转换为完整可用的Bean， 存入一级缓存， 同时清除二级缓存或三级缓存中A相关的内容。 知识图解循环依赖示意图知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_detail2",
+    "question": "什么是只有三级缓存才能解决循环依赖问题，因为需要正确处理AOP代理的Bean，只使用二级缓存会导致注入对象的形态错误，破坏单例原则。当A和B两个Bean之间存在循环依赖时，如果A需要被动态代理，B创建时会拿到A的原始对象，而不？",
+    "answer": "只有三级缓存才能解决循环依赖问题， 因为需要正确处理AOP代理的Bean， 只使用二级缓存会导致注入对象的形态错误， 破坏单例原则。 当A和B两个Bean之间存在循环依赖时， 如果A需要被动态代理， B创建时会拿到A的原始对象， 而不是A的代理对象。 导致B持有原始对象A， Spring容器存储的是代理对象A， 同一个Bean出现了两个不同的实例， 违反了单例的原则。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_detail3",
+    "question": "什么是构造器循环依赖要求在对象实例化的同时就注入依赖，而循环依赖导致这个过程无法启动。而Setter注入和字段注入则？",
+    "answer": "构造器循环依赖要求在对象实例化的同时就注入依赖， 而循环依赖导致这个过程无法启动。 而Setter注入和字段注入则是在实例化之后才进行依赖注入， 这就为Spring提供了提前暴露Bean实例、解决循环依赖的机会。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_050_detail4",
+    "question": "什么是Bean？",
+    "answer": "Bean是单例作用域且循环依赖是字段属性依赖。 其他作用域会造成递归创建， 构造器依赖不能提前暴露。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_short",
+    "question": "Spring设计模式？",
+    "answer": "Spring中使用的设计模式有工厂设计模式、代理设计模式、单例模式、模版方法模式、包装器设计模式、观察者模式和适配器模式等。 工厂模式： Spring通过BeanFactory和ApplicationContext等容器来创建和管理Bean对象， 解耦对象的创建和使用。 单例模式： Spring中的Bean默认是单例的， Bean对象在Spring容器中唯一。 模版方法模式： Spring中如jdbcTemplate等以template结尾的类使用了模版方法模式， 与Callback模式配合操作数据库。 观察者模式： Spring中的事件驱动模型使用了观察者模式， 在一个事件触发时， 会触发监听器， 执行对应的方法。 代理模式： Spring AOP是基于代理模式的， SpringAOP的增强或通知需要使用适配器模式， Spring MVC中也使用适配器模式适配不同类型的Controller。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail_c1",
+    "question": "Spring设计模式？",
+    "answer": "工厂模式工厂模式能够定义专门的工厂类来封装对象的创建逻辑， 分离对象的创建与使用， 从而降低耦合度。 Spring可以通过 BeanFactory创建Bean对象， 能够实现最基本的依赖注入支持， 采用懒加载机制， 即在获取Beans时候才创建对象， 占用内存较少， 程序启动速度快。 Spring可以使用 ApplicationContext创建Bean对象， 扩展了BeanFactory， 支持更多的上下文特性， 采用预加载机制， 会在容器启动时一次性创建所有的Bean对象。 ApplicationContext有三个实现类， 分别是ClassPathXmlApplication、FileSystemXmlApplication和XmlWebApplicationContext。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail_c2",
+    "question": "Spring设计模式？",
+    "answer": "ClassPathXmlApplicationContext从类路径下加载XML配置文件初始化容器 FileSystemXmlApplicationContext从文件系统路径加载XML文件初始化容器 XmlWebApplicationContext可以从Web应用中的XML文件加载上下文代理模式代理模式为其他对象提供代理， 控制对这个对象的访问， 可以在不修改目标对象代码的前提下动态增强功能。 Spring对代理模式的使用体现在 SpringAOP中， SpringAOP将与业务无关， 但多个业务模块所共同调用的逻辑封装， 减少系统的重复代码。 SpringAOP基于动态代理， 有JDK和CGLIB两种代理方式， CGLIB代理基于继承， JDK代理基于接口。 客户端调用Subject接口的方法， 实际调用的是代理类， 代理类完成额外操作后调用目标类方法。 单例模式单例模式保证一个类只有一个实例， 并提供一个全局访问点， 可以避免重复创建消耗资源。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail_c3",
+    "question": "Spring设计模式？",
+    "answer": "Spring使用单例模式管理Bean对象， 使用三级缓存机制保证Bean对象在Spring容器中的唯一性， Spring中的Bean默认是单例的。 模版方法模式模版方法定义了操作中的算法骨架， 将算法的某些步骤延迟到子类中， 模版方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。 Spring中jdbcTemplate、hibernateTemplate等以Template结尾的类都使用了模版方法模式， Spring将固定的算法封装， 将可变逻辑通过Callback接口暴露给用户， 简化开发。 装饰者模式项目需要连接多个数据库， 或者不同客户在每次访问中根据需要访问不同的数据库时， 装饰者模式可以动态切换数据源。 观察者模式观察者模式可以定义对象之间一对多的依赖关系， 实现当一个对象状态变化时， 所有依赖它的对象会得到通知并自动更新， 实现解耦通信。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail_c4",
+    "question": "Spring设计模式？",
+    "answer": "Spring的事件驱动模型是观察者模式的经典应用， 包含三个核心组件： 事件 (ApplicationEvent)、监听器 (ApplicationListener)、发布者 (ApplicationEventPublisher)。 定义事件时， 实现ApplicationEvent接口， 定义监听器时， 实现ApplicationListener接口， 事件发布者可以通过ApplicationEventPublisher的publishEvent()方法发布事件。 适配器模式适配器模式将一个类的接口转换成用户希望的另一个接口， 让不同的类协同工作。 Spring AOP的增强或通知需要使用适配器模式， AOP中每个类型的通知都有对应的拦截器， AOP执行时统一调用MethodInterceptor的invoke()方法， 适配器会将具体的通知适配到MethodInterceptor中。 Spring MVC中也使用适配器模式适配不同类型的Controller。 SpringMVC中的HandlerAdapter将不同类型处理器的调用接口转换成DispatcherServlet能识别的统一接口， 调用处理器的核心业务逻辑后返回ModelAndView结果。 知识图解 Spring中代理模式示意图 Spring AOP不同类型通知时机知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail2",
+    "question": "什么是传统的单例模式？",
+    "answer": "传统的单例模式是通过私有构造器和静态方法保证的， 创建逻辑固定， 不支持依赖注入。 Spring中的单例模式是通过BeanFactory或ApplicationContext创建Bean对象， 多个容器可存在多个实例， 由容器管理创建、依赖注入、销毁， 支持懒加载和循环依赖解决。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_051_detail3",
+    "question": "什么是Spring在目标类实现接口时优先使用JDK代理，目标类未实现接口时使用CGLIB代理，也可以通过spring.aop.proxy-target-class属性指定使用CGLIB代理。基于JDK的动态代理，代理类需要实现InvocationHandler接口，通过invoke()方法反射来调用目标方法，将横切逻辑和业务编织在一起。Proxy类利用InvocationHandler动态创建一个符合某一接口的实例，生成目标类的代理对象。基于CGLIB的动态代理，在代理类没有实现接口时使用，？",
+    "answer": "Spring在目标类实现接口时优先使用JDK代理， 目标类未实现接口时使用CGLIB代理， 也可以通过spring. aop. proxy-target-class属性指定使用CGLIB代理。 基于JDK的动态代理， 代理类需要实现InvocationHandler接口， 通过invoke()方法反射来调用目标方法， 将横切逻辑和业务编织在一起。 Proxy类利用InvocationHandler动态创建一个符合某一接口的实例， 生成目标类的代理对象。 基于CGLIB的动态代理， 在代理类没有实现接口时使用， 是由代码生成的类库， 在运行时动态生成指定类的一个子类对象， 覆盖其中特定方法并添加增强代码实现AOP。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_052_short",
+    "question": "Spring框架对比？",
+    "answer": "Spring是最基础的应用程序开发框架， 提供广泛功能包括依赖注入、AOP和事务管理等。 SpringBoot, SpringMVC和SpringCloud都是基于Spring的IoC和AOP核心。 SpringBoot是一个快速开发脚手架， 延续了Spring框架的核心思想IOC和AOP， 能够简化 Spring应用的创建、运行、调试和部署过程， 使用SpringBoot可以专注于应用开发无需过多关注XML配置。 SpringCloud是基于SpringBoot的微服务治理框架， 提供微服务架构中的组件。 SpringMVC是Spring中一个重要模块， 能够让Spring快速构建MVC架构的Web程序。 MVC就是模型model， 视图view和控制器Controller， 核心思想是通过将业务逻辑、数据和显示分离， 主要关注处理Web请求、管理用户会话。 控制应用程序流程。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_052_detail_c1",
+    "question": "Spring框架对比？",
+    "answer": "Spring是整个Spring生态的基础， 核心思想有DI（依赖注入）、AOP（面向切面编程）和IOC（控制反转）。 DI解决依赖关系的硬编码问题； IoC容器管理对象的创建和依赖关系； AOP可以实现事务管理、安全日志等横切关注点的模块化， 提高代码可维护性和可重用性； 同时提供了一系列事务管理接口。 能够解决传统Java开发中对象耦合度高、代码重复的问题， 提供一套统一编程规范。 SpringMVC是Spring生态中专注于Web开发的MVC框架， 基于Spring核心功能构建。 用于实现MVC模式， 分别是模型model、视图view和控制器controller， 可以分离数据、显示和控制逻辑。 可以处理HTTP请求， 通过DispatcherServlet， 将HTTP请求映射到控制器方法, 处理后返回视图或数据。 规范请求处理流程。 提供参数绑定、拦截器和数据验证登Web开发必备功能。 SpringBoot是一个基于Spring的快速开发工具。 能够进行自动装配， 根据引入的依赖配置相关组件， 减少XML或注解配置。 装配， 根据引入的依赖配置相关组件， 减少XML或注解配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_052_detail_c2",
+    "question": "Spring框架对比？",
+    "answer": "内置Tomcat， Jetty等服务器， 可直接打包为jar运行， 无需单独部署容器。 能够简化Spring应用的搭建和部署， 解决传统Spring应用配置繁琐、依赖管理复杂和部署麻烦的问题， 让开发者专注于业务逻辑。 SpringCloud是基于SpringBoot的微服务治理框架， 提供了微服务架构中的各个组件。 解决微服务架构的复杂问题， 比如服务注册、负载均衡、服务熔断与降级、API网关等。 Spring是Spring生态基础， SpringMVC负责Web层交互， SpringBoot简化整体开发流程， SpringCloud解决微服务架构的治理问题。 上层技术依赖下层技术， 形成Spring技术体系。 知识图解 Spring生态示意知识扩展扩展： Spring IOC概念： 控制反转是对程序执行流程的控制， 原先由程序员控制整个程序的执行， 使用IoC思想则是将控制权交给了Spring， 由框架控制Bean的生命周期, 负责对象的创建、初始化和销毁。 实现机制： 利用Java的反射机制动态地加载类、创建对象实例和调用对象方法， 实现灵活的对象实例化和管理； 机制： 利用Java的反射机制动态地加载类、创建对象实例和调用对象方法， 实现灵活的对象实例化和管理；",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_052_detail_c3",
+    "question": "Spring框架对比？",
+    "answer": "再通过依赖注入， 让容器管理应用程序组件之间的依赖关系。 采用工厂模式管理对象的创建和生命周期容器作为工厂实例化Bean和管理它们的生命周期。 Spring AOP概念： 在Spring框架中实现面向切面的编程。 切面包含很多种类型和对象， AOP就是以切面为单位对它们进行模块化的管理。 AOP可以将核心业务和周边功能进行分离， 将日志、事务管理和权限管理等周边功能封装， 减少系统重复代码， 降低模块间的耦合度。 实现： 利用Java的动态代理机制， 在运行时动态地创建代理对象， 开发则在不修改源码的情况下增强方法功能。 有基于JDK的动态代理和基于CGLIB的动态代理。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_short",
+    "question": "Spring IOC？",
+    "answer": "SpringIOC是控制反转的设计思想， 原先由程序员控制整个程序的执行， 使用IOC思想后将控制权交给了IOC容器， 由Spring IOC容器来控制Bean的生命周期， 对象的创建、初始化和销毁。 在程序中不手动new对象， 而是通过 Component或 Autowired注解来配置， 容器会自动实例化Bean， 注入依赖， 降低代码耦合， 简化开发。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail_c1",
+    "question": "Spring IOC？",
+    "answer": "IOC定义 IOC是Inversion of Control的缩写， 即控制反转， 是一种设计思想。 传统的开发中需要开发者手动new对象， 维护依赖关系； 在IOC模式下， 它将设计好的对象交给IOC容器控制， 由容器统一管理Bean的生命周期（对象的创建、初始化和销毁过程）及其依赖关系。 IOC作用 IOC容器管理对象之间的相互依赖关系和对象的注入， 可以简化应用的开发， 让资源容易管理。 同时降低对象之间的耦合度， 在创建对象时只需写配置文件或注解， 无需编写创建过程的代码。 例如： 在项目中的一个Service类中， 可能会有多个类作为其底层， 这些类之间可能会有依赖关系， IOC容器可以自动管理这些依赖关系， 将依赖的对象注入到Service类中， 无需清楚所有底层类的构造函数。 IOC容器的实现与Bean注册 注入方式 IOC容器会利用反射机制动态加载类， 创建对象实例和调用对象方法； 通过依赖注入让容器管理应用程序组件之间的依赖关系； 通常使用 BeanFactory或ApplicationContext来创建IOC容器， 并管理Bean实例。 Factory或ApplicationContext来创建IOC容器， 并管理Bean实例。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail_c2",
+    "question": "Spring IOC？",
+    "answer": "在Spring中， 传统使用配置注册， 即使用XML进行配置， 将Bean注册到IOC容器中， 并指定Bean的属性。 现在， SpringBoot注解注册已经成为主流， 开发者可以使用 Component、 Service、 Controller、 Repository等注解来实现自动扫描配置Bean， Configuration和 Bean可以手动注册第三方组件， 无需编写XML文件。 IOC依赖注入的方式有注解注入、构造器注入和Setter方法注入三中。 使用 Autowired可以按类型注入、 Qualifier可以按名称注入、 Resource可以按名称或类型注入； 在构造器注入中， Bean构造器参数标注 Autowired， 在Spring4. 3后， 已经变成默认的注入方式； Setter方法注入中， Bean的Setter方法标注 Autowired。 IOC容器启动流程先创建SpringIOC容器， 也就是ApplicationContext或BeanFactory。 anFactory。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail_c3",
+    "question": "Spring IOC？",
+    "answer": "容器通过ResourceLoader加载配置文件， ResourceResolver解析资源并生成Resource对象。 将生成的Resource对象， 通过BeanDefinitionReader进行解析， 将Bean定义信息生成BeanDefinition对象。 将BeanDefinition对象通过BeanRegistry注册到容器中, 此时容器的初始化完成。 IOC容器管理Bean容器会加载配置（注解 XML）文件， 扫描需要注册的Bean； 随后通过反射创建Bean实例， 并完成依赖注入； 调用 PostConstruct注解的方法或者自定义方法进行初始化； 将 Bean存入容器， 开发者可以通过getBean()或注解注入使用； 在容器关闭时调用 PreDestroy注解的方法或者自定义方法进行销毁； 知识图解 IOC容器功能示意图知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail2",
+    "question": "什么是BeanFactory？",
+    "answer": "BeanFactory是Spring最原始的IOC容器， ApplicationContext是BeanFactory的增强版， 提供了更多的功能， 如资源加载、国际化、事件发布等。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail3",
+    "question": "什么是Spring通过三级缓存可以解决构造器注入之外的循环依赖问题。三级缓存分别？",
+    "answer": "Spring通过三级缓存可以解决构造器注入之外的循环依赖问题。 三级缓存分别是singletonObjects成品Bean缓存、earlySingletonObjects临时Bean缓存（半成品缓存）和singletonFactories工厂缓存， 用于生成半成品Bean。 通过在Bean实例化后， 依赖注入前将其早期引用存入缓存， 让依赖它的Bean能够提前获取引用， 打破循环阻塞。 如果是构造器注入的循环依赖， Spring会抛出BeanCurrentlyInCreationException异常， 因为构造器注入需要实例化依赖Bean， 导致循环阻塞。 将构造器注入改成字段注入或Setter注入， 或者使用 Lazy注解延迟其中一个Bean的实例化可以解决。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_053_detail4",
+    "question": "什么是可以控制吗？默认情况下， ApplicationContext会在容器启动时实例化所有单例Bean，如果想实现延迟实例化，需要在类或 Bean方法上使用 Lazy注解，此时singleton Bean会延迟到第一次被使用时实例化。 Lazy对单例Bean有效，prototype Bean本身就？",
+    "answer": "可以控制吗？ 默认情况下， ApplicationContext会在容器启动时实例化所有单例Bean， 如果想实现延迟实例化， 需要在类或 Bean方法上使用 Lazy注解， 此时singleton Bean会延迟到第一次被使用时实例化。 Lazy对单例Bean有效， prototype Bean本身就是懒加载。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_short",
+    "question": "SpringMVC执行流程？",
+    "answer": "SpringMVC的核心是前端控制器与组件协作， 全程由前端控制器DispatcherServlet统一调度， 解耦组件。 执行流程可以概括为： 用户发送请求至前端控制器（DispatcherServlet）。 前端控制器调用HandlerMapping， 获取对应处理器和拦截器并返回执行链。 HandlerAdapter进行适配调用具体的处理器Handler（页面控制器Controller）。 处理器Handler执行完成后返回ModelAndView。 视图解析器解析视图名后返回具体的View实例。 View实例结合模型数据渲染并相应给用户。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail_c1",
+    "question": "SpringMVC执行流程？",
+    "answer": "请求接收： 客户端发送HTTP请求， 经过Tomcat等Web服务器接收后转发到SpringMVC的前端控制器(DispatcherServlet)。 查找处理器映射器： 前端控制器收到请求后， 根据请求信息（请求URL、请求方法、请求参数）调用处理器映射器HandlerMapping。 返回处理器执行链： 处理器映射器根据xml配置、注解找到具体的处理器， 生成处理器执行链 (HandlerExecutionChain)， 包含处理器Handler以及处理器拦截器Interceptor， 返回给DispatcherServlet。 适配处理器： DispatcherServlet调用处理器适配器(HandlerAdapter)， 使用supports()方法找到适配当前处理器的适配器。 拦截器前置执行、处理器执行： 处理器适配器(HandlerAdapter)先调用处理器执行链中的拦截器preHandle()方法， 再调用具体的处理器(Handler)的业务方法。 处理器返回： Handler执行完成返回ModelAndView对象， 若为REST接口则直接返回JSON等数据。 处理器返回： Handler执行完成返回ModelAndView对象， 若为REST接口则直接返回JSON等数据。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail_c2",
+    "question": "SpringMVC执行流程？",
+    "answer": "拦截器后置执行： HandlerAdapter调用拦截器的postHandle()方法， 然后将Handler的执行结果ModelAndView返回给DispatcherServlet。 视图解析： DispatcherServlet将ModelAndView传给视图解析器(ViewResolver)， 视图解析器(ViewResolver)根据ModelAndView的视图名解析为真实视图对象， 返回具体的View实例。 视图渲染： DispatcherServlet将模型数据传递给 View实例， View根据自身的视图模版与模型数据生成最终的响应内容， 返回给DispatcherServlet。 拦截器完成执行、响应客户端： DispatcherServlet调用拦截器的afterCompletion()方法后将渲染后的视图返回给客户端。 知识图解 SpringMVC的执行流程知识扩展扩展 SpringMVC是Spring中一个重要模块， 能够让Spring快速构建MVC架构的Web程序。 构建MVC架构的Web程序。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail_c3",
+    "question": "SpringMVC执行流程？",
+    "answer": "MVC就是模型Model， 视图View和控制器Controller， 核心思想是通过将业务逻辑、数据和显示分离， 主要关注处理Web请求、管理用户会话。 控制应用程序流程。 模型Model： 分为数据模型和业务模型， 可以作为实体类承载用户数据， 也可以作为Service或DAO对象处理用户提交的请求， 负责业务逻辑的处理。 视图View： 负责将模型数据展示给用户， 直接与用户进行交互。 如果使用 RestController注解代替传统的 Controller注解， 方法会返回JSON格式数据， 不会解析视图。 控制器Controller： 接收用户请求， 将用户请求转发给响应的Model处理， 根据Model的处理结果给用户提供响应， 实现模型与视图的分离， 不处理具体业务逻辑。 用户通过View界面向服务端提交请求， Controller接收到请求后对请求进行解析， 找到相应的Model后， 对用户请求进行处理后返回给Controller， 对响应页面渲染后返回到客户端。 返回到客户端。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail_c4",
+    "question": "SpringMVC执行流程？",
+    "answer": "前端控制器 (DispatcherServlet) DispatcherServlet是SpringMVC的核心控制器， 它负责接收请求， 调用相应的处理器， 并返回相应的结果。 核心作用是协调HandlerMapping、HandlerAdapter等组件， 解耦各模块。 处理器适配器 (HandlerAdapter) SpringMVC有多种处理器(Controller)， 注解式、接口式、Servlet式， 不同处理器的调用方式不同， HandlerAdapter可以将不同处理器的调用接口统一， 让DispatcherServlet无需关心处理器类型， 调用适配器的handle()方法符合开闭原则。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail2",
+    "question": "什么是如果方法标注 ResponseBody，会通过MessageConverter将返回值转换成空响应体(JSON)并返回给客户端。如果不是REST接口，DispatcherServlet会跳过视图？",
+    "answer": "如果方法标注 ResponseBody， 会通过MessageConverter将返回值转换成空响应体(JSON)并返回给客户端。 如果不是REST接口， DispatcherServlet会跳过视图解析和渲染步骤， 返回空响应。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_054_detail3",
+    "question": "什么是如果 Controller想返回JSON可以？",
+    "answer": "如果 Controller想返回JSON可以怎么做？ RestController注解是Controller注解和ResponseBody注解的结合， 类中的所有方法默认返回JSON； 所以在有Controller注解的方法上添加 ResponseBody注解可以返回JSON。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_short",
+    "question": "策略模式？",
+    "answer": "(Strategy Pattern)是行为型设计模式， 它定义了一系列算法， 将每个算法都封装起来， 使它们可以互相替换。 策略模式让算法的变化独立于使用算法的客户， 也就是说这些算法完成的功能类型和对外接口是一样的， 只是不同的策略引起环境角色表现出不同的行为。 优点： 使用策略模式可以替代使用if. . . else或者switch. . . case语句， 降低代码编写的复杂度， 提高代码的可维护性。 缺点： 需要定义大量的策略类， 且每个策略类都要提供给客户端， 只适用于客户端知道所有策略类的情况。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail_c1",
+    "question": "策略模式？",
+    "answer": "主要由上下文、策略接口和具体策略类组成。 Context类是用来操作策略的上下文环境类， 持有抽象策略的引用， 通过多态传进来不同的具体策略来调用不同策略的方法； 策略接口定义了算法的接口或抽象类， 声明所有具体策略必须实现的方法； 具体的策略类实现了这个接口， 实现具体算法的封装； 实现策略模式的步骤： 定义一个策略接口， 声明算法的抽象方法。 创建具体的策略类， 实现策略接口并封装具体的算法。 创建环境类， 包含对策略接口的引用以及一个用于设置具体对象的方法。 在客户端中创建环境类的对象， 并调用其方法来执行具体的算法。 代码示例下面是一个简单的策略模式的示例， 假设有一个商场销售系统， 根据不同的促销策略计算最终价格： 策略接口 public interface PricingStrategy double calculatePrice (double price);",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail_c2",
+    "question": "策略模式？",
+    "answer": "具体策略类： 无折扣 public class NoDiscountStrategy implements PricingStrategy Override public double calculatePrice (double price) return price; 具体策略类： 打九折 public class DiscountStrategy implements PricingStrategy Override public double calculatePrice (double price) return price 0. 9; 具体策略类： 满减 public class CashbackStrategy implements PricingStrategy Override public double calculatePrice (double price) if (price 200) return price - 50; else return price; rn price;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail_c3",
+    "question": "策略模式？",
+    "answer": "环境类 public class ShoppingCart private PricingStrategy pricingStrategy; public void setPricingStrategy (PricingStrategy pricingStrategy) this. pricingStrategy pricingStrategy; public double checkout (double totalPrice) return pricingStrategy. calculatePrice (totalPrice); 客户端代码 public class Client public static void main (String args) ShoppingCart cart new ShoppingCart (); 选择无折扣策略 cart. setPricingStrategy (new NoDiscountStrategy ()); double price1 cart. checkout (100); System. out. le price1 cart. checkout (100); System. out.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail_c4",
+    "question": "策略模式？",
+    "answer": "println (\"Total Price: \" price1); 输出： Total Price: 100. 0 选择打九折策略 cart. setPricingStrategy (new DiscountStrategy ()); double price2 cart. checkout (100); System. out. println (\"Total Price: \" price2); 输出： Total Price: 90. 0 选择满减策略 cart. setPricingStrategy (new CashbackStrategy ()); double price3 cart. checkout (200); System. out. println (\"Total Price: \" price3); 输出： Total Price: 150.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail_c5",
+    "question": "策略模式？",
+    "answer": "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68知识图解策略模式结构图使用场景当需要动态切换算法时， 可以使用策略模式。 如果代码中有多个条件语句， 存在复杂条件判断时， 可以使用策略模式简化代码。 使用策略模式可以避免与算法相关的数据结构暴露， 只需使用抽象接口调用， 无需知道实现细节。 如果有许多相关的类仅仅是行为不同， 那么可以使用策略模式。 知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_055_detail2",
+    "question": "什么是解决策略模式策略类过多的问题，核心有三层优化思路，首先最常用的？",
+    "answer": "解决策略模式策略类过多的问题， 核心有三层优化思路， 首先最常用的是结合简单工厂模式， 把所有策略对象的创建逻辑统一封装到策略工厂中， 由工厂根据业务标识匹配并返回对应策略对象， 客户端只需传入标识即可使用， 无需感知所有策略类； 其次进阶优化是在工厂中用 Map容器做策略缓存， 把策略标识和策略实例做键值对映射， 项目启动时初始化存入 Map， 获取策略时直接 O(1)查询， 彻底去掉 if-else switch分支判断， 同时满足开闭原则； 最后从根源上避免类膨胀， 是对策略做复用与参数化抽离， 很多策略类只是参数不同、核心逻辑一致， 比如不同满减规则、不同计费标准， 这种场景无需新建类， 只需把可变参数抽离出来， 通过构造器或方法传入策略类， 一个策略类即可适配多套规则， 从根本上减少策略类的数量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_short",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "可变性（Mutability）： String不可变， 一旦创建了一个 String对象， 它的值就不能被修改； StringBuffer和 StringBuilder可变， 修改在原有对象上进行。 线程安全性（Thread Safety）： String线程安全（因其不可变）， StringBuffer线程安全（方法同步）， StringBuilder非线程安全。 性能（Performance）： String性能最低（频繁创建对象）， StringBuffer性能居中（同步开销）， StringBuilder性能最高（无同步）。 应用场景（Application Context）： String适用于存储字符串常量、少量修改字符串的场景； StringBuffer适用于多线程环境下需要频繁修改字符串的场景； StringBuilder适用于单线程环境下需要频繁修改字符串的场景。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_detail_c1",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "可变性（Mutability）： String： 不可变： 一旦创建了一个 String对象， 它的值就不能被修改。 任何对 String对象进行修改的操作都会创建一个新的 String对象。 JVM实现角度： String对象本身总是存储在 Java堆内存中。 JVM中存在一个称为字符串常量池（String Pool）的特殊区域（也位于堆内存中）， 字符串常量池本身并不直接“存储”完整的 String对象， 而是存储对堆中那些唯一的、不可变的 String对象实例的引用， 可以把它看作一个“目录”。 JDK源码角度： 在 JDK 9之前， String内部使用 char 数组存储字符。 JDK 9之后， 改用 byte 数组存储字符， 并使用 coder字段来标识字符的编码方式（LATIN1或 UTF16）， 字节数组 value和编码字段 coder均声明为 private final类型。 而且无论使用哪种方式存储， String类都没有提供任何修改内部字符数组的方法。 所有的修改操作都会创建一个新的 String对象。 的方法。 所有的修改操作都会创建一个新的 String对象。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_detail_c2",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "例如， String类的 substring()方法会创建一个新的 String对象， 而不是修改原始字符串。 StringBuffer和 StringBuilder： 可变： StringBuffer和 StringBuilder类允许在不创建新对象的情况下修改字符串的内容。 JVM实现角度： StringBuffer和 StringBuilder对象在 JVM中存储在堆内存中。 它们内部使用一个可变的字符数组来存储字符串。 当需要修改字符串时， 可以直接修改内部的字符数组， 而不需要创建新的对象。 JDK源码角度： StringBuffer和 StringBuilder类都继承自 AbstractStringBuilder类。 AbstractStringBuilder类内部使用 byte value数组存储字符。 StringBuffer和 StringBuilder类都提供了修改 value数组的方法， 例如 append()、 insert()、 delete()等， 这些方法可以直接修改 value数组的内容， 而不需要创建新的对象。 e()等， 这些方法可以直接修改 value数组的内容， 而不需要创建新的对象。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_detail_c3",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "StringBuffer和 StringBuilder内部还维护了一个 count变量， 用于记录字符串的长度。 当字符串的长度超过 value数组的容量时， StringBuffer和 StringBuilder会自动扩容 value数组。 线程安全性（Thread Safety）： String： String类是线程安全的， 因为它的不可变性保证了多个线程可以安全地访问同一个 String对象， 而不会发生数据竞争。 任何线程都无法修改 String对象的值， 因此不存在线程安全问题。 StringBuffer： StringBuffer类是线程安全的。 它的方法都经过同步（使用 synchronized关键字）， 可以保证在多线程环境下对字符串的修改是安全的。 查看 StringBuffer类的源码， 可以看到它的 append()、 insert()、 delete()等方法都使用了 synchronized关键字进行同步。 这意味着在同一时刻， 只有一个线程可以访问 StringBuffer对象的这些方法。 程可以访问 StringBuffer对象的这些方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_detail_c4",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "这种同步机制保证了多线程环境下对 StringBuffer对象的修改是线程安全的。 StringBuilder： StringBuilder类是非线程安全的。 它的方法没有进行同步， 因此在多线程环境下使用可能会导致数据不一致的问题。 查看 StringBuilder类的源码， 可以看到它的 append()、 insert()、 delete()等方法都没有使用 synchronized关键字进行同步。 这意味着多个线程可以同时访问 StringBuilder对象的这些方法， 从而导致数据竞争和线程安全问题。 性能（Performance）： String： 由于 String的不可变性， 每次修改都会创建新的对象， 导致大量的内存分配和垃圾回收， 性能较低。 尤其是在循环中频繁修改字符串时， 性能问题会更加明显。 StringBuffer： StringBuffer在多线程环境下性能略低于 StringBuilder， 因为它需要进行同步操作。 同步操作会带来一定的性能开销， 例如线程上下文切换、锁竞争等。 的性能开销， 例如线程上下文切换、锁竞争等。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_detail_c5",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "StringBuilder： StringBuilder在单线程环境下性能最高， 因为它没有同步开销。 所有的操作都是在同一个对象上进行的， 避免了频繁创建对象的开销。 应用场景（Application Context）： String： 存储字符串常量。 少量字符串修改操作。 需要在多线程环境下共享字符串对象。 StringBuffer： 在多线程环境下需要频繁修改字符串。 需要保证线程安全。 StringBuilder： 在单线程环境下需要频繁修改字符串。 不需要保证线程安全。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_extra_c1",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "String转换为 StringBuffer方法 1： 使用 StringBuffer的构造方法这是最直接的方法。 你可以使用 StringBuffer的构造方法， 将 String对象作为参数传入。 这样会创建一个新的 StringBuffer对象， 其初始内容与 String对象相同。 eg: String str \"kamanotes\"; StringBuffer stringBuffer new StringBuffer (str); 1 2方法 2： 先创建 StringBuffer对象， 再使用 append()方法首先创建一个空的 StringBuffer对象， 然后使用 append()方法将 String对象的内容添加到 StringBuffer中。 eg: String str \"kamaCoder\"; StringBuffer stringBuffer new StringBuffer (); stringBuffer. append (str); ;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_056_extra_c2",
+    "question": "String、StringBuffer与StringBuilder？",
+    "answer": "1 2 3 StringBuffer转换为 String方法 1： 使用 toString()方法 StringBuffer类继承自 AbstractStringBuilder类， 并重写了 toString()方法。 toString()方法会将 StringBuffer对象的内容转换为一个 String对象。 StringBuffer stringBuffer new StringBuffer (\"kamanotes\"); String str stringBuffer. toString (); 1 2方法 2： 使用 String的构造方法可以使用 String的构造方法， 将 StringBuffer对象作为参数传入。 这样会创建一个新的 String对象， 其初始内容与 StringBuffer对象相同。 StringBuffer stringBuffer new StringBuffer (\"kamaCoder\"); String str new String (stringBuffer); 1 2 ing (stringBuffer); 1 2",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_057_short",
+    "question": "synchronized关键字？",
+    "answer": "synchronized是Java中最基础的线程同步关键字， 通过互斥锁机制保证多线程对共享资源的安全访问， 可以修饰方法或代码块。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_057_detail_c1",
+    "question": "synchronized关键字？",
+    "answer": "synchronized是Java提供的内置锁（监视器锁）， 其实现依赖软件层面上的JVM， 其性能会随着Java版本的升级而提高。 当方法或代码快被synchronized修饰时， 它将成为临界区， 同一时刻只能由一个线程访问。 当线程通过synchronized等待锁的时候不能被Thread. interrupt()中断， 需要保证程序合理防止造成死锁。 使用synchronized后， 会在编译之后在代码前后加上 monitorenter和 monitorexit字节码指令。 执行 monitorenter指令时尝试获取对象锁， 如果对象没有被锁或者已经获得了锁， 锁的计数器加一。 此时其他竞争锁的线程会进入阻塞队列等待。 执行 monitorexit指令时会把计数器减一， 当计数器值为0时， 锁释放， 处于等待队列中的线程会竞争锁。 加锁的过程中会清除工作内存中的共享变量， 再从主内存读取， 释放锁的过程则是将工作内存中的共享变量写回主内存。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_057_detail_c2",
+    "question": "synchronized关键字？",
+    "answer": "public synchronized void synchronizedMethod () 这个方法内部的代码被锁定， 同一时间只有一个线程可以执行 public void someMethod () synchronized (this) 这个代码块被锁定 1 2 3 4 5 6 7 8 9 Java对象在内存中包含“对象头”， 其中有一个 Mark Word字段会记录锁的状态（无锁 偏向锁 轻量级锁 重量级锁）。 synchronized版本更新： JDK6之前， synchronized是重量级锁， 线程阻塞 唤醒时需要进行操作系统内核态切换， 造成很大开销。 JDK6及以后引入了锁升级机制， 即偏向锁-轻量级锁-重量级锁的升级规则， 大幅减小开销。 知识图解 synchronized底层示意图锁升级示意图知识扩展扩展： Monitor结构（适用于重量级锁） Monitor是synchronized实现线程同步的核心底层结构， 通过 EntryList和 WaitSet管理线程的竞争和等待。 itSet管理线程的竞争和等待。 Monitor核心结构包含： Owner（指向当前持有锁的线程） EntryList（未获取到锁的线程） WaitSet（调用wait()方法的线程， 如果被唤醒线程进入EntrySet） recursions（当前线程持有锁的重入次数）面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_057_detail2",
+    "question": "什么是无锁？",
+    "answer": "无锁： 没有开启偏向锁时为无锁， JDK6之后默认开启偏向锁。 偏向锁： 没有线程拿到锁， 称为匿名偏向。 有线程拿到偏向锁会记录线程ID， 如果还有相同ID的线程竞争锁则直接获取。 JDK8后默认为轻量级锁， 可以设置附加偏向锁。 轻量级锁： 新线程竞争偏向锁时升级为轻量级锁。 每个线程通过CAS操作尝试将锁对象头的MarkWord设置为指向自身， 如果成功设置则已获得锁。 重量级锁： 自旋次数 自旋线程数超过阈值升级为重量级锁。 线程被挂起节约CPU资源， 但是内核态和用户态切换消耗大。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_short",
+    "question": "synchronized与Lock对比？",
+    "answer": "synchronized： 是基于JVM的内置锁， 只能用于方法和代码块， 需要与 wait()和 notify() notifyAll()方法一起使用， 用于线程等待和通知。 lock： 是接口， Java提供的显式锁机制， 需要手动获取和释放锁， 更加灵活， 支持响应中断、设置锁的公平性等， 与Condition接口结合可以实现更细粒度的线程等待和通知机制。 ReentrantLock： 是Lock接口的一个具体实现类， 拥有Lock的特性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_detail_c1",
+    "question": "synchronized与Lock对比？",
+    "answer": "相同点： 他们都是可重入锁， 同一个线程可以多次获取同一个锁。 不同点： synchronized和lock（以 ReentrantLock为例）公平性： synchronized是非公平锁， ReentrantLock支持公平性设置。 中断响应： synchronized不支持响应中断， ReentrantLock支持响应中断， 即线程在等待锁时可以中断。 等待与通知： synchronized不支持绑定多个条件， 只能与wait()和notify() notifyAll()方法一起使用， 实现线程等待与通知。 ReentrantLock可以与多个Condition对象结合， 实现复杂的线程同步机制。 实现原理： synchronized通过互斥锁保证共享数据不会被访问， ReentrantLock通过 AQS来实现。 操作锁方式： synchronized是隐式锁， 线程进入 退出代码时JVM自动获取释放锁， ReentrantLock是显式锁， 必须手动调用lock() unlock()方法。 ck() unlock()方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_detail_c2",
+    "question": "synchronized与Lock对比？",
+    "answer": "性能： ReentrantLock可以提供更细粒度的控制和灵活性， 性能高于synchronized。 使用场景锁适用场景优势 synchronized简单、低并发无需手动管理 Lock作为接口， 不直接使用定义锁的操作规范 ReentrantLock复杂同步场景、高并发支持中断、超时、公平性选择代码示例 ReentrantLock中断特性 线程1先获取锁并持有 Thread t1 new Thread(() - lock. lock(); try Thread. sleep(5000); 持有锁5秒 finally lock. unlock();); t1. start(); Thread. sleep(100); 确保t1先拿到锁 线程2尝试获取锁， 1秒后被中断 Thread t2 new Thread(() - try 可中断地获取锁 lock. lockInterruptibly(); System. out. println(\"t2获取到锁\"); lock. unlock(); catch (InterruptedException e) System. out. . unlock(); catch (InterruptedException e) System. out.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_detail_c3",
+    "question": "synchronized与Lock对比？",
+    "answer": "println(\"t2被中断， 放弃等待\"); 预期执行); t2. start(); Thread. sleep(1000); 等待1秒后中断t2 t2. interrupt(); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 ReentrantLock超时特性 线程1先获取锁并持有3秒 new Thread(() - lock. lock(); try Thread. sleep(3000); finally lock. unlock();). start(); Thread. sleep(100); 线程2尝试获取锁， 设置最多等2秒 new Thread(() - try 超时获取锁（2秒） boolean success lock. tryLock(2, TimeUnit. SECONDS); if (success) System. out. println(\"t2获取到锁\"); lock. unlock(); else System. out. println(\"t2等待超时， 放弃\"); ock. unlock(); else System. out. println(\"t2等待超时， 放弃\");",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_detail_c4",
+    "question": "synchronized与Lock对比？",
+    "answer": "预期执行 catch(). . .). start(); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21知识图解 AQS获取锁 AQS释放锁知识扩展扩展： AQS： 是一个用于构建锁和同步容器的框架， ReentrantLock、Semaphore、CountDownLatch等都基于AQS构建。 使用一个volatile int变量state表示同步状态， 内部维护一个 CLH变体双向队列（FIFO）管理等待线程。 当线程竞争同步状态失败时会被封装成节点加入阻塞队列， 当同步状态释放时， 会把节点中的线程唤醒， 使其再次获取同步状态。 AQS有独占锁和共享锁两种资源共享方式， AQS对于独占模式有一个独占线程标记， 记录当前持有锁的线程， 实现可重入。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_058_detail2",
+    "question": "什么是CAS？",
+    "answer": "CAS： 一种乐观锁机制， 即尝试修改， 若条件不符合则不做操作， 满足原子性。 AQS内部会使用CAS操作更新state变量实现线程安全的状态修改。 线程获取资源时使用CAS操作更新值， 线程释放资源时会使用CAS操作恢复state的值， 保证状态更新的原子性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_short",
+    "question": "线程创建方式？",
+    "answer": "在Java中, 创建线程有四种方式: 继承Thread类, 重写run()方法。 实现Runnable接口， 实现run()方法。 使用线程池(Executor框架)。 实现Callable接口（配合Future FutureTask）， 实现call()方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c1",
+    "question": "线程创建方式？",
+    "answer": "继承Thread类： 用户可以通过继承Thread类创建一个新的线程， 并且重写run()方法， 该方法包含线程的执行代码。 创建该类的实例， 调用start()方法启动线程。 class MyThread extends Thread Override public void run() 线程执行的逻辑代码 System. out. println(\"MyThread is running. . . \"); 创建并启动线程 MyThread myThread new MyThread(); myThread. start(); 1 2 3 4 5 6 7 8 9 10 11优点： 代码简单， 如果需要访问当前线程， 无需使用Thread. currentThread()方法， 直接使用this即可获取当前线程。 缺点： Java只支持单继承， 线程类不能再继承其他的父类实现Runnable接口： 用户可以实现Runnable接口， 实现run()方法。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c2",
+    "question": "线程创建方式？",
+    "answer": "创建一个Thread对象， 将实现类Runnable接口的类的实例作为参数传递给Thread构造函数， 调用Thread对象的start()方法启动线程。 class MyRunnable implements Runnable Override public void run() 线程执行的逻辑代码 System. out. println(\"MyRunnable is running. . . \"); 创建并启动线程 Thread myThread new Thread(new Runnable()); myThread. start(); 1 2 3 4 5 6 7 8 9 10 11优点： 可以实现多个线程共享同一个目标对象， 方便实现资源的并发控制， 且线程的创建和业务逻辑分离。 缺点： 如果需要访问当前线程， 需要使用Thread. currentThread()方法， run()方法没有返回值。 使用Executer框架： Executor框架是Java并发编程中的高级工具， 通过Executer， 可以将任务提交给线程池， 由线程池来管理线程的生命周期和执行。 并发编程中的高级工具， 通过Executer， 可以将任务提交给线程池， 由线程池来管理线程的生命周期和执行。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c3",
+    "question": "线程创建方式？",
+    "answer": "import java. util. concurrent. Executor; import java. util. concurrent. Executors; class MyTask implements Runnable Override public void run() 线程执行的逻辑代码 System. out. println(\"MyTask is running. . . \"); 创建线程池并提交任务 Executor executor Executors. newFixedThreadPool(3); 提交任务 executor. execute(new MyTask()); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15优点： 可以避免频繁创建和销毁线程的开销， 可以控制线程并发数量， 监控线程状态， 可以接受多种任务类型（Runnable和Callable）。 缺点： 核心线程占用系统资源， 线程池配置比较复杂， 容易造成资源浪费。 实现Callable接口: Callable的call()方法可以有返回值并且可以抛出异常。 造成资源浪费。 实现Callable接口: Callable的call()方法可以有返回值并且可以抛出异常。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c4",
+    "question": "线程创建方式？",
+    "answer": "Callable的返回值在子线程中产生， 需要配合Future FutureTask用于获取线程执行的结果。 可以使用线程池配合future， 将MyCallable实例在线程池执行。 或者由于Thread只能执行Runnable任务， 可以使用 FutureTask包装Callable任务。 使用Future和线程池 class MyCallable implements Callable Integer publc Integer call() throws Exeception 线程执行的代码， 返回一个整形结果 return 42; ExecutorService excutor Executors. newSingleThreadExecutor(); Future Integer future excutor. submit(new MyCallable()); try 获取线程执行结果 Integer result future. get();",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c5",
+    "question": "线程创建方式？",
+    "answer": "catch(InterruptedExeception ExecutionException e) 处理异常 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 使用FutureTask包装 MyCallable代码同上 MyCallable task new MyCallable(); FutureTask Integer futureTask new FutureTask (task); Thread myThread new Thread(futureTask); myThread. start(); try 获取线程执行结果 Integer result futureTask. get(); catch(InterruptedExeception ExecutionException e) 处理异常 1 2 3 4 5 6 7 8 9 10 11 12 13 14优点： Callable接口的方法有返回值， 还可以抛出异常缺点： 代码复杂， 访问当前线程需要调用Thread. currentThread()方法。 代码复杂， 访问当前线程需要调用Thread. currentThread()方法。 使用场景创建方法适用场景继承Thread类简单场景实现Runnable接口多线程共享资源场景实现Callable接口需要任务返回结果或处理异常的场景使用线程池（Executor）生产环境， 高并发， 需要复用线程场景知识图解 1. 创建线程方法示意图 2. 继承Thread方法和实现Runnable方法示意图 3.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail_c6",
+    "question": "线程创建方式？",
+    "answer": "实现Callable接口示意图知识扩展扩展： 线程池的核心参数： 线程池的构造函数有七个参数 corePoolSize核心线程数: 线程池中长期存活的线程数如果线程池中线程数量少于corePoolSize, 这些线程处于空闲状态也不会被销毁 maximumPoolSize最大线程数: 线程池允许创建的最大线程数 (包括核心线程和非核心线程)当核心线程已满, 队列已满时, 如果当前线程小于最大线程数, 就会创建新的线程执行此任务, 否则触发拒绝策略 keepAliveTime空闲线程存活时间: 当线程数大于corePoolSize时, 如果某个线程的空闲时间超过了keepAliveTime, 那么这个线程就会被销毁 TimeUnit与keepAliveTime一起使用, 指定keepAliveTime的时间单位 workQueue线程池任务队列: 线程池存放任务的队列, 没有空闲线程执行新任务时, 用来存储线程池的所有待执行任务 ThreadFactory创建线程的工厂: 线程池创建线程时调用的工厂方法, 通过此方法可以设置线程的优先级, 线程命名规则以及线程类型(用户线程还是守护线程) : 线程池创建线程时调用的工厂方法, 通过此方法可以设置线程的优先级, 线程命名规则以及线程类型(用户线程还是守护线程) RejectedExecutionHandler拒绝策略: 当线程池的任务超出线程池队列可以存储的最大值之后, 执行的策略面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail2",
+    "question": "什么是start()本质？",
+    "answer": "start()本质是native方法， 会启动一个新线程， 由JVM调用run()方法， 实现真正的并发执行。 而直接调用 run()是仅作为普通方法在当前线程执行， 不会创建新线程。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail3",
+    "question": "什么是手动创建线程？",
+    "answer": "手动创建线程是即用即建， 线程池能够实现预先创建和线程复用， 能够减少线程创建 销毁开销。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_059_detail4",
+    "question": "什么是使用 get(long timeout, TimeUnit unit)设置超时时间，避免无限阻塞。用 isDone()先判断任务？",
+    "answer": "使用 get(long timeout, TimeUnit unit)设置超时时间， 避免无限阻塞。 用 isDone()先判断任务是否完成， 再调用get()。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_short",
+    "question": "线程池？",
+    "answer": "采用多线程编程时， 如果线程过多会造成系统资源的大量占用， 降低系统效率。 如果有些线程存活时间短但是不得不创建很多时也会造成资源浪费， 线程池可以决定由哪个空闲且存活的线程来执行， 当线程池中线程不够时会适当创建一部分线程， 线程冗余时会销毁一部分线程。 可以提高线程利用率， 降低系统资源损耗。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c1",
+    "question": "线程池？",
+    "answer": "资源管理: 在多线程应用中线程池提供了对线程的统一管理（如任务队列、线程生命周期监控、拒绝策略等）， 方便开发者跟踪任务执行状态、调整资源分配。 提高性能: 线程的创建和销毁开销相对较大。 线程池可以复用线程， 避免频繁地创建和销毁线程从而提高系统性能。 任务排队: 线程池可以用于排队任务， 确保任务按照一定的顺序执行， 避免线程竞争和冲突避免线程过多: 如果不使用线程池， 程序员可能会手动创建大量线程来处理任务， 每个线程都需要占用内存和CPU资源， 如果不加限制地创建线程， 会导致系统资源耗尽， 可能引发系统崩溃。 线程池通过限制线程数量来避免这种情况。 使用场景线程池适用于需要频繁创建和销毁线程场景， 如： 处理大量数据， 执行大量计算任务， 处理大量IO任务。 线程池适用于需要控制并发规模的场景， 如： Web服务器、数据库连接池、消息队列等。 线程池适用于需要提升任务调度与管理场景， 线程池的getActiveCount()监控可以实时活跃线程数。 代码示例固定线程池使用示例 import java. util. concurrent. Executorservice; 固定线程池使用示例 import java. util. concurrent. Executorservice;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c2",
+    "question": "线程池？",
+    "answer": "import java. util. concurrent. Executors; public class ResourceManagementExample public static void main (string args) 创建一个固定大小的线程池， 包含3个线程 ExecutorService executor Executors. newFixedThreadPool (3); 提交任务给线程池 for (int i 0; i 5; i) final int taskId i; executor. submit (() - System. out. printIn (\"Task \" taskId \" is running on thread \" Thread. currentThread (). getName ());); 关闭线程池 executor. shutdown ();",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c3",
+    "question": "线程池？",
+    "answer": "运行结果: Task 1 is running on thread pool - 1 - thread - 2 Task 0 is running on thread pool - 1 - thread - 1 Task 2 is running on thread pool - 1 - thread - 3 Task 3 is running on thread pool - 1 - thread - 2 Task 4 is running on thread pool - 1 - thread - 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24可缓存线程池使用示例 import java. util. concurrent. ExecutorService; import java. util. concurrent. Executors;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c4",
+    "question": "线程池？",
+    "answer": "public class ImprovedPerformanceExample public static void main(string args) ExecutorService executor Executors. newCachedThreadPool(); for(int i 0; i 5; i) final int taskedId i; executor. submit(()- System. out. println(\"Task \" taskId \" is running on thread \" Thread. currentThread(). getName());); executor. shutdown();",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c5",
+    "question": "线程池？",
+    "answer": "运行结果: Task 4 is running on thread pool-1-thread-5 Task 1 is running on thread pool-1-thread-2 Task 2 is running on thread pool-1-thread-3 Task 3 is running on thread pool-1-thread-4 Task 0 is running on thread pool-1-thread-1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21单线程线程池使用场景 import java. util. concurrent. Executorservice; import java. util. concurrent. Executors;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c6",
+    "question": "线程池？",
+    "answer": "public class TaskQueueExample public static void main(string args) 创建一个单线程线程池， 任务会按顺序执行 ExecutorService executor Executors. newSingleThreadExecutor(); 提交多个任务给线程池 for(inti 0; i 5; i) final int taskId i; executor. submit(()- System. out. println(\"Task \" taskId \" is running on thread \" Thread. currentThread(). getName());); 关闭线程池 executor. shutdown();",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c7",
+    "question": "线程池？",
+    "answer": "运行结果: Task 0 is running on thread pool-1-thread-1 Task 1 is running on thread pool-1-thread-1 Task 2 is running on thread pool-1-thread-1 Task 3 is running on thread pool-1-thread-1 Task 4 is running on thread pool-1-thread-1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23知识图解线程池工作原理知识扩展扩展： 线程池种类： ScheduledThreadPoolExecutor： 定时执行任务， 支持定时执行和周期执行。 FixedThreadPool： 固定大小线程池， 线程数量固定, 核心线程数和最大线程数相同， 不会创建更多线程处理任务。 CachedThreadPool： 可缓存线程池， 在于线程数是几乎可以无限增加（最大Integer. ： 可缓存线程池， 在于线程数是几乎可以无限增加（最大Integer.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail_c8",
+    "question": "线程池？",
+    "answer": "MAX_VALUE， 2 31-1）， 线程闲置时会进行回收。 SingleThreadExecutor： 使用唯一的线程去执行任务， 原理和FixedThreadPool一样， 如果线程在执行任务时发生异常， 会重新创建新线程执行后续任务， 适合所有任务需要按顺序执行场景。 SingleThreadScheduledExecutor： 和ScheduledThreadPool线程池相似， 属于其特例， 内部只有一个线程。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_060_detail2",
+    "question": "什么是如果线程池的任务队列满了，线程池会执行指定的拒绝策略来应对，常用的四种拒绝策略包括？",
+    "answer": "如果线程池的任务队列满了， 线程池会执行指定的拒绝策略来应对， 常用的四种拒绝策略包括： CallerRunsPolicy： 使用线程池调用者所在的线程去执行被拒绝的任务， 除非线程池被停止或者线程池的任务队列已有空缺。 AbortPolicy： 直接抛出一个任务被线程池拒绝的异常。 DiscardPolicy： 不做任何处理， 然后执行该任务。 DiscardOldestPolicy： 抛弃最老的任务， 然后执行该任务。 自定义拒绝策略， 通过实现 RejectedExecutionHandler接口可以自定义任务的拒绝处理逻辑。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_061_short",
+    "question": "线程池参数？",
+    "answer": "线程池的构造函数有七个参数， 分别是核心线程数（corePoolSize）、最大线程数（maximumPoolSize）、空闲线程存活时间（keepAliveTime）、时间单位（TimeUnit）、线程池任务队列（workQueue）、线程工厂（ThreadFactory）和拒绝策略（RejectedExecutionHandler）。 线程池的参数决定了线程池的并发能力， 资源占用和任务处理策略， 需要根据实际场景进行合理配置。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_061_detail_c1",
+    "question": "线程池参数？",
+    "answer": "corePoolSize： 核心线程数， 线程池中长期存活的线程数如果线程池中的线程数量小于核心线程数， 这些线程处于空闲状态也不会被销毁 maximumPoolSize： 最大线程数， 线程池最多能创建的线程数当核心线程已满， 任务队列已满时， 如果当前线程小于最大线程数， 就会创建新的线程执行此任务， 否则触发拒绝策略。 keepAliveTime： 空闲线程存活时间。 当线程数大于核心线程数时， 如果每个线程的空闲时间超过了keepAliveTime, 这个线程就会被销毁， 销毁线程数 当前线程数-核心线程数 TimeUnit： 时间单位， keepAliveTime的时间单位。 workQueue： 线程池的任务队列， 线程池存放任务的队列， 没有空闲线程执行新任务时， 存储所有待执行任务。 ThreadFactory： 创建线程的工厂， 通过此方法设置线程的优先级、线程命名规则以及线程类型（用户线程 守护线程）。 RejectedExecutionHandler： 拒绝策略， 当线程池的任务超出线程池队列可以存储的最大值之后， 执行的策略。 er： 拒绝策略， 当线程池的任务超出线程池队列可以存储的最大值之后， 执行的策略。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_061_detail_c2",
+    "question": "线程池参数？",
+    "answer": "使用场景线程池参数设置需要结合任务特性和系统资源综合判断， 在避免资源浪费的同时防止任务堆积或线程竞争过度。 CPU密集型任务（计算、排序）任务消耗CPU资源， 线程执行时阻塞少 corePoolSize CPU核心数 1： 减少线程切换开销。 IO密集型任务（数据库、文件IO）任务大部分时间等待IO， CPU利用率低。 corePoolSize CPU核心数 2： 利用空闲CPU处理更多任务， 提高并发。 知识图解线程池工作原理知识扩展扩展： 线程池种类： ScheduledThreadPoolExecutor： 定时执行任务， 支持定时执行和周期执行。 FixedThreadPool： 固定大小线程池， 线程数量固定, 核心线程数和最大线程数相同， 不会创建更多线程处理任务。 CachedThreadPool： 可缓存线程池， 在于线程数是几乎可以无限增加（最大Integer. MAX_VALUE， 2 31-1）， 线程闲置时会进行回收。 SingleThreadExecutor： 使用唯一的线程去执行任务， 原理和FixedThreadPool一样， 如果线程在执行任务时发生异常， 会重新创建新线程执行后续任务， 适合所有任务需要按顺序执行场景。 SingleThreadScheduledExecutor： 和ScheduledThreadPool线程池相似， 属于其特例， 内部只有一个线程。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_061_detail2",
+    "question": "什么是shutdown()使用后会置状态为SHUTDOWN,正在执行的任务会继续，没有被执行则中断，不会再往线程池中添加新的任务，否则抛出RejectedExecutionException。 shutdownNow()使用后会置状态为STOP,正在执行任务的线程会中断，没有被执行的任务则返回。 shutdownNow()终止线程调用的？",
+    "answer": "shutdown()使用后会置状态为SHUTDOWN, 正在执行的任务会继续， 没有被执行则中断， 不会再往线程池中添加新的任务， 否则抛出RejectedExecutionException。 shutdownNow()使用后会置状态为STOP, 正在执行任务的线程会中断， 没有被执行的任务则返回。 shutdownNow()终止线程调用的是Thread. interrupt()方法， 如果线程中没有sleep, wait, Condition或者定时锁等应用， interrupt()方法是无法中断当前线程的， 仍需等待正在执行的任务都执行完成了才能退出。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_061_detail3",
+    "question": "什么是可以，当向线程池提交任务时，会得到一个Future对象，通过Future对象可以取消任务。调用Future中的 cancel(boolean mayInterruptIfRunning)方法，该方法会尝试取消执行的任务，参数mayInterruptIfRunning表示？",
+    "answer": "可以， 当向线程池提交任务时， 会得到一个Future对象， 通过Future对象可以取消任务。 调用Future中的 cancel(boolean mayInterruptIfRunning)方法， 该方法会尝试取消执行的任务， 参数mayInterruptIfRunning表示是否允许取消正在执行的任务。 如果设置为true， 则表示允许取消正在执行的任务， 如果设置false， 则表示不允许取消正在执行的任务。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_short",
+    "question": "线程安全集合类？",
+    "answer": "Collection接口（单列集合）： 单列集合用于存储单个元素。 主要子接口包括： List： 它的特点是有序、可重复。 List接口的常见实现类有： ArrayList (非线程安全), Vector (线程安全), LinkedList (非线程安全)。 Set： Set集合的特点是无序、不可重复。 Set接口的常见实现类有： HashSet (非线程安全), TreeSet (非线程安全)。 Queue： 先进先出（FIFO）。 Queue接口的常见实现类有： PriorityQueue (非线程安全)。 Map接口（双列集合）： 双列集合用于存储键值对（Key-Value Pair）。 键（Key）唯一， 值（Value）可重复。 Map接口的常见实现类有： HashMap (非线程安全), Hashtable (线程安全), TreeMap (非线程安全), ConcurrentHashMap (线程安全， 高性能)。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_detail_c1",
+    "question": "线程安全集合类？",
+    "answer": "Collection接口（单列集合）定义： Collection是所有单列集合的根接口， 用于存储一系列不重复或重复的单个元素。 它定义了所有单列集合的通用行为， 如添加、删除、判断元素是否存在等。 分类： List接口： Δ特点： 元素有序（按插入顺序）， 元素可重复。 可以通过索引访问元素。 Δ常见的实现类： ArrayList： 底层基于动态数组实现。 特点是查询（随机访问）速度快； 但增删元素（特别是中间位置）效率相对较低。 ArrayList类是非线程安全的。 LinkedList： 底层基于双向链表实现。 特点是增删元素（特别是首尾和中间位置）效率高； 但查询（随机访问）效率较低。 LinkedList也是非线程安全的。 Vector： Vector类与 ArrayList类似， 但它是线程安全的（方法都加了 synchronized关键字）。 但由于同步开销， 其性能通常低于 ArrayList， 是 Java早期版本提供的集合类。 Set接口： Δ特点： 元素无序（不保证插入顺序）， 元素不可重复（通过 hashCode()和 equals()方法判断）。 ： 元素无序（不保证插入顺序）， 元素不可重复（通过 hashCode()和 equals()方法判断）。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_detail_c2",
+    "question": "线程安全集合类？",
+    "answer": "Δ常见的实现类： HashSet： 底层其实是 HashMap。 特点是增删改查效率高， 但元素无序。 HashSet是非线程安全的。 LinkedHashSet： 继承自 HashSet， 底层基于哈希表和链表实现。 它在 HashSet的基础上， 通过链表维护了元素的插入顺序。 LinkedHashSet也是非线程安全的。 TreeSet： 底层基于红黑树实现。 TreeSet类的特点是元素有序（按自然排序或自定义比较器排序）， 增删改查效率相对 HashSet略低（对数时间复杂度）。 TreeSet也是非线程安全的。 Queue接口： Δ特点： 遵循先进先出（FIFO）原则， 常用于模拟队列数据结构。 Δ常见的实现类： PriorityQueue： 优先级队列， 元素根据其自然排序或自定义比较器进行排序， 每次取出的是优先级最高的元素。 PriorityQueue是非线程安全的。 Map接口（双列集合）特点： 键（Key）是唯一的， 用于快速查找对应的值。 值（Value）可以重复。 一个键最多映射一个值。 常见的实现类： HashMap： 底层基于哈希表实现。 Value）可以重复。 一个键最多映射一个值。 常见的实现类： HashMap： 底层基于哈希表实现。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_detail_c3",
+    "question": "线程安全集合类？",
+    "answer": "它的特点是查询、增删效率高， 但元素（键值对）无序。 HashMap是非线程安全的。 LinkedHashMap： 继承自 HashMap， 底层基于哈希表和双向链表实现。 它在 HashMap的基础上， 通过链表维护了键值对的插入顺序。 LinkedHashMap是非线程安全的。 TreeMap： 底层基于红黑树实现。 它的特点是键值对有序（按键的自然排序或自定义比较器排序）， 增删改查效率相对 HashMap略低。 TreeMap是非线程安全的。 Hashtable： 与 HashMap类似， 但它是线程安全的（方法都加了 synchronized关键字）， 性能较低， 是 Java早期版本提供的集合类。 Hashtable的键和值都不能为 null。 ConcurrentHashMap： 在 JDK1. 5之后提供的线程安全且高性能的双列集合实现。 它通过分段锁（JDK7）或 CAS synchronized（JDK8）等机制， 提供了比 Hashtable更好的并发性能。 的并发性能。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_extra",
+    "question": "线程安全集合类？",
+    "answer": "Java集合体系图（简要版） Java集合类的选择策略",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_extra2_c1",
+    "question": "什么是为什么？在多线程环境下，除了 Vector和 Hashtable（它们因性能瓶颈而较少使用）之外，更推荐的线程安全集合方案主要有两类？",
+    "answer": "为什么？ 在多线程环境下， 除了 Vector和 Hashtable（它们因性能瓶颈而较少使用）之外， 更推荐的线程安全集合方案主要有两类： java. util. concurrent包下的并发集合类 ConcurrentHashMap： 高性能的线程安全 Map。 它通过更细粒度的锁机制（如分段锁或 CAS synchronized）实现并发， 避免了 Hashtable的全局锁， 提供了更高的并发吞吐量。 CopyOnWriteArrayList CopyOnWriteArraySet： 适用于读操作远多于写操作的场景。 写操作（修改、添加、删除）会复制底层数组， 在新数组上修改， 完成后替换旧数组。 读操作无需加锁， 性能极高。 ConcurrentLinkedQueue ConcurrentLinkedDeque： 非阻塞的线程安全队列， 基于链表实现， 通过 CAS操作保证线程安全， 性能优于阻塞队列。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_extra2_c2",
+    "question": "什么是为什么？在多线程环境下，除了 Vector和 Hashtable（它们因性能瓶颈而较少使用）之外，更推荐的线程安全集合方案主要有两类？",
+    "answer": "BlockingQueue接口及其实现（如 ArrayBlockingQueue, LinkedBlockingQueue）： 提供阻塞操作（当队列满时生产者阻塞， 当队列空时消费者阻塞）， 常用于生产者-消费者模式。 使用 Collections. synchronizedXxx()方法包装： - Collections工具类提供了静态方法（如 synchronizedList(), synchronizedSet(), synchronizedMap()）， 可以将非线程安全的集合（如 ArrayList, HashMap）包装成线程安全的。 原理： 这些方法返回一个内部包装了原始集合， 并在所有方法上添加 synchronized关键字的集合。 缺点： 虽然线程安全， 但其性能与 Vector Hashtable类似， 都是通过粗粒度锁实现， 并发性能不高。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_062_extra3",
+    "question": "什么是在单线程环境下使用它们有什么好处？避免同步开销？",
+    "answer": "在单线程环境下使用它们有什么好处？ 避免同步开销： 线程安全的集合需要在每次操作时进行同步（加锁）， 这会引入额外的性能开销（如上下文切换、锁竞争）。 在单线程环境下， 这些同步操作是完全不必要的负担。 按需同步： Java设计者认为， 线程安全应该是按需提供的功能， 而不是默认行为。 开发者可以根据实际的多线程需求， 选择使用线程安全的集合， 或者手动进行同步控制。 单线程环境下的好处： 由于没有同步机制的开销， 非线程安全的集合在单线程环境下执行效率更高， 吞吐量更大。 内部实现不需要考虑复杂的并发问题， 代码逻辑相对更简单。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "困难",
+      "type": "qa_extra",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_063_short",
+    "question": "线程安全？",
+    "answer": "实现Java线程安全， 需要控制多个线程对共享资源的并发访问， 避免出现数据不一致， 竞态条件等问题可以分为三种方式： 阻塞同步（使用锁实现）非阻塞同步（基于CAS操作）无同步方案（避免共享资源）",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_063_detail_c1",
+    "question": "线程安全？",
+    "answer": "阻塞同步： 通过“加锁-释放锁”控制线程对资源的访问， 未获取锁的线程会阻塞等待。 synchronized关键字（隐式锁）通过 JVM隐式管理锁， 对对象或者类加锁， 确保同一时间只有一个线程执行同步代码。 同步方法 public synchronized void setA() 执行代码逻辑 同步代码块 public void setB() synchronized (this) 执行代码逻辑 1 2 3 4 5 6 7 8 9 10 11 JUC显式锁（Lock接口）通过ReentrantLock手动加锁和释放锁， 能够支持更复杂的同步场景， 比如公平锁、超时释放、中断。 通过读写锁， 允许多个读取者同时访问共享资源， 但只允许一个写入者。 非阻塞同步原子类（CAS操作）： 通过循环重试保证变量的更新。 版本号机制： 乐观锁， 通过版本号来判断数据是否被修改， 仅在提交时校验。 优缺点： 避免线程阻塞， 唤醒线程开销以及用户态内核态切换带来的性能问题。 过度自旋会浪费CPU资源。 仅能操作单个共享资源， 对于组合类型还是需要加锁处理， 或者重新组合为一个共享资源。 会浪费CPU资源。 仅能操作单个共享资源， 对于组合类型还是需要加锁处理， 或者重新组合为一个共享资源。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_063_detail_c2",
+    "question": "线程安全？",
+    "answer": "ABA问题无同步方案： 让共享资源尽可能的在同一个线程中执行。 线程本地存储： 为线程创建独立的资源副本， 无需同步创建不可变对象使用场景实现方式适用场景阻塞方式共享资源操作复杂、资源竞争不激烈、需要严格保证资源独占性场景非阻塞操作高频 简单操作、重试成本低、不允许线程阻塞场景无同步方案数据仅线程私有、数据不可修改、业务逻辑不依赖状态知识图解 ABA问题示意图读写锁使用示意图知识扩展扩展： ABA",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_063_detail2",
+    "question": "原子类的底层原理是什么？",
+    "answer": "底层是 CAS指令 volatile 自旋重试的组合。 CAS保证操作的原子性， volatile保证变量的可见性， 自旋重试解决并发冲突。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_063_detail3",
+    "question": "什么是原子性？",
+    "answer": "原子性： 提供互斥访问， 同一时刻只有一个线程对数据进行操作。 可见性： 线程对主存修改可以及时被其他线程看到。 有序性： 线程中的指令执行有序。 可以使用happens-before原则实现。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_064_short",
+    "question": "线程start与run？",
+    "answer": "run()方法不会创建一个新的线程， 只会在当前线程中执行run方法的代码。 start()方法可以启动一个新线程， 能够实现多线程执行。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_064_detail_c1",
+    "question": "线程start与run？",
+    "answer": "在Java多线程中： run方法是线程的执行体， 包含线程要执行的代码。 当直接调用 run方法时， 代码直接在当前线程中作为普通方法执行， 不会创建新的线程。 run方法也可以被子类重写， 实现特定任务。 start方法会启动一个新的线程， 会在新线程中执行run方法代码。 start方法会为线程分配系统资源， 并将线程置于就绪状态， 当调度器选择该线程时， 会执行run方法中的代码。 start方法只能调用一次， 如果再次调用， 将抛出IllegalThreadStateExeception异常。 方法创建线程执行run多线程 run()不创建线程立即执行没有多线程 start()创建新的线程创建线程后多线程， 允许并行使用场景 start()： 适用于任务需要与主线程或其他线程并行执行时， 例如后台下载、异步处理数据。 利用多线程来提高效率， 实现并行处理。 run()： 适用于需要重写来实现线程任务， 或者需要在当前线程同步执行的场景。 使用时注意， 直接调用run()方法无法实现多线程， 一个线程对象只能调用一次start()。 run()方法无法实现多线程， 一个线程对象只能调用一次start()。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_064_detail_c2",
+    "question": "线程start与run？",
+    "answer": "知识图解 run()与start()区别示意线程的状态示意知识扩展扩展： 线程的状态： 线程的状态能够反映线程在生命周期的不同阶段， 由JVM和操作系统共同管理， 状态转换一般就是“就绪-运行-阻塞 等待-就绪”的循环， 直到线程终止。 NEW： 尚未启动线程状态。 线程创建， 还没有调用start方法， 未分配系统资源。 RUNNABLE： 就绪状态已经获取除了CPU外全部资源， 等待操作系统调度分配CPU时间片。 正在运行状态线程获得时间片， 执行run()方法。 两个状态合并称为Runnable。 BLOCKED： 阻塞状态。 竞争同步锁失败， 等待锁释放。 WAITING： 等待状态的线程正在等待另一线程执行特定的操作。 TIMED_WAITING： 线程在指定时间内等待， 超时后自动唤醒。 TERMINATED： 线程完成执行， 终止状态。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_064_detail2",
+    "question": "什么是sleep？",
+    "answer": "sleep是Thread类的静态方法， 可以在任何地方通过Thread. sleep()调用， 无需依赖对象实例。 wait是Object类的实例方法， 必须通过对象实例调用。 sleep()在调用时， 线程会暂停执行指定的时间， 不会释放持有的对象锁。 wait()在调用时会释放持有的对象锁， 进入等待状态。 sleep可以在任意位置调用， 无需事先获取锁。 wait必须在同步块或同步方法内调用， 线程需持有该对象的锁， 否则会抛出IlleaglMonitorStateException。 sleep休眠时间结束后， 线程自动恢复到就绪状态。 等待CPU调度。 wait需要其他线程调用相同对象的notify()或notifyAll()方法才能被唤醒。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_064_detail3",
+    "question": "什么是线程对象的生命周期只允许调用一次start()首次调用会将线程状态从New转为Runnable，同时触发操作系统创建新线程，若再次调用，线程状态已经不？",
+    "answer": "线程对象的生命周期只允许调用一次start()首次调用会将线程状态从New转为Runnable， 同时触发操作系统创建新线程， 若再次调用， 线程状态已经不是New， JVM会抛出IllegalThreadStateException。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_short",
+    "question": "volatile关键字？",
+    "answer": "volatile是Java并发编程中常用的关键字， 作为变量修饰符， 无法修饰方法以及代码块， 被修饰的共享变量保证了不同线程对该变量操作的内存可见性且禁止指令重排序。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail_c1",
+    "question": "volatile关键字？",
+    "answer": "保证可见性： 一个线程修改了变量值， 其他线程能够立即看到修改的值。 对非volatile变量进行读写时， 每个线程先从主内存拷贝变量到CPU缓存中， 如果计算机有多个CPU， 每个线程可能在不同的CPU上被处理， 所以每个线程可以拷贝到不同CPU cache中。 volatile修饰的变量不会被缓存在寄存器或者对其他处理器不可见的地方， 保证每次读写变量都从主内存中读， 跳过CPU cache。 所以当一个线程修改了这个变量的值， 新值对于其他线程是立即得知的。 避免了多线程环境下因缓存不一致导致的读取脏数据问题。 禁止指令重排： 对一个volatile变量的写操作， 执行在任意后续对这个volatile变量的读操作之前。 在读写操作指令前后插入内存屏障， 指令重排序时不能把后面的指令重排序到内存屏障。 指令重排是JVM为了优化指令， 提高程序运行效率， 在不影响单线程程序执行结果的前提下， 尽可能提高并行度。 指令重排序包括编译器重排序和运行时重排序。 不能保证原子性： volatile不能保证复合操作的原子性, 需要结合synchronized或原子类来保证原子性。 子性： volatile不能保证复合操作的原子性, 需要结合synchronized或原子类来保证原子性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail_c2",
+    "question": "volatile关键字？",
+    "answer": "使用场景 volatile适用于读写操作不依赖其当前值（如状态标志、单例模式中的延迟初始化）的场景， 比synchronized更轻量级， 不会引起线程上下文切换和调度。 代码示例状态标记变量： 用volatile修饰线程的中断 停止标记， 确保一个线程能及时感知到其他线程的状态变化。 isRunning不加volatile修饰可能导致一直读取本地缓存的true, 无法停止。 isRunning加volatile修饰， 修改会立即被感知， 可以保证线程安全。 public class VolatileDemo 用volatile修饰状态标记 private static volatile boolean isRunning true; public static void main(String args) throws InterruptedException 启动线程 Thread worker new Thread(() - while (isRunning) 读取标记 执行任务. . . System. out. println(\"线程已停止\");); worker. 读取标记 执行任务. . . System. out. println(\"线程已停止\");); worker.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail_c3",
+    "question": "volatile关键字？",
+    "answer": "start(); 主线程休眠后修改标记 Thread. sleep(1000); isRunning false; 修改标记， 会立即同步到主内存 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19单例模式的双重检查锁定： volatile用于禁止指令重排序， 避免因初始化对象时的指令重排序导致的线程安全问题。 禁止instance new Singleton()指令重排序， 确保instance在初始化完成后才会被其他线程可见。 public class Singleton 用volatile修饰单例对象 private static volatile Singleton instance; private Singleton() public static Singleton getInstance() if (instance null) 第一次检查（避免不必要的同步） synchronized (Singleton.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail_c4",
+    "question": "volatile关键字？",
+    "answer": "class) if (instance null) 第二次检查（确保线程安全） 若不加volatile， 可能发生指令重排序： 1. 分配内存 - 2. 初始化对象 - 3. 赋值给instance 重排后可能变成 1- 3- 2， 导致其他线程获取到未初始化的对象 instance new Singleton(); return instance; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20独立观察变量： 多个线程共享同一个变量， 变量的更新不依赖当前值时， volatile保证读取及时性。 记录程序运行状态（加载中、运行中、已停止） public class StatusTracker private volatile String status \"INIT\"; 初始状态 线程A更新状态 public void updateStatus(String newStatus) status newStatus; 简单赋值， 无依赖 线程B观察状态 public String getStatus() return status; 简单赋值， 无依赖 线程B观察状态 public String getStatus() return status;",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail_c5",
+    "question": "volatile关键字？",
+    "answer": "保证读取到最新值 1 2 3 4 5 6 7 8 9 10 11 12 13知识图解 volatile关键字的作用示意图知识扩展扩展： JVM的内存屏障： LoadLoad屏障: 在第二段数据指令被访问前保证第一大段读数据指令执行完毕。 StoreStore屏障: 在第二段数据指令被访问前保证第一段写数据指令执行完毕。 LoadStore屏障: 在第二段数据指令被访问前保证第一段读数据指令执行完毕。 StoreLoad屏障: 在第二段数据指令被访问前保证第一段写数据指令执行完毕。 面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_065_detail2",
+    "question": "什么是不能。当volatile修饰引用类型变量时，它只能保证的？",
+    "answer": "不能。 当volatile修饰引用类型变量时， 它只能保证的是引用本身的可见性（即引用指向的对象地址的变化能被其他线程及时感知）， 但无法保证该对象内部字段的可见性。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_short",
+    "question": "volatile与synchronized对比？",
+    "answer": "synchronized是确保数据的一致性和线程安全， 解决多个线程之间访问资源的同步性。 而volatile是确保变量在多个线程的可见性和有序性。 volatile不需要获取 释放锁， 性能较高且轻量级。 synchronized可以修饰方法以及代码块， volatile只能修饰变量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "简单",
+      "type": "qa_short",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail_c1",
+    "question": "volatile与synchronized对比？",
+    "answer": "机制和用途： synchronized用于提供线程间的同步机制， 当一个线程进入一个由synchronized修饰的代码块或方法时， 它会获取一个监视器锁（monitor lock）， 这保证了同一时间只有一个线程可以执行这段关系代码。 volatile用于修饰变量， 当一个线程修改了一个volatile变量的值， 其他线程能够立即看到修改， 还可以防止指令重排序。 原子性 synchronized可以保证被修饰的代码块的原子性， 这段代码在执行过程中不会被其他线程打断。 volatile只能保证单个读写操作的原子性， 对于复合操作（自增、减）不能保证原子性。 互斥性 synchronized提供了互斥性， 同一时间只有一个线程可以执行被其修饰的代码块和方法。 volatile没有提供互斥性， 它只能保证可见性和有序性。 性能 synchronized的性能相对较低， 因为它需要获取和释放锁。 volatile的性能较高， 因为它不需要获取和释放锁， 更加轻量级， 不过提供的同步级别较低。 使用范围 synchronized可以修饰方法以及代码块。 volatile只能修饰变量。 过提供的同步级别较低。 使用范围 synchronized可以修饰方法以及代码块。 volatile只能修饰变量。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail_c2",
+    "question": "volatile与synchronized对比？",
+    "answer": "使用场景需求选volatile选synchronized操作类型简单无复合复合、多步操作原子性无有性能追求极致性能（轻量）允许性能损耗（强同步保证）线程协作仅状态传递有协作（如等待 唤醒机制）代码示例 volatile状态标记 private volatile boolean isRunning true; 线程A： 修改状态（一次写） public void stop() isRunning false; 线程B C： 读取状态（多次读） public void work() while (isRunning). . . 1 2 3 4 5 6 7 volatile禁止指令重排序 private static volatile Singleton instance; public static Singleton getInstance() if (instance null) synchronized (Singleton. class) if (instance null) instance new Singleton(); null) instance new Singleton();",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail_c3",
+    "question": "volatile与synchronized对比？",
+    "answer": "volatile禁止此处重排序 return instance; 1 2 3 4 5 6 7 8 9 10 11 synchronized保证复合操作原子性 private int count 0; 多线程同时调用， 需保证count 的原子性 public synchronized void increment() count; 1 2 3 4 synchronized多变量 private int total; private int used; 保证total和used的同步更新 public synchronized void allocate(int amount) if (used amount total) used amount; 其他依赖used和total的操作. . . 1 2 3 4 5 6 7 8 9 10 volatile和synchronized实现单例模式 public class Singleton 1. volatile修饰单例引用， 禁止指令重排序 private static volatile Singleton instance; 2. ， 禁止指令重排序 private static volatile Singleton instance; 2.",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail_c4",
+    "question": "volatile与synchronized对比？",
+    "answer": "私有构造器， 防止外部实例化 private Singleton() 3. 双重检查锁定获取实例 public static Singleton getInstance() 第一次检查： 避免不必要的同步（提高性能） if (instance null) 同步块： 保证只有一个线程进入初始化流程 synchronized (Singleton. class) 第二次检查： 防止多线程并发时重复初始化 if (instance null) 若不加volatile， 可能发生指令重排序导致的问题 instance new Singleton(); return instance; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23知识图解 volatile关键字的作用示意图 synchronized底层示意图使用volatile和synchronized的单例模式知识扩展面试官可能",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail2",
+    "question": "什么是这些内存屏障？",
+    "answer": "这些内存屏障如何阻止指令重排序？ 对于写操作， 在写操作前插入StoreStore屏障， 在写操作后插入StoreLoad屏障。 对于读操作， 在读操作前插入LoadLoad屏障， 在读操作后插入LoadStore屏障。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail3",
+    "question": "什么是执行优先级？",
+    "answer": "执行优先级如何？ 当volatile变量和synchronized代码块同时作用于同一变量时， 不会产生冲突， 两者的作用是互补而非对立的。 它们的执行逻辑遵循 Java内存模型（JMM）的规范， 存在明确的协作关系而非“优先级”之分。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  },
+  {
+    "id": "java_066_detail4",
+    "question": "什么是volatile能否实现类似的线程间通信？ wait() notify()？",
+    "answer": "volatile能否实现类似的线程间通信？ wait() notify()是synchronized机制中用于线程间协作的核心方法， 必须在同步块中使用。 wait()会释放锁并且阻塞当前线程， notify()则会唤醒一个等待该锁的线程， 二者都基于当前线程有锁的前提。 如果不在同步块中调用可能会抛出异常。 volatile可以实现简单的线程状态传递， 无法替代synchronized的线程协作机制， 没有精确唤醒能力以及原子性保证。",
+    "metadata": {
+      "category": "Java面试题",
+      "difficulty": "中等",
+      "type": "qa_detail",
+      "company": "",
+      "position": ""
+    }
+  }
+]
