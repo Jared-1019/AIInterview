@@ -16,16 +16,22 @@
         </div>
         <div class="brand-copy">
           <div class="brand-title">AI Interview</div>
+          <div class="brand-subtitle">多模态交互式模拟面试系统</div>
         </div>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn" :class="{ active: activeTab === 'chat' }" @click="activeTab = 'chat'">面试对话</button>
+        <button class="nav-btn" :class="{ active: activeTab === 'analysis' }" @click="activeTab = 'analysis'">面试分析</button>
+        <button class="nav-btn" :class="{ active: activeTab === 'history' }" @click="activeTab = 'history'">历史记录</button>
       </div>
     </header>
 
-    <main class="chat-panel">
+    <main class="chat-panel" v-if="activeTab === 'chat'">
       <div class="action-launcher">
         <button class="plus-btn" @click="toggleActionMenu">+</button>
         <div class="action-menu" v-if="showActionMenu">
           <button class="action-item" type="button" @click="openVoiceCall">语音通话</button>
-          <button class="action-item" type="button" @click="openVoiceCall">视频聊天</button>
+          <button class="action-item" type="button" @click="startInterview">开始模拟面试</button>
         </div>
       </div>
 
@@ -49,36 +55,195 @@
         </div>
       </div>
 
-      <div class="conversation">
-        <div v-for="(message, index) in conversation" :key="index" :class="['message', message.role]">
-          <span class="role">{{ message.role === 'user' ? 'You' : 'AI-Interview' }}</span>
-          <div class="message-body">{{ message.text }}</div>
+      <div class="chat-container" v-if="!showQuestions">
+        <div class="conversation">
+          <div v-for="(message, index) in conversation" :key="index" :class="['message', message.role]">
+            <span class="role">{{ message.role === 'user' ? 'You' : 'AI-Interview' }}</span>
+            <div class="message-body">{{ message.text }}</div>
+          </div>
+          <div class="typing" v-if="isTyping">AI-Interview is thinking...</div>
         </div>
-        <div class="typing" v-if="isTyping">AI-Interview is thinking...</div>
+
+        <form class="composer" @submit.prevent="sendMessage">
+          <button type="button" class="icon-btn mic-btn" :class="{ recording: isRecording }" @click="toggleRecording" aria-label="Voice input">
+            <img src="/images/microphone.png" alt="Voice" class="mic-icon" />
+          </button>
+
+          <input
+            v-model="input"
+            type="text"
+            placeholder="有问题，尽管问"
+            autocomplete="off"
+            class="text-input"
+          />
+
+          <button type="submit" class="icon-btn send-btn" :disabled="!input.trim()">
+            <span class="send-icon"></span>
+          </button>
+        </form>
       </div>
 
-      <form class="composer" @submit.prevent="sendMessage">
-        <button type="button" class="icon-btn mic-btn" :class="{ recording: isRecording }" @click="toggleRecording" aria-label="Voice input">
-          <img src="/images/microphone.png" alt="Voice" class="mic-icon" />
-        </button>
+      <div class="interview-container" v-else>
+        <div class="chat-side">
+          <div class="conversation">
+            <div v-for="(message, index) in conversation" :key="index" :class="['message', message.role]">
+              <span class="role">{{ message.role === 'user' ? 'You' : 'AI-Interview' }}</span>
+              <div class="message-body">{{ message.text }}</div>
+            </div>
+            <div class="typing" v-if="isTyping">AI-Interview is thinking...</div>
+          </div>
 
-        <input
-          v-model="input"
-          type="text"
-          placeholder="有问题，尽管问"
-          autocomplete="off"
-          class="text-input"
-        />
+          <form class="composer" @submit.prevent="sendMessage">
+            <button type="button" class="icon-btn mic-btn" :class="{ recording: isRecording }" @click="toggleRecording" aria-label="Voice input">
+              <img src="/images/microphone.png" alt="Voice" class="mic-icon" />
+            </button>
 
-        <button type="submit" class="icon-btn send-btn" :disabled="!input.trim()">
-          <span class="send-icon"></span>
-        </button>
-      </form>
+            <input
+              v-model="input"
+              type="text"
+              placeholder="有问题，尽管问"
+              autocomplete="off"
+              class="text-input"
+            />
 
+            <button type="submit" class="icon-btn send-btn" :disabled="!input.trim()">
+              <span class="send-icon"></span>
+            </button>
+          </form>
+        </div>
+
+        <div class="questions-side">
+          <div class="questions-header">
+            <h3>面试题目 ({{ questionsLoaded }}/10)</h3>
+            <div class="position-info" v-if="position">
+              目标岗位: {{ position }}
+            </div>
+          </div>
+
+          <div class="questions-list">
+            <div v-for="(question, index) in questions" :key="question.id" class="question-item">
+              <div class="question-header">
+                <span class="question-number">Q{{ question.id }}</span>
+                <span class="question-difficulty" :class="question.difficulty">
+                  {{ question.difficulty }}
+                </span>
+              </div>
+              <div class="question-content">
+                {{ question.question }}
+              </div>
+            </div>
+            <div v-if="questionsLoaded < 10" class="loading-placeholder">
+              <div class="loading-spinner"></div>
+              <div class="loading-text">正在加载题目...</div>
+            </div>
+          </div>
+
+          <div class="questions-footer" v-if="interviewState === 'questions_generated'">
+            <button class="start-interview-btn" @click="startFormalInterview">开始面试</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <main class="analysis-panel" v-else-if="activeTab === 'analysis'">
+      <div class="analysis-header">
+        <h2>面试表现分析</h2>
+        <button class="analyze-btn" @click="analyzeInterview">重新分析</button>
+      </div>
+
+      <div class="analysis-content">
+        <div class="analysis-overview">
+          <div class="score-card">
+            <div class="score-value">{{ overallScore }}</div>
+            <div class="score-label">综合得分</div>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-value">{{ contentAnalysis.technical }}</div>
+              <div class="metric-label">技术正确性</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">{{ contentAnalysis.depth }}</div>
+              <div class="metric-label">知识深度</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">{{ contentAnalysis.logic }}</div>
+              <div class="metric-label">逻辑严谨性</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">{{ contentAnalysis.match }}</div>
+              <div class="metric-label">岗位匹配度</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-details">
+          <div class="analysis-section">
+            <h3>内容分析</h3>
+            <div class="analysis-text">{{ contentAnalysis.analysis }}</div>
+          </div>
+
+          <div class="analysis-section">
+            <h3>表达分析</h3>
+            <div class="expression-metrics">
+              <div class="expression-item">
+                <span class="expression-label">语速:</span>
+                <span class="expression-value">{{ expressionAnalysis.speechRate }}</span>
+              </div>
+              <div class="expression-item">
+                <span class="expression-label">清晰度:</span>
+                <span class="expression-value">{{ expressionAnalysis.clarity }}</span>
+              </div>
+              <div class="expression-item">
+                <span class="expression-label">自信度:</span>
+                <span class="expression-value">{{ expressionAnalysis.confidence }}</span>
+              </div>
+            </div>
+            <div class="analysis-text">{{ expressionAnalysis.analysis }}</div>
+          </div>
+
+          <div class="analysis-section">
+            <h3>改进建议</h3>
+            <ul class="suggestions-list">
+              <li v-for="(suggestion, index) in suggestions" :key="index">{{ suggestion }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <main class="history-panel" v-else-if="activeTab === 'history'">
+      <div class="history-header">
+        <h2>面试历史</h2>
+      </div>
+
+      <div class="history-content">
+        <div class="history-list">
+          <div v-for="(interview, index) in interviewHistory" :key="index" class="history-item">
+            <div class="history-item-header">
+              <div class="history-date">{{ interview.date }}</div>
+              <div class="history-score">{{ interview.score }}分</div>
+            </div>
+            <div class="history-item-content">
+              <div class="history-role">{{ interview.role }}</div>
+              <div class="history-summary">{{ interview.summary }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="growth-chart">
+          <h3>能力成长曲线</h3>
+          <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
