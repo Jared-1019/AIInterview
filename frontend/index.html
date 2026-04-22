@@ -31,7 +31,7 @@
         <button class="plus-btn" @click="toggleActionMenu">+</button>
         <div class="action-menu" v-if="showActionMenu">
           <button class="action-item" type="button" @click="openVoiceCall">语音通话</button>
-          <button class="action-item" type="button" @click="startInterview">开始模拟面试</button>
+          <button class="action-item" type="button" @click="startInterview">模拟面试</button>
         </div>
       </div>
 
@@ -114,7 +114,7 @@
 
         <div class="questions-side">
           <div class="questions-header">
-            <h3>面试题目 ({{ questionsLoaded }}/10)</h3>
+            <h3>面试题目 ({{ questionsLoaded }}/5)</h3>
             <div class="position-info" v-if="position">
               目标岗位: {{ position }}
             </div>
@@ -132,14 +132,14 @@
                 {{ question.question }}
               </div>
             </div>
-            <div v-if="questionsLoaded < 10" class="loading-placeholder">
+            <div v-if="questionsLoaded < 5" class="loading-placeholder">
               <div class="loading-spinner"></div>
               <div class="loading-text">正在加载题目...</div>
             </div>
           </div>
 
           <div class="questions-footer" v-if="interviewState === 'questions_generated'">
-            <button class="start-interview-btn" @click="startFormalInterview">开始面试</button>
+            <div class="questions-ready-hint">题目已就绪</div>
           </div>
         </div>
       </div>

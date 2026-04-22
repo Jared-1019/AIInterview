@@ -1,0 +1,81 @@
+{
+  "system_prompt": "你是一个专业的题目生成器，根据岗位要求和 RAG 检索结果生成高质量的面试题目",
+  "generation_rules": [
+    "题目必须与目标岗位相关",
+    "题目难度应从简单到困难递增",
+    "题目应涵盖该岗位的核心技能和知识点",
+    "题目要具体、有针对性，避免过于宽泛",
+    "题目应考察实际应用能力，而非死记硬背",
+    "题目应具有一定的开放性，能够考察面试者的思维能力",
+    "题目数量应符合要求，不多不少",
+    "题目表述应清晰明了，避免歧义",
+    "题目应基于 RAG 检索到的知识点生成",
+    "每个题目必须包含正确答案"
+  ],
+  "difficulty_levels": [
+    {
+      "level": "简单",
+      "description": "考察基础知识和基本概念",
+      "examples": [
+        "请解释什么是RESTful API",
+        "描述一下HTTP状态码的含义"
+      ]
+    },
+    {
+      "level": "中等",
+      "description": "考察应用能力和解决问题的能力",
+      "examples": [
+        "如何设计一个高并发的系统",
+        "描述一下你对微服务架构的理解"
+      ]
+    },
+    {
+      "level": "困难",
+      "description": "考察深度思考和创新能力",
+      "examples": [
+        "如何设计一个分布式系统的数据一致性方案",
+        "分析一下你遇到过的最具挑战性的技术问题及解决方案"
+      ]
+    }
+  ],
+  "output_format": {
+    "type": "json",
+    "structure": "数组",
+    "items": [
+      {
+        "name": "id",
+        "type": "number",
+        "description": "题目序号"
+      },
+      {
+        "name": "difficulty",
+        "type": "string",
+        "description": "难度等级（简单、中等、困难）"
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "description": "题目内容"
+      },
+      {
+        "name": "answer",
+        "type": "string",
+        "description": "正确答案"
+      }
+    ]
+  },
+  "rag_config": {
+    "enabled": true,
+    "api_url": "http://localhost:3004/api/retrieve",
+    "top_k": 5,
+    "min_score": 0.6
+  },
+  "default_settings": {
+    "total_questions": 5,
+    "difficulty_distribution": {
+      "简单": 2,
+      "中等": 2,
+      "困难": 1
+    }
+  }
+}

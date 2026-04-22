@@ -683,6 +683,39 @@ createApp({
             this.generateInterviewQuestions();
             this.isTyping = false;
           }, 2000);
+        } else if (this.interviewState === 'questions_generated') {
+          // 用户选择面试方式
+          const choice = text.trim();
+          if (choice === '1' || choice.toLowerCase() === '文字') {
+            this.interviewMode = 'text';
+            this.conversation[assistantIndex].text = '好的，我们将使用文字方式进行面试。让我们开始吧！';
+            this.$nextTick(this.scrollBottom);
+            this.startFormalInterview();
+          } else if (choice === '2' || choice.toLowerCase() === '语音') {
+            this.interviewMode = 'voice';
+            this.conversation[assistantIndex].text = '好的，我们将使用语音方式进行面试。让我们开始吧！';
+            this.$nextTick(this.scrollBottom);
+            this.startFormalInterview();
+          } else {
+            this.conversation[assistantIndex].text = '请选择有效的面试方式（1文字 2语音）';
+            this.$nextTick(this.scrollBottom);
+          }
+        } else if (this.interviewState === 'formal_interview') {
+          // 正式面试流程
+          if (!this.isHotStarted) {
+            // 2. 热场结束，开始第一个问题
+            this.isHotStarted = true;
+            this.conversation[assistantIndex].text = '很高兴听到你最近的情况。现在让我们开始正式的面试环节。';
+            this.$nextTick(this.scrollBottom);
+            
+            // 开始第一个问题
+            setTimeout(() => {
+              this.askNextQuestion();
+            }, 1000);
+          } else {
+            // 处理用户回答
+            this.processUserAnswer(text);
+          }
         } else {
           // 分析用户回答，提取关键词，生成智能追问
           const followUpQuestion = this.generateFollowUpQuestion(text);
@@ -743,25 +776,14 @@ createApp({
       this.showQuestions = true;
       
       try {
-        // 构建提示词，让AI扮演面试官生成面试题目
-        const prompt = `你是一个专业的${this.position}岗位面试官。现在有人来面试这个岗位，请生成10道面试题目，难度递增。
-
-要求：
-1. 题目要涵盖该岗位的核心技能、专业知识和实际工作场景
-2. 题目难度从简单到困难递增（简单2道、中等4道、困难4道）
-3. 每道题目需要标明难度等级（简单、中等、困难）
-4. 题目要具体、有针对性，符合真实面试场景
-5. 输出格式为JSON数组，包含10个对象，每个对象包含id、difficulty、question三个字段
-
-请直接输出JSON格式，不要包含其他解释性文字。`;
-
+        // 直接使用后端的默认提示词配置
         // 调用后端API生成题目
         const response = await fetch('/api/generate-questions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ position: this.position, prompt: prompt }),
+          body: JSON.stringify({ position: this.position }),
         });
         
         if (!response.ok) {
@@ -769,24 +791,21 @@ createApp({
         }
         
         const data = await response.json();
-        const allQuestions = JSON.parse(data);
+        const allQuestions = data;
         
-        // 模拟题目加载过程
-        const loadQuestion = (index) => {
-          if (index < allQuestions.length) {
-            setTimeout(() => {
-              this.questions.push(allQuestions[index]);
-              this.questionsLoaded++;
-              loadQuestion(index + 1);
-            }, 500); // 每个题目加载间隔500ms
-          } else {
-            // 所有题目加载完成
-            this.interviewState = 'questions_generated';
-          }
-        };
+        // 直接显示所有题目（不再模拟加载过程）
+        this.questions = allQuestions;
+        this.questionsLoaded = allQuestions.length;
+        this.interviewState = 'questions_generated';
         
-        // 开始加载题目
-        loadQuestion(0);
+        // 添加面试方式选择提示
+        setTimeout(() => {
+          this.conversation.push({ 
+            role: 'assistant', 
+            text: '题目准备就绪，请选择面试方式：1文字 2语音（推荐，可生成面试分析报告）' 
+          });
+          this.$nextTick(this.scrollBottom);
+        }, 1000);
       } catch (error) {
         console.error('Error generating questions:', error);
         // 生成失败时使用默认题目
@@ -799,93 +818,260 @@ createApp({
         {
           id: 1,
           difficulty: '简单',
-          question: '请介绍一下你自己。'
+          question: '请介绍一下你自己。',
+          answer: '我是一名经验丰富的专业人士，拥有多年相关领域的工作经验。我专注于解决实际问题，具备良好的团队合作精神和沟通能力。我对贵公司的产品和文化非常感兴趣，希望能够为公司的发展贡献自己的力量。',
+          points: {
+            '1': '自我介绍的基本信息',
+            '2': '专业经验和技能',
+            '3': '解决问题的能力',
+            '4': '团队合作精神',
+            '5': '对公司的兴趣和期望'
+          }
         },
         {
           id: 2,
           difficulty: '简单',
-          question: '你为什么选择我们公司？'
+          question: '你为什么选择我们公司？',
+          answer: '我选择贵公司是因为贵公司在行业内的领先地位和良好的声誉。贵公司的产品和服务对行业发展有着重要影响，我希望能够在这样的平台上发挥自己的专业能力。此外，贵公司的企业文化和价值观与我的个人理念相契合，我相信在这里能够获得更好的职业发展机会。',
+          points: {
+            '1': '公司的行业地位',
+            '2': '产品和服务的影响力',
+            '3': '企业文化和价值观',
+            '4': '职业发展机会',
+            '5': '个人能力的发挥空间'
+          }
         },
         {
           id: 3,
           difficulty: '中等',
-          question: '请描述一个你在工作中遇到的挑战，以及你是如何解决的。'
+          question: '请描述一个你在工作中遇到的挑战，以及你是如何解决的。',
+          answer: '在我之前的工作中，我曾遇到一个项目延期的挑战。当时项目进度严重滞后，团队士气低落。我首先分析了问题的根本原因，发现是资源分配不合理和沟通不畅导致的。然后我重新制定了项目计划，合理分配资源，并建立了有效的沟通机制。通过团队的共同努力，我们最终不仅按时完成了项目，还提高了团队的凝聚力和工作效率。',
+          points: {
+            '1': '挑战的具体情况',
+            '2': '问题的根本原因分析',
+            '3': '解决方案的制定',
+            '4': '执行过程和团队合作',
+            '5': '最终结果和经验总结'
+          }
         },
         {
           id: 4,
           difficulty: '中等',
-          question: '你对我们公司的产品有什么了解？'
+          question: '你对我们公司的产品有什么了解？',
+          answer: '我对贵公司的产品有一定的了解。贵公司的主要产品包括XXX和XXX，这些产品在市场上有着良好的口碑。贵公司的产品以其创新性、可靠性和用户友好性著称，能够满足不同客户的需求。我特别关注了贵公司最近推出的XXX产品，它采用了先进的技术，为用户提供了更好的体验。我认为贵公司的产品在未来有很大的发展潜力。',
+          points: {
+            '1': '公司主要产品的了解',
+            '2': '产品的市场口碑',
+            '3': '产品的核心优势',
+            '4': '最新产品的关注',
+            '5': '产品的发展潜力'
+          }
         },
         {
           id: 5,
           difficulty: '中等',
-          question: '你未来5年的职业规划是什么？'
-        },
-        {
-          id: 6,
-          difficulty: '困难',
-          question: '请描述一个你主导的项目，以及你在其中的角色。'
-        },
-        {
-          id: 7,
-          difficulty: '困难',
-          question: '你如何处理工作中的压力和挑战？'
-        },
-        {
-          id: 8,
-          difficulty: '困难',
-          question: '你对团队合作有什么看法？'
-        },
-        {
-          id: 9,
-          difficulty: '困难',
-          question: '你如何看待行业的未来发展？'
-        },
-        {
-          id: 10,
-          difficulty: '困难',
-          question: '你有什么问题要问我们？'
+          question: '你未来5年的职业规划是什么？',
+          answer: '在未来5年，我希望能够在专业领域不断提升自己的技能和知识，成为行业内的专家。我计划通过持续学习和实践，掌握更多先进的技术和管理方法。同时，我希望能够在工作中承担更多的责任，逐步成长为团队的核心成员，甚至能够领导一个团队。我相信在贵公司的平台上，我能够实现这些职业目标。',
+          points: {
+            '1': '专业技能的提升',
+            '2': '知识的积累和学习',
+            '3': '责任的承担',
+            '4': '团队角色的发展',
+            '5': '与公司平台的结合'
+          }
         }
       ];
       
-      // 模拟题目加载过程
-      const loadQuestion = (index) => {
-        if (index < allQuestions.length) {
-          setTimeout(() => {
-            this.questions.push(allQuestions[index]);
-            this.questionsLoaded++;
-            loadQuestion(index + 1);
-          }, 500);
-        } else {
-          this.interviewState = 'questions_generated';
-        }
-      };
+      // 直接显示所有题目
+      this.questions = allQuestions;
+      this.questionsLoaded = allQuestions.length;
+      this.interviewState = 'questions_generated';
       
-      loadQuestion(0);
+      // 添加面试方式选择提示
+      setTimeout(() => {
+        this.conversation.push({ 
+          role: 'assistant', 
+          text: '题目准备就绪，请选择面试方式：1文字 2语音（推荐，可生成面试分析报告）' 
+        });
+        this.$nextTick(this.scrollBottom);
+      }, 1000);
     },
     startFormalInterview() {
       // 开始正式面试
       this.interviewState = 'formal_interview';
+      this.currentQuestionIndex = 0;
+      this.interviewResults = [];
+      this.isHotStarted = false;
+      this.currentFollowUpCount = 0;
+      this.askedPoints = []; // 跟踪已追问的关键点
+      
+      // 1. 热场
       this.conversation.push({ 
         role: 'assistant', 
-        text: '好的，我们开始面试。' 
+        text: '你好！欢迎参加今天的面试。我是今天的面试官，很高兴认识你。在正式开始之前，我们先简单聊一聊，让你放松一下。你最近怎么样？' 
       });
       this.$nextTick(this.scrollBottom);
+    },
+    askNextQuestion() {
+      // 检查是否还有问题
+      if (this.currentQuestionIndex < this.questions.length) {
+        const question = this.questions[this.currentQuestionIndex];
+        this.conversation.push({ 
+          role: 'assistant', 
+          text: `问题 ${question.id}/${this.questions.length}：${question.question}` 
+        });
+        this.$nextTick(this.scrollBottom);
+        this.currentFollowUpCount = 0;
+        this.askedPoints = []; // 清空已追问的关键点
+      } else {
+        // 所有问题都问完了，结束面试
+        this.endInterview();
+      }
+    },
+    processUserAnswer(answer) {
+      // 获取当前问题
+      const question = this.questions[this.currentQuestionIndex];
       
-      // 构建面试官提示词，让AI扮演面试官从自我介绍开始引导
-      const interviewPrompt = `你是一个专业的${this.position}岗位面试官。你已经准备好了对这个面试者的10道面试题目。
-
-现在请按照以下规则进行面试：
-1. 首先请面试者做自我介绍
-2. 根据面试者的自我介绍内容，进行简单的交流和追问（控制在3次问答以内）
-3. 3次问答后，自然过渡到面试题目的提问
-
-请以面试官的身份，热情、专业地开始这场面试。
-请直接开始，不需要等待面试者确认。`;
+      // 计算关键点覆盖率
+      const coverage = this.calculateCoverage(answer, question.points);
       
-      // 调用面试聊天API，传递提示词
-      this.callInterviewAPI(interviewPrompt);
-      this.currentQuestionIndex = 0;
+      // 检查是否所有关键点都已覆盖
+      if (coverage >= 100) {
+        // 所有关键点都已覆盖，进入下一题
+        this.interviewResults.push({
+          questionId: question.id,
+          question: question.question,
+          answer: answer,
+          coverage: coverage
+        });
+        
+        // 显示覆盖率
+        this.conversation.push({ 
+          role: 'assistant', 
+          text: `你的回答覆盖率为 ${coverage}%。现在让我们继续下一个问题。` 
+        });
+        this.$nextTick(this.scrollBottom);
+        
+        // 进入下一题
+        this.currentQuestionIndex++;
+        setTimeout(() => {
+          this.askNextQuestion();
+        }, 1000);
+      } else if (this.currentFollowUpCount < 2) {
+        // 还有未覆盖的关键点且有追问次数
+        // 找出未覆盖且未被追问过的关键点
+        const uncoveredPoints = this.findUncoveredPoints(answer, question.points);
+        const availablePoints = uncoveredPoints.filter(point => !this.askedPoints.includes(point));
+        
+        if (availablePoints.length > 0) {
+          // 有未被追问过的关键点
+          this.currentFollowUpCount++;
+          const followUpPoint = availablePoints[0]; // 选择第一个未被追问过的关键点
+          this.askedPoints.push(followUpPoint); // 标记为已追问
+          
+          this.conversation.push({ 
+            role: 'assistant', 
+            text: `我注意到你没有提到关于"${followUpPoint}"的内容，能详细说明一下吗？` 
+          });
+          this.$nextTick(this.scrollBottom);
+        } else {
+          // 所有未覆盖的关键点都已被追问过，进入下一题
+          this.interviewResults.push({
+            questionId: question.id,
+            question: question.question,
+            answer: answer,
+            coverage: coverage
+          });
+          
+          // 显示覆盖率
+          this.conversation.push({ 
+            role: 'assistant', 
+            text: `你的回答覆盖率为 ${coverage}%。现在让我们继续下一个问题。` 
+          });
+          this.$nextTick(this.scrollBottom);
+          
+          // 进入下一题
+          this.currentQuestionIndex++;
+          setTimeout(() => {
+            this.askNextQuestion();
+          }, 1000);
+        }
+      } else {
+        // 追问次数已用完，进入下一题
+        this.interviewResults.push({
+          questionId: question.id,
+          question: question.question,
+          answer: answer,
+          coverage: coverage
+        });
+        
+        // 显示覆盖率
+        this.conversation.push({ 
+          role: 'assistant', 
+          text: `你的回答覆盖率为 ${coverage}%。现在让我们继续下一个问题。` 
+        });
+        this.$nextTick(this.scrollBottom);
+        
+        // 进入下一题
+        this.currentQuestionIndex++;
+        setTimeout(() => {
+          this.askNextQuestion();
+        }, 1000);
+      }
+    },
+    calculateCoverage(answer, points) {
+      // 计算关键点覆盖率
+      let coveredCount = 0;
+      const totalPoints = Object.values(points).length;
+      
+      if (totalPoints === 0) return 100;
+      
+      // 检查每个关键点是否被覆盖
+      for (const point of Object.values(points)) {
+        if (answer.toLowerCase().includes(point.toLowerCase())) {
+          coveredCount++;
+        }
+      }
+      
+      return Math.round((coveredCount / totalPoints) * 100);
+    },
+    findUncoveredPoints(answer, points) {
+      // 找出未覆盖的关键点
+      const uncovered = [];
+      
+      for (const point of Object.values(points)) {
+        if (!answer.toLowerCase().includes(point.toLowerCase())) {
+          uncovered.push(point);
+        }
+      }
+      
+      return uncovered;
+    },
+    endInterview() {
+      // 结束面试，统计结果
+      this.interviewState = 'completed';
+      
+      // 计算平均覆盖率
+      const totalCoverage = this.interviewResults.reduce((sum, result) => sum + result.coverage, 0);
+      const averageCoverage = Math.round(totalCoverage / this.interviewResults.length);
+      
+      // 生成面试总结
+      let summary = `面试结束！感谢你的参与。\n\n`;
+      summary += `面试结果统计：\n`;
+      summary += `总问题数：${this.questions.length}\n`;
+      summary += `平均覆盖率：${averageCoverage}%\n\n`;
+      summary += `详细结果：\n`;
+      
+      this.interviewResults.forEach((result, index) => {
+        summary += `${index + 1}. 问题：${result.question}\n`;
+        summary += `   覆盖率：${result.coverage}%\n`;
+      });
+      
+      this.conversation.push({ 
+        role: 'assistant', 
+        text: summary 
+      });
+      this.$nextTick(this.scrollBottom);
     },
     async callInterviewAPI(firstPrompt) {
       this.isTyping = true;
